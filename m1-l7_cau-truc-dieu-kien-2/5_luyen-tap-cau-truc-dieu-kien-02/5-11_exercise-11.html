@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 11</title>
+</head>
+<body>
+
+
+<script>
+    let contractConfirm = confirm("Bạn có ký hợp đồng lao động?");
+    let taxPercent5 = 0.05,
+        taxPercent10 = 0.1,
+        taxPercent18 = 0.15,
+        taxPercent32 = 0.2,
+        taxPercent52 = 0.25,
+        taxPercent80 = 0.3,
+        taxPercentOver80 = 0.35;
+    let taxableIncome; // sử dụng trong hàm taxCalculate() được viết ở trên, không thể khai báo sau được!!!
+
+    function taxCalculate() {
+        let reducedAmount = parseInt(prompt("Nhập số tiền được giảm thuế (ví dụ: giảm trừ gia cảnh)"), 0);
+        let finalTaxableInCome;
+        let tax;
+        if (!isNaN(reducedAmount) || (reducedAmount >= 0)) {
+            finalTaxableInCome = taxableIncome - reducedAmount;
+            if (finalTaxableInCome <= 18000000) {
+                tax =
+                    (5000000 * taxPercent5) +
+                    (5000000 * taxPercent10) +
+                    (finalTaxableInCome - 10000000) * taxPercent18;
+            } else if (finalTaxableInCome <= 32000000) {
+                tax =
+                    (5000000 * taxPercent5) +
+                    (5000000 * taxPercent10) +
+                    (8000000 * taxPercent18) +
+                    (finalTaxableInCome - 18000000) * taxPercent32;
+            } else if (finalTaxableInCome <= 52000000) {
+                tax =
+                    (5000000 * taxPercent5) +
+                    (5000000 * taxPercent10) +
+                    (8000000 * taxPercent18) +
+                    (14 * taxPercent32) +
+                    (finalTaxableInCome - 32000000) * taxPercent52;
+            } else if (finalTaxableInCome <= 80000000) {
+                tax =
+                    (5000000 * taxPercent5) +
+                    (5000000 * taxPercent10) +
+                    (8000000 * taxPercent18) +
+                    (14000000 * taxPercent32) +
+                    (20000000 * taxPercent52) +
+                    (finalTaxableInCome - 52000000) * taxPercent80;
+            } else {
+                tax =
+                    (5000000 * taxPercent5) +
+                    (5000000 * taxPercent10) +
+                    (8000000 * taxPercent18) +
+                    (14000000 * taxPercent32) +
+                    (20000000 * taxPercent52) +
+                    (28000000 * taxPercent80) +
+                    (finalTaxableInCome - 80000000) * taxPercentOver80;
+            }
+            document.write(`Tiền thuế của bạn là: ${tax} VNĐ`);
+        } else {
+            document.write("Bạn đã nhập số tiền được giảm thuế sai!!!")
+        }
+    }
+
+    if (!contractConfirm) {
+        let income = parseInt(prompt("Nhập tổng số tiền được trả/lần"));
+        let tax;
+        if (!isNaN(income) || (income >= 0)) {
+            let tax = income * 0.1;
+            document.write(`Tiền thuế của bạn mỗi lần nhận tiền là: ${tax} VNĐ`);
+        } else {
+            document.write("Bạn đã nhập tổng số tiền được trả/lần sai!!!")
+        }
+    } else {
+        let contractTerm = parseInt(prompt("Hợp đồng lao động của bạn bao nhiêu tháng? (ví dụ: 0, 1, 2, 3...)"), 0);
+        if (!isNaN(contractTerm) || (contractTerm >= 0)) {
+            if (contractTerm < 3) {
+                let income = parseInt(prompt("Nhập tổng số tiền được trả/lần"));
+                let tax = income * 0.1;
+                if (!isNaN(income) || (income >= 0)) {
+                    document.write(`Tiền thuế của bạn mỗi lần nhận tiền là: ${tax} VNĐ`);
+                } else {
+                    document.write("Bạn đã nhập tổng số tiền được trả/lần sai!!!")
+                }
+            } else {
+                let income = parseInt(prompt("Nhập tổng thu nhập/tháng"));
+                let exemptAmount;
+                let dependentPerson;
+                if (!isNaN(income) || (income >= 0)) {
+                    exemptAmount = parseInt(prompt("Nhập số tiền được miễn thuế. (ví dụ: tiền làm thêm giờ"), 0);
+                    if (!isNaN(exemptAmount) || (exemptAmount >= 0)){
+                        taxableIncome = income - exemptAmount;
+                        dependentPerson = parseInt(prompt("Bạn có bao nhiêu người phụ thuộc? (ví dụ: 0, 1, 2...)"), 0);
+                        if (!isNaN(dependentPerson) || (dependentPerson >= 0)) {
+                            switch (dependentPerson) {
+                                case 0:
+                                    if (taxableIncome >= (11000000)) {
+                                        taxCalculate();
+                                    }
+                                    break;
+                                case 1:
+                                    if (taxableIncome >= (15400000)) {
+                                        taxCalculate();
+                                    }
+                                    break;
+                                case 2:
+                                    if (taxableIncome >= (19800000)) {
+                                        taxCalculate();
+                                    }
+                                    break;
+                                case 3:
+                                    if (taxableIncome >= (24200000)) {
+                                        taxCalculate();
+                                    }
+                                    break;
+                                case 4:
+                                default:
+                                    if (taxableIncome >= (28600000)) {
+                                        taxCalculate();
+                                    }
+                                    break;
+                            }
+                        } else {
+                            document.write("Bạn đã nhập số người phụ thuộc sai!!!");
+                        }
+                    } else {
+                        document.write("Bạn đã nhập số tiền được miễn thuế sai!!!");
+                    }
+                } else {
+                    document.write("Bạn đã nhập tổng thu nhập/tháng sai!!!");
+                }
+            }
+        } else {
+            document.write("Bạn đã nhập số tháng hợp đồng lao động sai!!!")
+        }
+    }
+</script>
+</body>
+</html>

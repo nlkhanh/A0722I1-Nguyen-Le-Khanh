@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 9</title>
+</head>
+<body>
+
+<script>
+    let num1 = parseFloat(prompt("nhập số thứ nhất"));
+    let num2 = parseFloat(prompt("nhập số thứ hai"));
+    let num3 = parseFloat(prompt("nhập số thứ ba"));
+
+    let numRightCheck = num1 * num2 * num3;
+
+    if (!isNaN(numRightCheck)) {
+        if ((numRightCheck > 0) &&
+            ((num1 + num2) > num3) &&
+            ((num1 + num3) > num2) &&
+            ((num2 + num3) > num1)
+        ) {
+            document.write("3 số vừa nhập là cạnh của một tam giác")
+        } else {
+            document.write("3 số vừa nhập không phải là cạnh của một tam giác");
+        }
+    } else {
+        document.write("Bạn đã nhập số sai")
+    }
+</script>
+</body>
+</html>

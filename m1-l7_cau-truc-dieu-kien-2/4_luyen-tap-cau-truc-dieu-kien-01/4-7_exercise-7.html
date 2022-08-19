@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 7</title>
+</head>
+<body>
+
+<script>
+    let callCharges60 = 1000;
+    let callCharges120 = 2000;
+    let callChargesOver120 = 4000;
+    let callDuration = parseInt(prompt("Nhập số phút đã gọi"));
+    let callFee;
+
+    if (callDuration >= 0) {
+        if (callDuration <= 60) {
+            callFee = callDuration * callCharges60;
+        } else if (callDuration <= 120) {
+            callFee = (60 * callCharges60) +  (callDuration - 60) * callCharges120;
+        } else if (callDuration > 120) {
+            callFee = (60 * callCharges60) +  (60 * callCharges120) + (callDuration - 120) * callChargesOver120;
+        }
+        document.write("Số tiền phí điện thoại của bạn là: " + callFee);
+    } else {
+        document.write("Bạn đã nhập số phút sai");
+    }
+</script>
+</body>
+</html>

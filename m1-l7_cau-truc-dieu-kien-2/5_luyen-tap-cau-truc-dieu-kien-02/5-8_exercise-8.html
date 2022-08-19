@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 8</title>
+</head>
+<body>
+
+<script>
+    let inputAge = parseInt(prompt("Nhập số tuổi người"));
+    let humanAgeRight = (inputAge > 0) && (inputAge < 120);
+
+    if (!isNaN(inputAge)) {
+        if (humanAgeRight) {
+            document.write("Bạn đã nhập đúng tuổi người");
+        } else {
+            document.write("Bạn đã nhập sai tuổi người");
+        }
+    } else {
+        document.write("Bạn đã nhập sai");
+    }
+</script>
+</body>
+</html>
