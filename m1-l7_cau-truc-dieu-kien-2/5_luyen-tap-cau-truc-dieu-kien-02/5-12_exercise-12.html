@@ -12,7 +12,7 @@
     let loanMonth;
     let lendingRate;
 
-    function loanCalculate() {
+    function calculateLoan() {
         let lendingAmountMonth = 0;
         let lendingAmount = 0;
         let newLoanAmount = loanAmount;
@@ -29,7 +29,7 @@
         if (!isNaN(loanMonth) || (loanMonth >= 0)) {
             lendingRate = parseFloat(prompt("Nhập lãi suất vay hàng tháng (ví dụ: 0.05, 0.1, 0.15...)"));
             if (!isNaN(lendingRate) || lendingRate >= 0) {
-                loanCalculate();
+                calculateLoan();
             } else {
                 document.write("Bạn đã nhập lãi suất sai!!!")
             }

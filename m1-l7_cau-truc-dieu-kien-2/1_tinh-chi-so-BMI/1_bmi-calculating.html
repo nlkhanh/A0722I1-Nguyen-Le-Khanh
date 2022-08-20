@@ -8,7 +8,8 @@
 <script>
     let height = parseFloat(prompt("Height? (centimeter)", ""));
     let weight = parseFloat(prompt("Weight? (kilogram)", ""));
-    let BMI = weight / ((height / 100) ^ 2);
+    let BMI;
+    BMI = weight / Math.pow((height / 100), 2);
 
     let isUnderWeight = BMI < 18.5;
     let isUnder25 = BMI < 25.0;
