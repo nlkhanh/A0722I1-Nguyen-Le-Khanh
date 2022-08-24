@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 2</title>
+</head>
+<body>
+
+<script>
+    let inputTemperature;
+
+    inputTemperature = parseInt(prompt("Nhập nhiệt độ hiện tại"));
+    while (inputTemperature < 20 || inputTemperature > 100) {
+        if (inputTemperature < 20) {
+            alert("Tăng nhiệt độ");
+        } else {
+            alert("Giảm nhiệt độ");
+        }
+        inputTemperature = parseInt(prompt("Nhập lại nhiệt độ"));
+    }
+    inputTemperature = parseInt(prompt("Nhập đúng nhiệt độ"));
+
+</script>
+</body>
+</html>

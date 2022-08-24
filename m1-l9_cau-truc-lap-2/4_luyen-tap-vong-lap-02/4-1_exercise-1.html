@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 1</title>
+</head>
+<body>
+
+<script>
+    let count = 4;
+    let fibonacci2 = 0,
+        fibonacci1 = 1,
+        fibonacci = 1;
+    let fibonacciAmount = parseInt(prompt("Nhập số lượng số trong dãy fibonacci bạn muốn tìm"));
+
+    if (fibonacciAmount === 1) {
+        document.write(`Số thứ 1 trong dãy Fibonacci là: 0 <br>`);
+    } else if (fibonacciAmount === 2) {
+        document.write(`Số thứ 1 trong dãy Fibonacci là: 0 <br>`);
+        document.write(`Số thứ 2 trong dãy Fibonacci là: 1 <br>`);
+    } else if (fibonacciAmount === 3) {
+        document.write(`Số thứ 1 trong dãy Fibonacci là: 0 <br>`);
+        document.write(`Số thứ 2 trong dãy Fibonacci là: 1 <br>`);
+        document.write(`Số thứ 3 trong dãy Fibonacci là: 1 <br>`);
+    } else if (fibonacciAmount > 3) {
+        document.write(`Số thứ 1 trong dãy Fibonacci là: 0 <br>`);
+        document.write(`Số thứ 2 trong dãy Fibonacci là: 1 <br>`);
+        document.write(`Số thứ 3 trong dãy Fibonacci là: 1 <br>`);
+        while (count <= fibonacciAmount) {
+            fibonacci2 = fibonacci1;
+            fibonacci1 = fibonacci;
+            fibonacci = fibonacci1 + fibonacci2;
+            document.write(`Số thứ ${count} trong dãy Fibonacci là: ${fibonacci} <br> `);
+            count++;
+        }
+    }
+</script>
+</body>
+</html>

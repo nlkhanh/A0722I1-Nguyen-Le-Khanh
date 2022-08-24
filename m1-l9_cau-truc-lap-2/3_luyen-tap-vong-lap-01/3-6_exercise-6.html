@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 6</title>
+</head>
+<body>
+
+<script>
+    let count = 0;
+    let sum = 0;
+    let i = 1;
+    while (count < 30) {
+        let isDivisible7 = (i % 7) === 0;
+        if (isDivisible7) {
+            sum += i;
+            count++;
+        }
+        i++;
+    }
+    document.write("Tổng 30 số đầu tiên chia hết cho  7 là: " + sum);
+</script>
+</body>
+</html>

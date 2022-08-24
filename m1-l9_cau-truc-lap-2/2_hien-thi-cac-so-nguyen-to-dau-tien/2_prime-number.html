@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prime Number</title>
+</head>
+<body>
+
+<script>
+    let primeCount = parseInt(prompt("Nhập số lượng số nguyên tố bạn muốn tìm"));
+    let count = 0;
+
+    if (!isNaN(primeCount) && (primeCount >= 0)) {
+        if (primeCount !== 1) {
+            let i = 3
+            document.write(`Số nguyên tố thứ 1 là: 2 <br>`);
+            while (count < (primeCount - 1)) {
+                let check = 0;
+                for (let j = 2; j < i; j++) {
+                    let isDivisible = (i % j) === 0;
+                    if (isDivisible) {
+                        break;
+                    } else {
+                        check++;
+                    }
+                }
+                if (check === (i - 2)) {
+                    count++;
+                    document.write(`Số nguyên tố thứ ${count + 1} là: ${i} <br>`);
+                }
+                i++;
+            }
+        } else {
+            document.write(`Số nguyên tố thứ 1 là: 2 <br>`);
+        }
+    } else {
+        document.write("Bạn đã nhập số sai!!!")
+    }
+</script>
+</body>
+</html>

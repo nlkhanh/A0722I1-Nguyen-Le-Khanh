@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 8</title>
+</head>
+<body>
+
+<script>
+    let button = "<button onclick='play()'>Chơi</button>";
+    document.write(button);
+
+    function getNumRandom(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function play() {
+        let numRangeMin = parseInt(prompt("Nhập số bắt đầu (min) khoảng số mà bạn muốn đoán"));
+        let numRangeMax = parseInt(prompt("Nhập số kết thúc (max) khoảng số mà bạn muốn đoán"));
+        let numRandom = getNumRandom(numRangeMin, numRangeMax);
+        let i = 0;
+        for (i = 0; i < 3; i++) {
+            let numGuess = parseInt(prompt("Nhập số bạn đoán"));
+            if (numGuess === numRandom) {
+                alert(`Chúc mừng bạn đã đoán trúng, số máy tính chọn là: ${numRandom}`);
+                break;
+            } else if (numGuess < numRandom) {
+                alert("Số bạn đoán bé hơn số máy tính lựa chọn");
+            } else {
+                alert("Số bạn đoán lớn hơn số máy tính lựa chọn");
+            }
+        }
+        if (i === 3) {
+            alert(`Bạn đã thua, số máy tính chọn là: ${numRandom}`);
+        }
+    }
+
+
+</script>
+</body>
+</html>

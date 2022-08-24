@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 3</title>
+</head>
+<body>
+
+<script>
+    for (let i = 0; i < 5; i++) {
+        for (let j = 0; j <= i; j++) {
+            document.writeln("*");
+        }
+        document.write("<br>");
+    }
+    document.write("<br>");
+    for (let i = 5; i > 0; i--) {
+        for (let j = 0; j < i; j++) {
+            document.writeln("*");
+        }
+        document.write("<br>");
+    }
+    document.write("<br>");
+    for (let i = 5; i > 0; i--) {
+        for (let j = 1; j < i; j++) {
+            document.write("&nbsp; &nbsp;");
+        }
+        for (let k = i; k <= 5; k++) {
+            document.writeln("*");
+        }
+        document.write("<br>");
+    }
+    document.write("<br>");
+    for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < i; j++) {
+            document.write("&nbsp; &nbsp;");
+        }
+        for (let j = i; j < 5; j++) {
+            document.writeln("*");
+        }
+        document.write("<br>");
+    }
+
+</script>
+</body>
+</html>
