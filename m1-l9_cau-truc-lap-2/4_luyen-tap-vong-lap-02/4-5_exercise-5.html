@@ -15,8 +15,7 @@
         lendingRate24 = 0.25,
         lendingRateOver24 = 0.3;
     let lendingAmount = 0;
-    let i = 1;
-    while (i <= loanMonth) {
+    for (let i = 1; i <= loanMonth; i++) {
         let lendingRate = 0.0;
         if (i <= 6) {
             lendingRate = lendingRate6;
@@ -27,8 +26,7 @@
         } else {
             lendingRate = lendingRateOver24;
         }
-        lendingAmount += loanAmountMonth * lendingRate6;
-        i++;
+        lendingAmount += loanAmountMonth * lendingRate;
     }
     document.write(
         `Tổng tiền lãi sau khi vay <b> ${loanAmount} </b> VNĐ trong vòng <b> ${loanMonth} </b> tháng

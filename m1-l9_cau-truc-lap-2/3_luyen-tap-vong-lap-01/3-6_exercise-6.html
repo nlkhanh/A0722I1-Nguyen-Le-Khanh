@@ -7,16 +7,17 @@
 <body>
 
 <script>
-    let count = 0;
     let sum = 0;
-    let i = 1;
+    let numCheck = 1;
+    let count = 0;
+
     while (count < 30) {
-        let isDivisible7 = (i % 7) === 0;
+        let isDivisible7 = (numCheck % 7 === 0);
         if (isDivisible7) {
-            sum += i;
+            sum += numCheck;
             count++;
         }
-        i++;
+        numCheck++;
     }
     document.write("Tổng 30 số đầu tiên chia hết cho  7 là: " + sum);
 </script>

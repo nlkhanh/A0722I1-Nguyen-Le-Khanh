@@ -7,6 +7,7 @@
 <body>
 
 <script>
+    //Hình 1
     for (let i = 0; i < 5; i++) {
         for (let j = 0; j <= i; j++) {
             document.writeln("*");
@@ -14,29 +15,37 @@
         document.write("<br>");
     }
     document.write("<br>");
-    for (let i = 5; i > 0; i--) {
-        for (let j = 0; j < i; j++) {
-            document.writeln("*");
-        }
-        document.write("<br>");
-    }
-    document.write("<br>");
-    for (let i = 5; i > 0; i--) {
-        for (let j = 1; j < i; j++) {
-            document.write("&nbsp; &nbsp;");
-        }
-        for (let k = i; k <= 5; k++) {
-            document.writeln("*");
-        }
-        document.write("<br>");
-    }
-    document.write("<br>");
+
+    //Hình 2
     for (let i = 0; i < 5; i++) {
-        for (let j = 0; j < i; j++) {
-            document.write("&nbsp; &nbsp;");
-        }
-        for (let j = i; j < 5; j++) {
+        for (let j = 5; j > i; j--) {
             document.writeln("*");
+        }
+        document.write("<br>");
+    }
+    document.write("<br>");
+
+    //Hình 3
+    for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 5; j++) {
+            if (j < (4 - i)) {
+                document.writeln("&nbsp;&nbsp;");
+            } else {
+                document.writeln("*");
+            }
+        }
+        document.write("<br>")
+    }
+    document.write("<br>");
+
+    //Hình 4
+    for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 5; j++) {
+            if (j <= (i - 1)) {
+                document.write("&nbsp; &nbsp;");
+            } else {
+                document.writeln("*");
+            }
         }
         document.write("<br>");
     }

@@ -7,7 +7,6 @@
 <body>
 
 <script>
-    let count = 4;
     let fibonacci2 = 0,
         fibonacci1 = 1,
         fibonacci = 1;
@@ -26,12 +25,11 @@
         document.write(`Số thứ 1 trong dãy Fibonacci là: 0 <br>`);
         document.write(`Số thứ 2 trong dãy Fibonacci là: 1 <br>`);
         document.write(`Số thứ 3 trong dãy Fibonacci là: 1 <br>`);
-        while (count <= fibonacciAmount) {
+        for (let count = 4; count <= fibonacciAmount; count++) {
             fibonacci2 = fibonacci1;
             fibonacci1 = fibonacci;
             fibonacci = fibonacci1 + fibonacci2;
             document.write(`Số thứ ${count} trong dãy Fibonacci là: ${fibonacci} <br> `);
-            count++;
         }
     }
 </script>

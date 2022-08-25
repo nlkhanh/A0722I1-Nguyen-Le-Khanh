@@ -10,8 +10,7 @@
 <script>
     let intPosNum = parseInt(prompt("Nhập số nguyên dương bạn muốn tính giai thừa"));
     let result = 1;
-    let i = 2;
-    while (i <= intPosNum) {
+    for (let i = 2; i <= intPosNum; i++) {
         result *= i;
         i++;
     }
