@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Exercise 1</title>
+    </head>
+    <body>
+        
+        <script>
+            let numbers = [3, 1, 15, 27, -1, -5, 2, 10, -12, 20];
+            let result = 0;
+            numbers.forEach((number) => {
+                if (number >= 10) {
+                    document.write(`Số ${number} lớn hơn hoặc bằng 10, có chỉ số là ${numbers.indexOf(number)} <br>`);
+                    result++;
+                } 
+            })
+            document.write(`Có ${result} số lớn hơn hoặc bằng 10`)
+        </script>
+    </body>
+</html>
