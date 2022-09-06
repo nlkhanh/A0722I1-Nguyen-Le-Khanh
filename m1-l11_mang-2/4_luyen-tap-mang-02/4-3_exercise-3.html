@@ -10,11 +10,11 @@
             let str = prompt("Nhập chuỗi bạn muốn");
             let count = 0;
             for (let char of str) {
-                numbers.forEach(number => {
-                    if (char === number) {
+                for (let v of numbers) {
+                    if (char === v) {
                         count++;
                     }
-                })
+                }
             }
             alert("Số lượng ký tự số trong chuỗi là: " + count);
         </script>

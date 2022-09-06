@@ -26,12 +26,12 @@
 
             for (let char of str) {
                 let charLowerCase = char.toLowerCase();
-                vowels.forEach(vowel => {
-                    if (charLowerCase === vowel) {
+                for (let v of vowels) {
+                    if (charLowerCase === v) {
                         document.write(`Số nguyên âm là: ${char} <br>`);
                         count++;
                     }
-                })
+                }
             }
             document.write(`Có ${count} số nguyên âm trong chuỗi`);
         </script>

@@ -9,12 +9,11 @@
         <script>
             let numbers = [3, 1, 15, 27, -1, -5, 2, 10, -12, 20];
             let max = numbers[0];
-
-            numbers.forEach((number) => {
-                if (number > max) {
-                    max = number;
-                } 
-            })
+            for (let v of numbers) {
+                if (v > max) {
+                    max = v;
+                }
+            }
             document.write(`Số ${max} là số lớn nhất trong mảng, có vị trí là ${numbers.indexOf(max)}`)
         </script>
     </body>
