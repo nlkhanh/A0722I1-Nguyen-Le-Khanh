@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 5</title>
+</head>
+<body>
+
+<script>
+    let stars = ["Polaris", "Aldebaran", "Deneb", "Vega", "Altair", "Dubhe", "Regulus"];
+    let constellations = ["Ursa Minor", "Taurus", "Cygnus", "Lyra", "Aquila", "Ursa Major", "Leo"];
+
+    function checkConstellation(inputStr) {
+        let count = 0;
+        let str = inputStr.toLowerCase();
+        for (let i in stars) {
+            if (stars[i].toLowerCase() === str) {
+                alert(constellations[i]);
+                count++;
+                break;
+            }
+        }
+        if (count === 0) {
+            alert("Nothing to display")
+        }
+    }
+
+    checkConstellation(prompt("Enter a star's name"));
+</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Products Management</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      #add-new-product__form {
+        display: inline-block;
+        padding: 24px 18px;
+        background-color: #f2f2f2;
+        border-radius: 4px;
+      }
+
+      #add-new-product__input {
+        padding: 12px;
+        width: 340px;
+        border: 1px solid #d9d9d9;
+        border-radius: 4px;
+        font-size: 12px;
+      }
+
+      #display-product__table {
+        width: 714px;
+      }
+
+      #display-product__table,
+      #display-product__table td {
+        border-collapse: collapse;
+        border: transparent;
+        padding: 8px;
+        font-size: 16px;
+      }
+
+      #display-product__table th {
+        padding: 8px 8px 24px 8px;
+      }
+
+      #display-product__table tbody tr:nth-child(odd) {
+        background-color: #f2f2f2;
+      }
+
+      #display-product__table .display-product__name {
+        width: 50%;
+      }
+
+      #display-product__table .display-product__btn {
+        width: 25%;
+      }
+
+      #add-new-product__btn,
+      #display-product__table .btn {
+        background-color: #50af51;
+        border: none;
+        color: white;
+        border-radius: 4px;
+        padding: 12px 18px;
+        font-size: 12px;
+        cursor: pointer;
+      }
+
+      #add-new-product__btn:hover,
+      #display-product__table .btn:hover {
+        opacity: 0.9;
+      }
+
+      #add-new-product__btn:active,
+      #display-product__table .btn:active {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="add-new-product">
+      <h2 id="add-new-product__title">Add New Product</h2>
+      <form action="" method="" name="" id="add-new-product__form">
+        <input
+          type="text"
+          name="add-new-product__input"
+          id="add-new-product__input"
+          placeholder="New Product"
+        />
+        <input
+          type="button"
+          value="Add"
+          name="add-new-product__btn"
+          id="add-new-product__btn"
+          onclick="addNewProduct()"
+        />
+      </form>
+    </div>
+    <div id="display-product">
+      <h2 id="display-product__title">Display All Product</h2>
+      <table id="display-product__table"></table>
+    </div>
+    <script>
+      let products = ["Sony Xperia", "Samsung Galaxy", "Nokia 6"];
+      let tableDisplay = document.getElementById("display-product__table");
+      function displayTableBody() {
+        let tableHead =
+          '<thead><tr><th style="text-align:left;" colspan="2">Product Name</th><th style="color: #a22c34; text-align:right;">' +
+          products.length +
+          " products</th></tr></thead>";
+        let tableRow = "<tbody>";
+        for (let i = 0; i < products.length; i++) {
+          tableRow +=
+            '<tr><td class="display-product__name">' +
+            products[i] +
+            '</td><td class="display-product__btn"><button onclick = "changeProductName(' +
+            i +
+            ')" class="btn display-product__btn--edit">Edit</button></td><td class="display-product__btn"><button onclick="deleteProduct(' +
+            i +
+            ')" class="btn display-product__btn--del">Delete</button></td></tr>';
+        }
+        tableRow += "</tbody>";
+        tableDisplay.innerHTML = tableHead + tableRow;
+      }
+      displayTableBody();
+      function addNewProduct() {
+        let newProduct = document.getElementById(
+          "add-new-product__input"
+        ).value;
+        if (newProduct != "") {
+          products.push(newProduct);
+          displayTableBody();
+        }
+      }
+      function changeProductName(index) {
+        let newProductName = prompt("New Product Name", products[index]);
+        if (newProductName !== "" && newProductName !== null) {
+          products[index] = newProductName;
+          displayTableBody();
+        }
+      }
+      function deleteProduct(index) {
+        products.splice(index, 1);
+        displayTableBody();
+      }
+    </script>
+  </body>
+</html>
