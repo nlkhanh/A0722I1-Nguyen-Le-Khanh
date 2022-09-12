@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 1</title>
+</head>
+
+<body>
+
+    <script>
+        let inputStr = prompt('Enter your string');
+        function standardizedStr (str) {
+            let strStandard = "";
+            let strArr = str.split(' ');
+            for (let i = 0; i < strArr.length; i++) {
+                if (strArr[i] !== '') {
+                    strArr[i] = strArr[i][0].toUpperCase() + strArr[i].slice(1).toLowerCase();
+                    strStandard += strArr[i] + ' ';
+                }
+            }
+            return strStandard;
+        }
+
+        function longestWord (strStandard) {
+            let strArr = strStandard.split(' ');
+            let wordLongest = strArr[0];
+            let max = strArr[0].length;
+            for (let i = 0; i < strArr.length; i++) {
+                if (strArr[i].length > max) {
+                    max = strArr[i].length;
+                    wordLongest = strArr[i];
+                }
+            }
+            return wordLongest;
+        }
+
+        function main (str) {
+            let strStandard = standardizedStr(str);
+            let wordLongest = longestWord(strStandard);
+            alert("Before: " + str);
+            alert("Standardized: " + strStandard);
+            alert("Longest word: " + wordLongest);
+        }
+
+        main(inputStr);
+    </script>
+</body>
+
+</html>

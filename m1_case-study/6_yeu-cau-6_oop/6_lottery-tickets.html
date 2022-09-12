@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise</title>
+    <style>
+        main {
+            margin-left: 100px;
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-left: 4px;
+            font-size: 36px;
+        }
+
+        form .tickets-wrapper {
+            margin-bottom: 24px;
+            margin-left: 0;
+        }
+
+        form .tickets-wrapper input {
+            padding: 4px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        form input[type = button] {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <h1>Xổ số CodeGym</h1>
+    <form action="" method="" name="first-ticket__form" id="first-ticket__form">
+        <div class="tickets-wrapper" id="first-ticket__wrapper">
+            <input type="text" name="first-ticket" id="first-ticket__1">
+            <input type="text" name="first-ticket" id="first-ticket__2">
+            <input type="text" name="first-ticket" id="first-ticket__3">
+            <input type="text" name="first-ticket" id="first-ticket__4">
+            <input type="text" name="first-ticket" id="first-ticket__5">
+            <input type="text" name="first-ticket" id="first-ticket__6">
+        </div>
+        <div class="tickets-wrapper" id="second-ticket__wrapper">
+            <input type="text" name="second-ticket" id="second-ticket__1">
+            <input type="text" name="second-ticket" id="second-ticket__2">
+            <input type="text" name="second-ticket" id="second-ticket__3">
+            <input type="text" name="second-ticket" id="second-ticket__4">
+            <input type="text" name="second-ticket" id="second-ticket__5">
+            <input type="text" name="second-ticket" id="second-ticket__6">
+        </div>
+        <input type="button" name="buy-ticket" id="buy-ticket" value="Mua vé" onclick="buyTicket();">
+        <input type="button" name="see-result" id="see-result" value="Xem kết quả" onclick="checkResult()">
+    </form>
+</main>
+<script>
+    class Ticket {
+        constructor(name) {
+            this.name = name;
+            this.getValue = function () {
+                let ticketValue = document.getElementsByName(this.name);
+                let arr = [];
+                for (let i = 0; i < ticketValue.length; i++) {
+                    arr[i] = ticketValue[i].value;
+                }
+                this.valueArr = arr;
+            };
+            this.checkWin = function(lotteryResult) {
+                let valueReverse = this.valueArr.reverse();
+                let resultReverse = [];
+                for (let i = 0; i < lotteryResult.length; i++) {
+                    resultReverse[i] = lotteryResult[lotteryResult.length - 1 - i];
+                }
+                let count = 0;
+                for (let i = 0; i < valueReverse.length; i++) {
+                    if(valueReverse[i] !== resultReverse[i]) {
+                        break;
+                    }
+                    count++;
+                }
+                if (count === 4) {
+                    this.result = 3;
+                } else if (count === 5) {
+                    this.result = 2;
+                } else if (count === 6) {
+                    this.result = 1;
+                } else {
+                    this.result = 0;
+                }
+                return this.result;
+            };
+        }
+    }
+
+    let ticket1 = new Ticket("first-ticket");
+    let ticket2 = new Ticket("second-ticket");
+
+    class Player {
+        constructor(name) {
+            this.name = name;
+            this.getTicket = function (...ticket) {
+                this.tickets = ticket;
+            };
+            this.checkWinner = function (lotteryResult) {
+                for (let i = 0; i < this.tickets.length; i++) {
+                    this.result = this.tickets[i].checkWin(lotteryResult);
+                    switch (this.result) {
+                        case 0:
+                            alert(`Chúc bạn may mắn lần sau!`);
+                            break;
+                        case 1:
+                            alert(`Bạn đã trúng giải nhất, phần thưởng của bạn là ${firstPrize} VND`);
+                            break;
+                        case 2:
+                            alert(`Bạn đã trúng giải nhì, phần thưởng của bạn là ${secondPrize} VND`);
+                            break;
+                        case 3:
+                            alert(`Bạn đã trúng giải khuyến khích, phần thưởng của bạn là ${consolationPrize} VND`);
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    let player1 = new Player("player1");
+    player1.getTicket(ticket1, ticket2);
+    //Gameplay
+    let firstPrize = 1000000000;
+    let secondPrize = 1000000;
+    let consolationPrize = 10000;
+    function getRandomNum() {
+        let randomNum = parseInt(Math.random()*100).toString();
+        if (randomNum.length === 1) {
+            randomNum = "0" + randomNum;
+        }
+        return randomNum;
+    }
+
+    function getChooseNum() {
+        return prompt("Nhập cặp số bạn muốn chọn. (vd: 00, 01, 02..., 09, 10, 11...,99");
+    }
+
+    function setTicketValue(ticket, kindOfBuy) {
+        let ticketValue = document.getElementsByName(ticket.name);
+        for (let i = 0; i < ticketValue.length; i++) {
+            if (kindOfBuy === 1) {
+                ticketValue[i].value = getChooseNum();
+            } else if (kindOfBuy === 2) {
+                ticketValue[i].value = getRandomNum();
+            }
+        }
+    }
+
+    function buyTicket() {
+        let kindOfBuy = parseInt(prompt("Bạn có 2 lựa chọn: \n 1. Bạn muốn tự chọn số. \n 2. Hệ thống tự random."));
+        setTicketValue(ticket1, kindOfBuy);
+        kindOfBuy = parseInt(prompt("Bạn có 2 lựa chọn: \n 1. Bạn muốn tự chọn số. \n 2. Hệ thống tự random."));
+        setTicketValue(ticket2, kindOfBuy);
+    }
+
+    function getLotteryResult () {
+        let lotteryResult = Array(6);
+        for (let i = 0; i < lotteryResult.length; i++) {
+            lotteryResult[i] = getRandomNum();
+        }
+        return lotteryResult;
+    }
+
+    function checkResult() {
+        ticket1.getValue();
+        ticket2.getValue();
+        player1.checkWinner(getLotteryResult());
+    }
+</script>
+</body>
+</html>

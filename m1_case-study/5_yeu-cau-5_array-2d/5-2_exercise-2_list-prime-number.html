@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 2</title>
+</head>
+<body>
+
+<script>
+    function listPrimeNumber(arr) {
+        let primeArr = [];
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = 0; j < arr.length; j++) {
+                let count = 0;
+                for (let k = 2; k < arr[i][j]; k++) {
+                    if (arr[i][j] %  k === 0) {
+                        count++;
+                        break;
+                    }
+                }
+                if (count === 0) {
+                    primeArr.push(arr[i][j]);
+                }
+            }
+        }
+        alert(`Amount of prime number in ${arr}} is: ${primeArr.length}. List of prime number is: ${primeArr}`)
+    }
+</script>
+</body>
+</html>

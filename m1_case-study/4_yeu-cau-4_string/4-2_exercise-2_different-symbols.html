@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 2</title>
+</head>
+<body>
+    
+    <script>
+        let str = 'cabca';
+        let strArr = str.split('');
+        let orderedStr = strArr.sort();
+        let differentCharCount = 0;
+        for (let i = 0; i < orderedStr.length; i++) {
+            let count = 0;
+            if (orderedStr[i] !== orderedStr[i + 1]) {
+                count++;
+            } 
+            if (count !== 0) {
+                differentCharCount++;
+            }
+        }
+        console.log(differentCharCount);
+    </script>
+</body>
+</html>
