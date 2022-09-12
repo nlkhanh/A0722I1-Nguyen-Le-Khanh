@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 3</title>
+</head>
+
+<body>
+
+    <script>
+        let numerators = [5, 2, 5];
+        let denominators = [6, 3, 4];
+        let max = numerators[0] / denominators[0];
+        let indexMax = 0;
+        for (let i = 0; i < numerators.length; i++) {
+            if ((numerators[i] / denominators[i]) > max) {
+                max = numerators[i] / denominators[i]
+                indexMax = i;
+            }
+        }
+        console.log(numerators[indexMax] + "/" + denominators[indexMax] + " is max fraction with index is: " + indexMax);
+    </script>
+</body>
+
+</html>
