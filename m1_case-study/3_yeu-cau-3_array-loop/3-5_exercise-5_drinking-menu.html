@@ -33,39 +33,41 @@
 </head>
 
 <body>
-    <h4>Menu</h4>
-    <ol id="menu"></ol>
-    <button id="pickup-btn" onclick="pickup();">Gọi món</button>
+<h4>Menu</h4>
+<ol id="menu"></ol>
+<button id="pickup-btn" onclick="pickup();">Gọi món</button>
 
-    <script>
-        let pickupBtn = document.getElementById("pickup-btn");
-        let menu = document.getElementById("menu");
-        let drinks = ["Cafe", "Cam vắt", "Nước ép cà rốt", "Nước ép cà chua", "Nước lọc", "Nước dừa", "Thoát chọn món"];
-        let prices = ["15000", "20000", "25000", "25000", "10000", "17000"];
-        let display = "";
-        for (let i = 0; i < drinks.length; i++) {
-            display += `<li id="drink__${i}">${drinks[i]}</li>`;
-            menu.innerHTML = display;
-        };
-        function pickup() {
-            let customerPickup = 0;
-            let totalCost = 0;
-            do {
-                let i = customerPickup - 1;
-                alert(`${drinks[i]} has a unit price of ${prices[i]} VND`);
-                let amount = parseInt(prompt(`Enter amount of ${drinks[i]}`));
-                let cost = (prices[i] * amount);
-                totalCost += cost;
-                alert(`Your ${drinks[i]} cost ${cost} VND`);
-                customerPickup = parseInt(prompt("Enter the index of drink you want: 1 (cafe), 2 (cam vắt), 3 (nước ép cà rốt), 4 (nước ép cà chua), 5 (nước lọc), 6 (nước dừa), 7 (thoát gọi món)"));
-            } while (customerPickup > 0 && customerPickup < 7)
-            if (customerPickup === 7) {
-                alert(`The total money you have to pay for drinks is: ${totalCost}`);
-            } else {
-                alert(`Your input is not valid!`);
-            }
+<script>
+    let pickupBtn = document.getElementById("pickup-btn");
+    let menu = document.getElementById("menu");
+    let drinks = ["Cafe", "Cam vắt", "Nước ép cà rốt", "Nước ép cà chua", "Nước lọc", "Nước dừa", "Thoát chọn món"];
+    let prices = ["15000", "20000", "25000", "25000", "10000", "17000"];
+    let display = "";
+    for (let i = 0; i < drinks.length; i++) {
+        display += `<li id="drink__${i}">${drinks[i]}</li>`;
+        menu.innerHTML = display;
+    }
+    ;
+
+    function pickup() {
+        let customerPickup = 0;
+        let totalCost = 0;
+        do {
+            let i = customerPickup - 1;
+            alert(`${drinks[i]} has a unit price of ${prices[i]} VND`);
+            let amount = parseInt(prompt(`Enter amount of ${drinks[i]}`));
+            let cost = (prices[i] * amount);
+            totalCost += cost;
+            alert(`Your ${drinks[i]} cost ${cost} VND`);
+            customerPickup = parseInt(prompt("Enter the index of drink you want: 1 (cafe), 2 (cam vắt), 3 (nước ép cà rốt), 4 (nước ép cà chua), 5 (nước lọc), 6 (nước dừa), 7 (thoát gọi món)"));
+        } while (customerPickup > 0 && customerPickup < 7)
+        if (customerPickup === 7) {
+            alert(`The total money you have to pay for drinks is: ${totalCost}`);
+        } else {
+            alert(`Your input is not valid!`);
         }
-    </script>
+    }
+</script>
 </body>
 
 </html>

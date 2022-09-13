@@ -8,19 +8,20 @@
 
 <body>
 
-    <script>
-        let numberName = ["không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
-        let inputNum = prompt("Enter a number");
-        let answer = "";
-        for (let i = 0; i < inputNum.length; i++) {
-            for (let j = 0; j < numberName.length; j++) {
-                if (inputNum[i] == j) {
-                    answer += numberName[j] + " ";
-                }
+<script>
+    let numberName = ["không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
+    let inputNum = prompt("Enter a number");
+    let answer = "";
+    for (let i = 0; i < inputNum.length; i++) {
+        for (let j = 0; j < numberName.length; j++) {
+            if (inputNum[i] == j) {
+                answer += numberName[j] + " ";
             }
-        };
-        console.log(answer);
-    </script>
+        }
+    }
+    ;
+    console.log(answer);
+</script>
 </body>
 
 </html>

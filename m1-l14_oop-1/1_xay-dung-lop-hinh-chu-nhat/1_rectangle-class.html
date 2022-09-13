@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Rectangle Class</title>
+</head>
+<body>
+<canvas id="canvas" width="1000px" height="500px" style="border: 1px solid #000000"></canvas>
+<script>
+    function Rectangle(width, height) {
+        this.width = width;
+        this.height = height;
+        this.calculateArea = function () {
+            return this.width * this.height;
+        }
+        this.calculatePerimeter = function () {
+            return 2 * (this.width + this.height);
+        }
+        this.drawRectangle = function () {
+            let ctx = document.getElementById("canvas").getContext("2d");
+            ctx.fillStyle = "#FF0000";
+            ctx.fillRect(10, 10, this.width, this.height);
+        }
+    }
+
+
+    let rectangle = new Rectangle(200, 100);
+    rectangle.drawRectangle();
+
+    rectangle.setWidthHeight = function (width, height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    rectangle.setWidthHeight(300, 250);
+    document.write("<br> New rectangle area: " + rectangle.calculateArea() + "<br>");
+    document.write("New rectangle perimeter: " + rectangle.calculatePerimeter());
+</script>
+</body>
+</html>

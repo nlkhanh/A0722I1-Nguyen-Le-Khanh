@@ -6,26 +6,26 @@
 </head>
 <body>
 
-    <script>
-        let arrA = [7, 2, 5, 3, 5, 3];
-        let arrB = [7, 2, 5, 6, 4, 3, 5, 3];
-        let missingValues = [];
-        for (let i = 0; i < arrB.length; i++) {
-            let count = 0;
-            for (let j = 0; j < arrA.length; j++) {
-                if (arrB[i] === arrA[j]) {
-                    count++;
-                    break;
-                }
-            }
-            if (count === 0) {
-                missingValues.push(arrB[i]);
+<script>
+    let arrA = [7, 2, 5, 3, 5, 3];
+    let arrB = [7, 2, 5, 6, 4, 3, 5, 3];
+    let missingValues = [];
+    for (let i = 0; i < arrB.length; i++) {
+        let count = 0;
+        for (let j = 0; j < arrA.length; j++) {
+            if (arrB[i] === arrA[j]) {
+                count++;
+                break;
             }
         }
-        missingValues.sort((a, b) => {
-            return a - b;
-        });
-        console.log(missingValues);
+        if (count === 0) {
+            missingValues.push(arrB[i]);
+        }
+    }
+    missingValues.sort((a, b) => {
+        return a - b;
+    });
+    console.log(missingValues);
 </script>
 </body>
 </html>

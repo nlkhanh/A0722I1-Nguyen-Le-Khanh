@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Objects Moving</title>
+</head>
+<body>
+<div id="game"></div>
+<script>
+    function Hero(image, top, left, size, speed) {
+        this.image = image;
+        this.top = top;
+        this.left = left;
+        this.size = size;
+        this.speed = speed;
+        this.getHeroElement = function () {
+            return '<img width="' + this.size + '"' +
+                ' height="' + this.size + '"' +
+                ' src="' + this.image + '"' +
+                ' style="top: ' + this.top + 'px; left:' + this.left + 'px;position:absolute;" />';
+        };
+        this.moveRight = function () {
+            this.left += speed;
+            console.log('ok: ' + this.left);
+        };
+        this.moveLeft = function () {
+            this.left -= speed;
+            console.log('ok: ' + this.left);
+        };
+        this.moveDown = function () {
+            this.top += speed;
+            console.log('ok: ' + this.top);
+        };
+        this.moveUp = function () {
+            this.top -= speed;
+            console.log('ok: ' + this.top);
+        };
+    }
+
+    let hero = new Hero('character.png', 20, 30, 100, 50);
+    let countX = 0;
+    let countY = 0;
+    let countMaxX = 0;
+    let countMaxY = 0;
+    for (let i = 20; i < (window.innerWidth - hero.size - hero.speed); i += hero.speed) {
+        countMaxX++;
+        countMaxY++;
+    }
+    for (let i = 30; i < (window.innerHeight - hero.size - hero.speed); i += hero.speed) {
+        countMaxX += 2;
+        countMaxY++;
+    }
+
+    function start() {
+        if ((hero.left < window.innerWidth - hero.size - hero.speed) && (countX === 0)) {
+            hero.moveRight();
+        } else if ((hero.top < window.innerHeight - hero.size - hero.speed) && (countY === 0)) {
+            hero.moveDown();
+            countX++;
+        } else if (hero.left > 30) {
+            hero.moveLeft();
+            countX++;
+            countY++;
+        } else if (hero.top > 20) {
+            hero.moveUp();
+            countX++;
+            countY++;
+        }
+        ;
+        if (countX === countMaxX) {
+            countX = 0;
+        }
+        if (countY === countMaxY) {
+            countY = 0;
+        }
+        document.getElementById('game').innerHTML = hero.getHeroElement();
+        setTimeout(start, 100)
+    };
+    start();
+</script>
+</body>
+</html>

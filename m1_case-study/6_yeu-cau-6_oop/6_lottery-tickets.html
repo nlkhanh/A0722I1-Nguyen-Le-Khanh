@@ -69,7 +69,7 @@
                 }
                 this.valueArr = arr;
             };
-            this.checkWin = function(lotteryResult) {
+            this.checkWin = function (lotteryResult) {
                 let valueReverse = this.valueArr.reverse();
                 let resultReverse = [];
                 for (let i = 0; i < lotteryResult.length; i++) {
@@ -77,7 +77,7 @@
                 }
                 let count = 0;
                 for (let i = 0; i < valueReverse.length; i++) {
-                    if(valueReverse[i] !== resultReverse[i]) {
+                    if (valueReverse[i] !== resultReverse[i]) {
                         break;
                     }
                     count++;
@@ -102,24 +102,29 @@
     class Player {
         constructor(name) {
             this.name = name;
-            this.getTicket = function (...ticket) {
+            this.buyTicket = function (...ticket) {
                 this.tickets = ticket;
-            };
-            this.checkWinner = function (lotteryResult) {
+                for (let i = 0; i < this.tickets.length; i++) {
+                    let kindOfBuy = parseInt(prompt("Bạn có 2 lựa chọn: \n 1. Bạn muốn tự chọn số. \n 2. Hệ thống tự random."));
+                    setTicketValue(this.tickets[i], kindOfBuy);
+                }
+            }
+            this.checkResult = function (lotteryResult) {
+                alert(`Số trúng thưởng là: ${lotteryResult.join('--')}`)
                 for (let i = 0; i < this.tickets.length; i++) {
                     this.result = this.tickets[i].checkWin(lotteryResult);
                     switch (this.result) {
                         case 0:
-                            alert(`Chúc bạn may mắn lần sau!`);
+                            alert(`Vé số ${i + 1}: Chúc bạn may mắn lần sau!`);
                             break;
                         case 1:
-                            alert(`Bạn đã trúng giải nhất, phần thưởng của bạn là ${firstPrize} VND`);
+                            alert(`Vé số ${i + 1}: Bạn đã trúng giải nhất, phần thưởng của bạn là ${firstPrize} VND`);
                             break;
                         case 2:
-                            alert(`Bạn đã trúng giải nhì, phần thưởng của bạn là ${secondPrize} VND`);
+                            alert(`Vé số ${i + 1}: Bạn đã trúng giải nhì, phần thưởng của bạn là ${secondPrize} VND`);
                             break;
                         case 3:
-                            alert(`Bạn đã trúng giải khuyến khích, phần thưởng của bạn là ${consolationPrize} VND`);
+                            alert(`Vé số ${i + 1}: Bạn đã trúng giải khuyến khích, phần thưởng của bạn là ${consolationPrize} VND`);
                             break;
                     }
                 }
@@ -128,13 +133,13 @@
     }
 
     let player1 = new Player("player1");
-    player1.getTicket(ticket1, ticket2);
     //Gameplay
     let firstPrize = 1000000000;
     let secondPrize = 1000000;
     let consolationPrize = 10000;
+
     function getRandomNum() {
-        let randomNum = parseInt(Math.random()*100).toString();
+        let randomNum = parseInt(Math.random() * 100).toString();
         if (randomNum.length === 1) {
             randomNum = "0" + randomNum;
         }
@@ -154,16 +159,14 @@
                 ticketValue[i].value = getRandomNum();
             }
         }
+        ticket.getValue();
     }
 
     function buyTicket() {
-        let kindOfBuy = parseInt(prompt("Bạn có 2 lựa chọn: \n 1. Bạn muốn tự chọn số. \n 2. Hệ thống tự random."));
-        setTicketValue(ticket1, kindOfBuy);
-        kindOfBuy = parseInt(prompt("Bạn có 2 lựa chọn: \n 1. Bạn muốn tự chọn số. \n 2. Hệ thống tự random."));
-        setTicketValue(ticket2, kindOfBuy);
+        player1.buyTicket(ticket1, ticket2);
     }
 
-    function getLotteryResult () {
+    function getLotteryResult() {
         let lotteryResult = Array(6);
         for (let i = 0; i < lotteryResult.length; i++) {
             lotteryResult[i] = getRandomNum();
@@ -172,9 +175,7 @@
     }
 
     function checkResult() {
-        ticket1.getValue();
-        ticket2.getValue();
-        player1.checkWinner(getLotteryResult());
+        player1.checkResult(getLotteryResult());
     }
 </script>
 </body>

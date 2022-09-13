@@ -8,28 +8,28 @@
 
 <body>
 
-    <script>
-        let salary = parseInt(prompt('Enter your salary'));
-        let income = 0;
-        let tax = 0;
-        if ((salary > 0) && (!isNaN(salary))) {
-            if (salary < 7000000) {
-                tax = 0.05;
-                income = salary - salary * tax;
-                alert('Your income is: ' + income + ', tax is: ' + tax * 100 + '%');
-            } else if (salary >= 7000000 && salary <= 15000000) {
-                tax = 0.1;
-                income = salary - salary * tax;
-                alert('Your income is: ' + income + ', tax is: ' + tax * 100 + '%');
-            } else {
-                tax = 0.2;
-                income = salary - salary * tax;
-                alert('Your income is: ' + income + ', tax is: ' + tax * 100 + '%');
-            }
+<script>
+    let salary = parseInt(prompt('Enter your salary'));
+    let income = 0;
+    let tax = 0;
+    if ((salary > 0) && (!isNaN(salary))) {
+        if (salary < 7000000) {
+            tax = 0.05;
+            income = salary - salary * tax;
+            alert('Your income is: ' + income + ', tax is: ' + tax * 100 + '%');
+        } else if (salary >= 7000000 && salary <= 15000000) {
+            tax = 0.1;
+            income = salary - salary * tax;
+            alert('Your income is: ' + income + ', tax is: ' + tax * 100 + '%');
         } else {
-            alert('Your salary input is not valid.');
+            tax = 0.2;
+            income = salary - salary * tax;
+            alert('Your income is: ' + income + ', tax is: ' + tax * 100 + '%');
         }
-    </script>
+    } else {
+        alert('Your salary input is not valid.');
+    }
+</script>
 </body>
 
 </html>

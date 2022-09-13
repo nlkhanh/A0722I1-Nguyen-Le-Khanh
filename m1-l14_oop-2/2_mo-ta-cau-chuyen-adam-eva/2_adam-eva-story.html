@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adam and Eve Story</title>
+</head>
+<body>
+<script>
+    let Apple = function () {
+        this.weight = 10;
+        this.decrease = function () {
+            this.weight--;
+        };
+        this.isEmpty = function () {
+            return this.weight === 0;
+        };
+        this.getWeight = function () {
+            return this.weight;
+        };
+    };
+    let Human = function () {
+        this.setName = function (name) {
+            this.name = name;
+        };
+        this.getName = function () {
+            return this.name;
+        }
+        this.setGender = function (boolean) { //male is true
+            this.gender = boolean;
+        };
+        this.isMale = function () {
+            return this.gender;
+        };
+        this.setWeight = function (weight) {
+            this.weight = weight;
+        };
+        this.getWeight = function () {
+            return this.weight;
+        }
+        this.say = function (string) {
+            console.log(string);
+        };
+        this.checkApple = function (apple) {
+            return !apple.isEmpty();
+        };
+        this.eatApple = function (apple) {
+            if (this.checkApple(apple)) {
+                apple.decrease();
+                this.weight++;
+            }
+        };
+    };
+    let apple = new Apple();
+    let adam = new Human();
+    adam.setName("Adam");
+    adam.setGender(true);
+    adam.setWeight(80);
+    let eve = new Human();
+    eve.setName("Eve");
+    eve.setGender(false);
+    eve.setWeight(60);
+
+    function start() {
+        console.log(apple.getWeight(), adam.getWeight(), eve.getWeight());
+        adam.eatApple(apple);
+        console.log(apple.getWeight(), adam.getWeight(), eve.getWeight());
+        eve.eatApple(apple);
+        console.log(apple.getWeight(), adam.getWeight(), eve.getWeight());
+        setInterval(start, 2000);
+    };
+    start();
+</script>
+</body>
+</html>

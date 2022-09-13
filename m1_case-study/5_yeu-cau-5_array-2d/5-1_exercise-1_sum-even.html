@@ -8,31 +8,33 @@
 
 <body>
 
-    <script>
-        let m = parseInt(prompt("Enter number of rows"));
-        let n = parseInt(prompt("Enter number of columns"));
-        let arr = Array(m);
-        for (let i = 0; i < arr.length; i++) {
-            arr[i] = Array(n);
+<script>
+    let m = parseInt(prompt("Enter number of rows"));
+    let n = parseInt(prompt("Enter number of columns"));
+    let arr = Array(m);
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = Array(n);
+    }
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr[i].length; j++) {
+            arr[i][j] = parseInt(prompt(`Enter your element in arr[${i}][${j}] you want into the array`));
         }
+    }
+
+    function sumArr2d(arr) {
+        let sum = 0;
         for (let i = 0; i < arr.length; i++) {
             for (let j = 0; j < arr[i].length; j++) {
-                arr[i][j] = parseInt(prompt(`Enter your element in arr[${i}][${j}] you want into the array`));
-            }
-        }
-        function sumArr2d(arr) {
-            let sum = 0;
-            for (let i = 0; i < arr.length; i++) {
-                for (let j = 0; j < arr[i].length; j++) {
-                    if (arr[i][j] % 2 === 0) {
-                        sum += arr[i][j];
-                    }
+                if (arr[i][j] % 2 === 0) {
+                    sum += arr[i][j];
                 }
             }
-            return sum;
         }
-        alert(sumArr2d(arr));
-    </script>
+        return sum;
+    }
+
+    alert(sumArr2d(arr));
+</script>
 </body>
 
 </html>

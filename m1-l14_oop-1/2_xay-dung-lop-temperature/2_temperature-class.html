@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature Class</title>
+</head>
+<body>
+
+<script>
+    function Temperature(c) {
+        if (c >= -273) {
+            this.c = c;
+        } else {
+            alert("Bạn đã nhập sai nhiệt độ C")
+        }
+        this.convertToF = function () {
+            return (c * 9 / 5) + 32;
+        }
+        this.convertToK = function () {
+            return c + 273.15;
+        }
+    }
+
+    let temperature = new Temperature(25);
+    document.writeln("degree Fahrenheit: " + temperature.convertToF() + "<br>");
+    document.writeln("degree Kevin: " + temperature.convertToK());
+
+</script>
+</body>
+</html>
