@@ -7,23 +7,40 @@
 <body>
 
 <script>
-    function Temperature(c) {
-        if (c >= -273) {
-            this.c = c;
-        } else {
-            alert("Bạn đã nhập sai nhiệt độ C")
+    class Temperature {
+        constructor() {
         }
-        this.convertToF = function () {
-            return (c * 9 / 5) + 32;
+
+        setTemC(temC) {
+            this.temC = temC;
         }
-        this.convertToK = function () {
-            return c + 273.15;
+
+        validateTemC() {
+            if (this.temC >= -273) {
+                this.isValidTemC = true;
+            } else {
+                alert("Invalid input temperature")
+            }
+        }
+
+        convertF() {
+            if (this.isValidTemC) {
+                return (this.temC * 9 / 5) + 32;
+            }
+        }
+
+        convertK() {
+            if (this.isValidTemC) {
+                return this.temC + 273.15;
+            }
         }
     }
 
-    let temperature = new Temperature(25);
-    document.writeln("degree Fahrenheit: " + temperature.convertToF() + "<br>");
-    document.writeln("degree Kevin: " + temperature.convertToK());
+    let tempC = new Temperature();
+    tempC.setTemC(-275);
+    tempC.validateTemC();
+    document.writeln("degree Fahrenheit: " + tempC.convertF() + " oF" + "<br>");
+    document.writeln("degree Kevin: " + tempC.convertK() + " oK");
 
 </script>
 </body>
