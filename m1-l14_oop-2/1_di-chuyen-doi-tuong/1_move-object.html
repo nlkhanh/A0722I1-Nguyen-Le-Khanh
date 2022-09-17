@@ -1,82 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Objects Moving</title>
 </head>
+
 <body>
 <div id="game"></div>
 <script>
-    function Hero(image, top, left, size, speed) {
-        this.image = image;
-        this.top = top;
-        this.left = left;
-        this.size = size;
-        this.speed = speed;
-        this.getHeroElement = function () {
-            return '<img width="' + this.size + '"' +
-                ' height="' + this.size + '"' +
-                ' src="' + this.image + '"' +
-                ' style="top: ' + this.top + 'px; left:' + this.left + 'px;position:absolute;" />';
+    class Person {
+        constructor(image, startX, startY, width, height, speed) {
+            this.image = image;
+            this.startX = startX;
+            this.startY = startY;
+            this.x = startX;
+            this.y = startY;
+            this.width = width;
+            this.height = height;
+            this.speed = speed;
         };
-        this.moveRight = function () {
-            this.left += speed;
-            console.log('ok: ' + this.left);
+
+        displayPerson() {
+            document.getElementById("game").innerHTML =
+                `<img src="${this.image}" width="${this.width}" height="${this.height}"
+                alt="Person Image" style="position:absolute; top:${this.y}px; left:${this.x}px;"/>`;
         };
-        this.moveLeft = function () {
-            this.left -= speed;
-            console.log('ok: ' + this.left);
+
+        move(speedX, speedY) {
+            this.x += speedX;
+            this.y += speedY;
         };
-        this.moveDown = function () {
-            this.top += speed;
-            console.log('ok: ' + this.top);
+
+        getDistance() {
+            this.dWidth = window.innerWidth - this.x - this.width - this.speed;
+            this.dHeight = window.innerHeight - this.y - this.height - this.speed;
         };
-        this.moveUp = function () {
-            this.top -= speed;
-            console.log('ok: ' + this.top);
+
+        resetStep() {
+            this.leftSteps = 0;
+            this.upSteps = 0;
+        };
+
+        goAround() {
+            if (this.x <= this.dWidth && this.leftSteps === 0) {
+                this.move(this.speed, 0);
+                this.displayPerson();
+            } else if (this.y <= this.dHeight && this.upSteps === 0) {
+                this.move(0, this.speed);
+                this.displayPerson();
+            } else if (this.x > this.startX) {
+                this.move(-this.speed, 0);
+                this.leftSteps++;
+                this.displayPerson();
+            } else if (this.y > this.startY) {
+                this.move(0, -this.speed);
+                this.upSteps++;
+                this.displayPerson();
+            }
+            ;
+            if (this.x === this.startX && this.y === this.startY) {
+                this.resetStep();
+            }
         };
     }
 
-    let hero = new Hero('character.png', 20, 30, 100, 50);
-    let countX = 0;
-    let countY = 0;
-    let countMaxX = 0;
-    let countMaxY = 0;
-    for (let i = 20; i < (window.innerWidth - hero.size - hero.speed); i += hero.speed) {
-        countMaxX++;
-        countMaxY++;
-    }
-    for (let i = 30; i < (window.innerHeight - hero.size - hero.speed); i += hero.speed) {
-        countMaxX += 2;
-        countMaxY++;
-    }
+    let person = new Person("character.png", 20, 20, 100, 100, 20);
+    person.displayPerson();
+    person.getDistance();
+    person.resetStep();
 
     function start() {
-        if ((hero.left < window.innerWidth - hero.size - hero.speed) && (countX === 0)) {
-            hero.moveRight();
-        } else if ((hero.top < window.innerHeight - hero.size - hero.speed) && (countY === 0)) {
-            hero.moveDown();
-            countX++;
-        } else if (hero.left > 30) {
-            hero.moveLeft();
-            countX++;
-            countY++;
-        } else if (hero.top > 20) {
-            hero.moveUp();
-            countX++;
-            countY++;
-        }
-        ;
-        if (countX === countMaxX) {
-            countX = 0;
-        }
-        if (countY === countMaxY) {
-            countY = 0;
-        }
-        document.getElementById('game').innerHTML = hero.getHeroElement();
-        setTimeout(start, 100)
-    };
-    start();
+        person.goAround();
+    }
+
+    setInterval(start, 100);
 </script>
 </body>
+
 </html>

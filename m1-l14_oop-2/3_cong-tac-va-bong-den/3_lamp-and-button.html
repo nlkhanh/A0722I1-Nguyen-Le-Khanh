@@ -7,37 +7,28 @@
 <body>
 
 <script>
-    let ElectricLamp = function () {
-        this.turnOff = function () {
-            this.status = false;
-        };
-        this.turnOn = function () {
-            this.status = true;
-        };
-    };
-    let SwitchButton = function () {
-        this.connectToLamp = function (lamp) {
-            this.lamp = lamp;
-        };
-        this.switchOff = function () {
-            this.status = false;
-            this.lamp.turnOff();
-        };
-        this.switchOn = function () {
-            this.status = true;
-            this.lamp.turnOn();
-        };
-    };
+    class ElectricLamp {
+        constructor(status) {
+            this.status = status;
+        }
+    }
 
-    let lamp = new ElectricLamp();
-    let switchButton = new SwitchButton();
+    class SwitchButton {
+        constructor(electricLamp) {
+            this.lamp = electricLamp;
+        }
 
-    switchButton.connectToLamp(lamp);
+        switchOnOff() {
+            this.lamp.status = !this.lamp.status;
+        }
+    }
+
+    let electricLamp1 = new ElectricLamp(false);
+    let switchButton1 = new SwitchButton(electricLamp1);
+    console.log("electric lamp (start): " + electricLamp1.status)
     for (let i = 0; i < 10; i++) {
-        switchButton.switchOn();
-        console.log(lamp.status, switchButton.status);
-        switchButton.switchOff();
-        console.log(lamp.status, switchButton.status);
+        switchButton1.switchOnOff();
+        console.log("turn on/ off electric lamp (" + i + "): " + electricLamp1.status)
     }
 </script>
 </body>
