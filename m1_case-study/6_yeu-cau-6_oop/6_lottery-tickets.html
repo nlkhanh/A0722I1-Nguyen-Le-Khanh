@@ -79,7 +79,6 @@
     let ticket1 = new LotteryTicket();
     let ticket2 = new LotteryTicket();
     let player = new Player();
-    player.setTickets(ticket1, ticket2);
 
     function buyTickets() {
         for (let ticket = 1; ticket <= 2; ticket++) {
@@ -122,6 +121,7 @@
         }
         ticket1.setValue("ticket-1-number");
         ticket2.setValue("ticket-2-number")
+        player.setTickets(ticket1, ticket2);
     }
 
     function getLottery() {
@@ -141,7 +141,7 @@
     }
 
     function checkResult() {
-        let lotteryArr = ["11", "22", "33", "44", "55", "66"];
+        let lotteryArr = getLottery();
         let playerTickets = player.getTickets();
         for (let i = 0; i < playerTickets.length; i++) {
             let ticketValueArr = playerTickets[i].getValue();
