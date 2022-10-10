@@ -3,169 +3,138 @@ package m2s1_introduction_java.m2s1_review;
 import java.util.Scanner;
 
 public class NumberReader {
-    static String readNum1(String num) {
-        String numStr = null;
-        switch (num) {
-            case "0":
-                numStr = "zero";
-                break;
-            case "1":
-                numStr = "one";
-                break;
-            case "2":
-                numStr = "two";
-                break;
-            case "3":
-                numStr = "three";
-                break;
-            case "4":
-                numStr = "four";
-                break;
-            case "5":
-                numStr = "five";
-                break;
-            case "6":
-                numStr = "six";
-                break;
-            case "7":
-                numStr = "seven";
-                break;
-            case "8":
-                numStr = "eight";
-                break;
-            case "9":
-                numStr = "nine";
-                break;
-        }
-        return numStr;
-    }
-
-    static String readNum2(String num) {
-        String numStr = null;
-        switch (num) {
-            case "10":
-                numStr = "ten";
-                break;
-            case "11":
-                numStr = "eleven";
-                break;
-            case "12":
-                numStr = "twelve";
-                break;
-            case "13":
-                numStr = "thirteen";
-                break;
-            case "14":
-                numStr = "fourteen";
-                break;
-            case "15":
-                numStr = "fifteen";
-                break;
-            case "16":
-                numStr = "sixteen";
-                break;
-            case "17":
-                numStr = "seventeen";
-                break;
-            case "18":
-                numStr = "eighteen";
-                break;
-            case "19":
-                numStr = "nineteen";
-                break;
-        }
-        return numStr;
-    }
-
-    static String readNum3(String num) {
-        String numStr = null;
-        switch (num) {
-            case "2":
-                numStr = "twenty";
-                break;
-            case "3":
-                numStr = "thirty";
-                break;
-            case "4":
-                numStr = "forty";
-                break;
-            case "5":
-                numStr = "fifty";
-                break;
-            case "6":
-                numStr = "sixty";
-                break;
-            case "7":
-                numStr = "seventy";
-                break;
-            case "8":
-                numStr = "eighty";
-                break;
-            case "9":
-                numStr = "ninety";
-                break;
-        }
-        return numStr;
-    }
-
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int num;
-        String numStr;
-        String result = null;
-        System.out.println("Enter a number: ");
-        num = scanner.nextInt();
-        int max = 999, min = 0;
-        boolean validNum = num >= min && num <= max;
-        if (validNum) {
-            if (num < 10) {
-                numStr = String.valueOf(num);
-                result = readNum1(numStr);
-            } else if (num < 20) {
-                numStr = String.valueOf(num);
-                result = readNum2(numStr);
-            } else if (num < 100) {
-                numStr = String.valueOf(num);
-                String tens = String.valueOf(numStr.charAt(0));
-                String ones = String.valueOf(numStr.charAt(1));
-                if (ones.equals("0")) {
-                    result = readNum3(tens);
-                } else {
-                    result = readNum3(tens) + " " + readNum1(ones);
-                }
-            } else {
-                numStr = String.valueOf(num);
-                String hundreds = String.valueOf(numStr.charAt(0));
-                String tens = String.valueOf(numStr.charAt(1));
-                String ones = String.valueOf(numStr.charAt(2));
-                String hundredStr;
-                String andStr = "and";
-                if (hundreds.equals("1")) {
-                    hundredStr = "hundred";
-                } else {
-                    hundredStr = "hundreds";
-                }
-                if (ones.equals("0")) {
-                    if (tens.equals("0")) {
-                        result = readNum1(hundreds) + " " + hundredStr;
-                    } else if (tens.equals("1")) {
-                        result = readNum1(hundreds) + " " + hundredStr + " " + andStr + " ten";
-                    } else {
-                        result = readNum1(hundreds) + " " + hundredStr + " " + andStr + " " + readNum3(tens);
-                    }
-                } else {
-                    if (tens.equals("0")) {
-                        result = readNum1(hundreds) + " " + hundredStr + " " + andStr + " " + readNum1(ones);
-                    } else if (tens.equals("1")) {
-                        result = readNum1(hundreds) + " " + hundredStr + " " + andStr + " " + readNum2(tens + ones);
-                    } else {
-                        result = readNum1(hundreds) + " " + hundredStr + " " + andStr + " " + readNum3(tens) + " " + readNum1(ones);
-                    }
-                }
-            }
-        } else {
-            System.out.println("Invalid input!");
+        Scanner input = new Scanner(System.in);
+        int number;
+        do {
+            System.out.println("Enter a number (0-999): ");
+            number = input.nextInt();
+        } while ((number < 0) || (number > 999));
+        int hundred = number / 100;
+        int ten = (number - (hundred * 100)) / 10;
+        int one = number - (hundred * 100) - (ten * 10);
+        String letters = " ";
+        switch (hundred) {
+            case 1:
+                letters += "One hundred";
+                break;
+            case 2:
+                letters += "Two hundreds";
+                break;
+            case 3:
+                letters += "Three hundreds";
+                break;
+            case 4:
+                letters += "Four hundreds";
+                break;
+            case 5:
+                letters += "Five hundreds";
+                break;
+            case 6:
+                letters += "Six hundreds";
+                break;
+            case 7:
+                letters += "Seven hundreds";
+                break;
+            case 8:
+                letters += "Eight hundreds";
+                break;
+            case 9:
+                letters += "Nine hundreds";
+                break;
         }
-        System.out.println("Number is read as: " + result);
+        if ((hundred != 0) && (ten != 0) && (one != 0)) {
+            letters += " and ";
+        }
+        switch (ten) {
+            case 1:
+                switch (one) {
+                    case 1:
+                        letters += "Eleven";
+                        break;
+                    case 2:
+                        letters += "Twelve";
+                        break;
+                    case 3:
+                        letters += "Thirteen";
+                        break;
+                    case 4:
+                        letters += "Fourteen";
+                        break;
+                    case 5:
+                        letters += "Fifteen";
+                        break;
+                    case 6:
+                        letters += "Sixteen";
+                        break;
+                    case 7:
+                        letters += "Seventeen";
+                        break;
+                    case 8:
+                        letters += "Eighteen";
+                        break;
+                    case 9:
+                        letters += "Nineteen";
+                        break;
+                }
+                break;
+            case 2:
+                letters += "Twenty";
+                break;
+            case 3:
+                letters += "Thirty";
+                break;
+            case 4:
+                letters += "Forty";
+                break;
+            case 5:
+                letters += "Fifty";
+                break;
+            case 6:
+                letters += "Sixty";
+                break;
+            case 7:
+                letters += "Seventy";
+                break;
+            case 8:
+                letters += "Eighty";
+                break;
+            case 9:
+                letters += "Ninety";
+                break;
+        }
+        if (ten != 1) {
+            letters += " ";
+            switch (one) {
+                case 1:
+                    letters += "One";
+                    break;
+                case 2:
+                    letters += "Two";
+                    break;
+                case 3:
+                    letters += "Three";
+                    break;
+                case 4:
+                    letters += "Four";
+                    break;
+                case 5:
+                    letters += "Five";
+                    break;
+                case 6:
+                    letters += "Six";
+                    break;
+                case 7:
+                    letters += "Seven";
+                    break;
+                case 8:
+                    letters += "Eight";
+                    break;
+                case 9:
+                    letters += "Nine";
+                    break;
+            }
+        }
+        System.out.println(number + " is read as:" + letters);
     }
 }
