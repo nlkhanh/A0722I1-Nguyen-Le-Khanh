@@ -43,7 +43,7 @@ public class NumberReader {
                 letters += "Nine hundreds";
                 break;
         }
-        if ((hundred != 0) && (ten != 0) && (one != 0)) {
+        if ((hundred != 0) && ((ten != 0) || (one != 0))) {
             letters += " and ";
         }
         switch (ten) {
@@ -106,6 +106,11 @@ public class NumberReader {
         if (ten != 1) {
             letters += " ";
             switch (one) {
+                case 0:
+                    if ((hundred == 0) && (ten == 0)) {
+                        letters += "Zero";
+                    }
+                    break;
                 case 1:
                     letters += "One";
                     break;
