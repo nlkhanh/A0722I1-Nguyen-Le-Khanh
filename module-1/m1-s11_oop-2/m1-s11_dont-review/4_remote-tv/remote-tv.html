@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remote Television</title>
+</head>
+<body>
+
+<script>
+    class Television {
+        constructor(volume, channel) {
+            this.volume = volume;
+            this.channel = channel;
+        }
+
+        setVolume(volume) {
+            this.volume += volume;
+        }
+
+        setChannel(channel) {
+            this.channel = channel;
+        }
+    }
+
+    class Remote {
+        constructor(television) {
+            this.television = television;
+        }
+
+        changeChannel(channel) {
+            this.television.setChannel(channel);
+        }
+
+        changeVolume(volume) {
+            this.television.setVolume(volume);
+        }
+    }
+
+    let tv1 = new Television(50, 7);
+    let remote1 = new Remote(tv1);
+    console.log(tv1.channel);
+    console.log(tv1.volume);
+    remote1.changeChannel(3);
+    console.log(tv1.channel);
+    remote1.changeVolume(5);
+    console.log(tv1.volume);
+    remote1.changeVolume(-10);
+    console.log(tv1.volume);
+</script>
+</body>
+</html>

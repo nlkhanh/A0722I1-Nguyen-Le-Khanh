@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 7</title>
+</head>
+<body>
+
+<script>
+    // Giải phương trình ax2 + bx + c = 0
+    let num1 = parseInt(prompt("Nhập số thứ nhất"));
+    let num2 = parseInt(prompt("Nhập số thứ hai"));
+    let num3 = parseInt(prompt("Nhập số thứ ba"));
+
+    let delta = Math.pow(num2, 2) - (4 * num1 * num3);
+    console.log (delta);
+
+    let numRightCheck = num1 * num2 * num3;
+    if (!isNaN(numRightCheck)){
+        if (delta < 0) {
+            document.write("Phương trình vô nghiệm")
+        } else if (delta === 0) {
+            let x = - num2 / (2 * num1);
+            document.write(`Phương trình có nghiệm là: <br> x1 = x2 = ${x}`);
+        } else {
+            let x1 = ( - num2 + Math.sqrt(delta)) / (2 * num1);
+            let x2 = ( - num2 - Math.sqrt(delta)) / (2 * num1);
+            document.write(`Phương trình có nghiệm là: <br> x1 = ${x1} <br> x2 = ${x2}`);
+        }
+    } else {
+        document.write("Bạn đã nhập số sai");
+    }
+</script>
+</body>
+</html>

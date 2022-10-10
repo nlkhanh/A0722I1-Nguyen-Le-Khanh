@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cau 3</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        table, th, td {
+            margin: auto;
+            border: 1px solid #000000;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 2px 8px;
+        }
+
+        th {
+            background-color: #dddddd;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #e4eaec;
+        }
+
+        #button-wrap {
+            display: inline-block;
+            margin: 24px auto 0 580px;
+        }
+        
+        button {
+            margin-right: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Quản lí sách</h1>
+<table id="table"></table>
+<div id="button-wrap">
+    <button onclick="themSachDaCo()">Thêm sách đã có</button>
+    <button onclick="themSachMoi()">Thêm sách mới</button>
+    <button onclick="muonSach()">Mượn sách</button>
+    <button onclick="hienThiSachNhieuNhat()">Hiển thị sách nhiều nhất</button>
+</div>
+<script>
+    class Sach {
+        constructor(maSoSach, tenSach, namXuatBan, soQuyen, tinhTrang) {
+            this.maSoSach = maSoSach;
+            this.tenSach = tenSach;
+            this.namXuatBan = namXuatBan;
+            this.soQuyen = soQuyen;
+            this.tinhTrang = tinhTrang;
+        }
+
+        tangSoQuyen() {
+            this.soQuyen++;
+        }
+
+        giamSoQuyen() {
+            this.soQuyen--;
+        }
+
+        kiemTraSoLuongSach() {
+            this.tinhTrang = !(this.soQuyen === 0);
+        }
+    }
+
+    let dsSach = [];
+
+    function themSachMoi() {
+        let maSoSach;
+        do {
+            maSoSach = prompt("Nhập mã số sách: ")
+            if (!maSoSachHopLe(maSoSach)) {
+                alert("Bạn đã nhập sai")
+            }
+        } while (!maSoSachHopLe(maSoSach))
+        let tenSach = prompt("Nhập tên sách: ");
+        let namXuatBan;
+        do {
+            namXuatBan = parseInt(1 * prompt("Nhập năm xuất bản: "));
+            if (isNaN(namXuatBan) || (namXuatBan < 1000) || (namXuatBan > 9999)) {
+                alert("Bạn đã nhập sai.")
+            }
+        } while (isNaN(namXuatBan) || (namXuatBan < 1000) || (namXuatBan > 9999))
+        let soQuyen;
+        do {
+            soQuyen = parseInt(1 * prompt("Nhập số quyển hiện có: "));
+            if (isNaN(soQuyen) || soQuyen <= 0) {
+                alert("Bạn đã nhập sai.")
+            }
+        } while (isNaN(soQuyen) || soQuyen <= 0);
+        let tinhTrang = true;
+        let sach = new Sach(maSoSach, tenSach, namXuatBan, soQuyen, tinhTrang);
+        dsSach.push(sach);
+        alert("Bạn đã thêm sách thành công");
+        hienThi();
+    }
+
+    function themSachDaCo() {
+        let maSoSach;
+        do {
+            maSoSach = prompt("Nhập mã số sách cần thêm: ")
+            if (!maSoSachHopLe(maSoSach)) {
+                alert("Bạn đã nhập sai")
+            }
+        } while (!maSoSachHopLe(maSoSach))
+        let coMaSoSach = false;
+        for (let i = 0; i < dsSach.length; i++) {
+            if (dsSach[i].maSoSach === maSoSach) {
+                coMaSoSach = true;
+                dsSach[i].tangSoQuyen();
+                dsSach[i].kiemTraSoLuongSach();
+                break;
+            }
+        }
+        if (!coMaSoSach) {
+            alert("Mã số sách bạn nhập không có trong thư viện")
+        }
+        hienThi();
+    }
+
+    function muonSach() {
+        let maSoSach;
+        do {
+            maSoSach = prompt("Nhập mã số sách muốn mượn: ")
+            if (!maSoSachHopLe(maSoSach)) {
+                alert("Bạn đã nhập sai")
+            }
+        } while (!maSoSachHopLe(maSoSach))
+        let coMaSoSach = false;
+        for (let i = 0; i < dsSach.length; i++) {
+            dsSach[i].kiemTraSoLuongSach();
+            if (dsSach[i].maSoSach === maSoSach) {
+                coMaSoSach = true;
+                if (dsSach[i].tinhTrang === false) {
+                    alert("Sách trong thư viện đã hết.")
+                } else {
+                    dsSach[i].giamSoQuyen();
+                    dsSach[i].kiemTraSoLuongSach();
+                }
+                break;
+            }
+        }
+        if (!coMaSoSach) {
+            alert("Mã số sách bạn nhập không có trong thư viện.")
+        }
+        hienThi();
+    }
+
+    function hienThiSachNhieuNhat() {
+        let sachNhieuNhat = dsSach[0].soQuyen;
+        let viTri = 0;
+        for (let i = 0; i < dsSach.length; i++) {
+            if (dsSach[i].soQuyen > sachNhieuNhat) {
+                sachNhieuNhat = dsSach[i].soQuyen;
+                viTri = i;
+            }
+        }
+        alert("Sách nhiều nhất là sách " + dsSach[viTri].tenSach + " có " + sachNhieuNhat + " quyển.")
+    }
+
+    function maSoSachHopLe(maSoSach) {
+        if (maSoSach.length !== 5) {
+            return false;
+        }
+        let dinhDang1 = "12345";
+        let dinhDang2 = "0123456789";
+        if (!(dinhDang1.includes(maSoSach.charAt(0)))) {
+            return false;
+        }
+        for (let i = 1; i < maSoSach.length; i++) {
+            if (!(dinhDang2.includes(maSoSach.charAt(i)))) {
+                return false;
+                break;
+            }
+        }
+        return true;
+    }
+
+    function hienThi() {
+        let bang = document.getElementById("table");
+        let noiDung = "<thead><tr>" +
+            "<th>Mã sổ sách</th>" +
+            "<th>Tên sách</th>" +
+            "<th>Năm xuất bản</th>" +
+            "<th>Số quyển</th>" +
+            "<th>Tình trạng</th> " +
+            "</tr></thead>" +
+            "<tbody>";
+        for (let i = 0; i < dsSach.length; i++) {
+            noiDung +=
+                "<tr><td>" + dsSach[i].maSoSach + "</td>" +
+                "<td>" + dsSach[i].tenSach + "</td>" +
+                "<td>" + dsSach[i].namXuatBan + "</td>" +
+                "<td>" + dsSach[i].soQuyen + "</td>" +
+                "<td>" + dsSach[i].tinhTrang + "</td>" +
+                "</tr>";
+        }
+        noiDung += "</tbody>"
+        bang.innerHTML = noiDung;
+    }
+    hienThi();
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Faking Textarea</title>
+        <style>
+            main {
+               width: 400px; 
+               margin: 25px auto 0 auto;
+               text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h2>Type anything slowly</h2>
+            <textarea name="faking-textarea" id="faking-textarea" cols="50" rows="10"></textarea>
+        </main>
+
+        <script>
+            let fakingTextarea = document.getElementById("faking-textarea");
+            let outputText = ["T", "ô", "i", " ", "l", "à", " ", "m", "ộ", "t", " ", "t", "h", "ằ", "n", "g", " ", "n", "g", "ố", "c", "!"];
+            
+            function changeValue() {
+                let fakingTextareaLength = fakingTextarea.value.length;
+                fakingTextarea.value = "";
+                if (fakingTextareaLength <= outputText.length) {
+                    for (let i = 0; i < fakingTextareaLength; i++) {
+                        fakingTextarea.value += outputText[i];
+                    }
+                }
+            }
+
+            fakingTextarea.addEventListener("input", changeValue);
+        </script>
+    </body>
+</html>

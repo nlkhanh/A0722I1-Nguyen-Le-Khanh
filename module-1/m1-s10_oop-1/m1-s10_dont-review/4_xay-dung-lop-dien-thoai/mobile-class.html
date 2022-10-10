@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile Class</title>
+</head>
+<body>
+
+<script>
+    class Mobile {
+        constructor() {
+            this.sentBox = [];
+            this.receivedBox = [];
+            this.battery = 100;
+            this.status = false;
+        }
+
+        checkStatus() {
+            if (this.status) {
+                return true
+            } else {
+                return false;
+            }
+        }
+
+        turnOn() {
+            if (this.battery > 0) {
+                this.status = true;
+            } else {
+                this.status = false;
+            }
+        }
+
+        turnOff() {
+            this.status = false;
+        }
+
+        charge() {
+            this.battery = 100;
+        }
+
+        texting() {
+            if (this.checkStatus()) {
+                this.messaging = prompt("Enter your message: ");
+            }
+            this.battery--;
+        }
+
+        receiveMess(Mobile) {
+            if (this.checkStatus()) {
+                if (this.receivedBox.length !== 0) {
+                    let count = 0;
+                    for (let i = 0; i < this.receivedBox.length; i++) {
+                        if (this.receivedBox[i].mobile === Mobile) {
+                            this.receivedBox[i].message += "--" + Mobile.sentMess;
+                            count++;
+                            break;
+                        }
+                    }
+                    if (count === 0) {
+                        this.receivedBox.push({mobile: Mobile, message: Mobile.sentMess});
+                    }
+                } else {
+                    this.receivedBox.push({mobile: Mobile, message: Mobile.sentMess});
+                }
+            }
+            this.battery--;
+        }
+
+        sendMess(Mobile) {
+            if (this.checkStatus()) {
+                this.sentMess = this.messaging;
+                if (this.sentBox.length !== 0) {
+                    let count = 0;
+                    for (let i = 0; i < this.sentBox.length; i++) {
+                        if (this.sentBox[i].mobile === Mobile) {
+                            this.sentBox[i].message += "--" + this.sentMess;
+                            count++;
+                            break;
+                        }
+                    }
+                    if (count === 0) {
+                        this.sentBox.push({mobile: Mobile, message: this.sentMess});
+                    }
+                } else {
+                    this.sentBox.push({mobile: Mobile, message: this.sentMess});
+                }
+            }
+            this.battery--;
+        }
+
+        readReceiveMess(Mobile) {
+            if (this.checkStatus()) {
+                for (let i = 0; i < this.receivedBox.length; i++) {
+                    if (this.receivedBox[i].mobile === Mobile) {
+                        return this.receivedBox[i].message;
+                    }
+                }
+            }
+            this.battery--;
+        }
+
+        readSentMess(Mobile) {
+            if (this.checkStatus()) {
+                for (let i = 0; i < this.sentBox.length; i++) {
+                    if (this.sentBox[i].mobile === Mobile) {
+                        return this.sentBox[i].message;
+                    }
+                }
+            }
+            this.battery--;
+        }
+    }
+
+    let nokia = new Mobile();
+    let samsung = new Mobile();
+    nokia.turnOn();
+    samsung.turnOn();
+    nokia.texting();
+    nokia.sendMess(samsung);
+    samsung.receiveMess(nokia);
+    console.log("message in receivedBox of Samsung: " + samsung.readReceiveMess(nokia));
+    console.log("message in sentBox of Nokia: " + nokia.readSentMess(samsung));
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 5</title>
+</head>
+<body>
+
+<script>
+    let loanAmount = parseInt(prompt("Nhập số tiền bạn muốn vay"));
+    let loanMonth = parseInt(prompt("Nhập số tháng bạn muốn vay"));
+    let loanAmountMonth = loanAmount / loanMonth;
+    let lendingRate6 = 0.15,
+        lendingRate12 = 0.2,
+        lendingRate24 = 0.25,
+        lendingRateOver24 = 0.3;
+    let lendingAmount = 0;
+    for (let i = 1; i <= loanMonth; i++) {
+        let lendingRate = 0.0;
+        if (i <= 6) {
+            lendingRate = lendingRate6;
+        } else if (i <= 12) {
+            lendingRate = lendingRate12;
+        } else if (i <= 24) {
+            lendingRate = lendingRate24;
+        } else {
+            lendingRate = lendingRateOver24;
+        }
+        lendingAmount += loanAmountMonth * lendingRate;
+    }
+    document.write(
+        `Tổng tiền lãi sau khi vay <b> ${loanAmount} </b> VNĐ trong vòng <b> ${loanMonth} </b> tháng
+        là: <b> ${Math.round(lendingAmount)} </b> VNĐ`
+    );
+
+
+</script>
+</body>
+</html>

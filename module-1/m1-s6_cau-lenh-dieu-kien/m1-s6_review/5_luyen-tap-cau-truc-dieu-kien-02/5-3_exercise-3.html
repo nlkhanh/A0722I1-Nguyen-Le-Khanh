@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 3</title>
+</head>
+<body>
+
+<script>
+    let edgeSquare = parseFloat(prompt("Nhập độ dài cạnh hình vuông"));
+    if (!isNaN(edgeSquare) && edgeSquare >= 0)  {
+        let areaSquare = edgeSquare * 4
+        document.write("Diện tích hình vuông là: " + areaSquare);
+    } else {
+        document.write("Bạn đã nhập chiều dài cạnh sai")
+    }
+</script>
+</body>
+</html>

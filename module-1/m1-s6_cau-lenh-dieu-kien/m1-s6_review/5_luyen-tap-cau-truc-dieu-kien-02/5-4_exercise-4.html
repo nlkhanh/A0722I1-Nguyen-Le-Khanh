@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 4</title>
+</head>
+<body>
+
+<script>
+    let edgeWidth = parseFloat(prompt("Nhập chiều dài của hình chữ nhật"));
+    let edgeHeight = parseFloat(prompt("Nhập chiều rộng của hình chữ nhật"));
+    let areaRectangle;
+
+    areaRectangle = edgeWidth * edgeHeight;
+
+    if (!isNaN(areaRectangle) && areaRectangle >= 0)  {
+        document.write("Diện tích hình chữ nhật là: " + areaRectangle);
+    } else {
+        document.write("Bạn đã nhập chiều dài cạnh sai");
+    }
+</script>
+</body>
+</html>

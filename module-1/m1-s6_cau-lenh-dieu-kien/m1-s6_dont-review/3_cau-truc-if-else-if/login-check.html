@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log In Check</title>
+</head>
+<body>
+<script>
+let userName = prompt("Who's their?", "");
+let isAdmin = userName === "Admin";
+let isUserNameNull = userName === null;
+if (isAdmin) {
+    let pass = prompt("Password?","");
+    let isMaster = pass === "TheMaster";
+    let isPassNull = pass === null;
+    if (isMaster) {
+        alert("Welcome!");
+    } else if (isPassNull) {
+        alert("Canceled");
+    } else {
+        alert("Wrong password");
+    }
+} else if (isUserNameNull) {
+    alert("Canceled");
+} else {
+    alert("I don't know you");
+}
+</script>
+</body>
+</html>

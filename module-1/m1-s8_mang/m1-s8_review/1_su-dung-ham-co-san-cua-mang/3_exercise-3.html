@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Exercise 3</title>
+    </head>
+    <body>
+        
+        <script>
+            let  str = prompt("Enter your string");
+            let upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            let lowerCase = "abcdefghijklmnopqrstuvwxyz";
+            let result = [];
+            for (let i = 0; i < str.length; i++) {
+                let charCheck = str[i];
+                if (upperCase.indexOf(charCheck) !== -1) {
+                    result.push(charCheck.toLowerCase());
+                } else if (lowerCase.indexOf(charCheck) !== -1) {
+                    result.push(charCheck.toUpperCase());
+                } else {
+                    result.push(charCheck);
+                }
+            }
+            console.log(result.join(""));
+        </script>
+    </body>
+</html>

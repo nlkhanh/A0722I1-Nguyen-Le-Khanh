@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 5</title>
+</head>
+<body>
+
+
+<script>
+    let midTermScore = parseFloat(prompt("Nhập điểm giữa kỳ"));
+    let lastTermScore = parseFloat(prompt("Nhập điểm cuối kỳ"));
+    let endPoint = (midTermScore * 0.3 + lastTermScore * 0.7).toFixed(1);
+
+    let isMidTermScoreRight = midTermScore <= 10.0 && midTermScore >= 0.0;
+    let isLastTermScoreRight = lastTermScore <= 10.0 && lastTermScore >= 0.0;
+    let isExcellent = parseFloat(endPoint) >= 8.5;
+    let isGood = parseFloat(endPoint) >= 7.0;
+    let isAverage = parseFloat(endPoint) >= 5.5;
+    let isBelowAverage = parseFloat(endPoint) >= 4.0;
+
+    if (!isMidTermScoreRight || !isLastTermScoreRight) {
+        document.write("Bạn nhập điểm sai");
+    } else if (isExcellent) {
+        document.write("Điểm tổng kết của bạn là: " + endPoint + "<br/>Bạn xếp loại: Giỏi")
+    } else if (isGood) {
+        document.write("Điểm tổng kết của bạn là: " + endPoint + "<br/>Bạn xếp loại: Khá")
+    } else if (isAverage) {
+        document.write("Điểm tổng kết của bạn là: " + endPoint + "<br/>Bạn xếp loại: Trung bình")
+    } else if (isBelowAverage) {
+        document.write("Điểm tổng kết của bạn là: " + endPoint + "<br/>Bạn xếp loại: Yếu")
+    } else {
+        document.write("Điểm tổng kết của bạn là: " + endPoint + "<br/>Bạn xếp loại: Kém")
+    }
+</script>
+</body>
+</html>

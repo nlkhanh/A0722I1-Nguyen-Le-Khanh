@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creating and Manipulating Arrays</title>
+</head>
+<body>
+    <h2>Sample Screen</h2>
+    <form action="1_creating-and-manipulating-array.html" method="get" name="add-element-form">
+        <input name="element" type="text" id="element-input">
+        <button type="button" name="add" id="add-btn" onclick="addElement()">Add</button>
+        <button type="button" name="add" id="display-btn" onclick="displayElement()">Display</button>
+    </form>
+    <div id="element-list"></div>
+
+<script>
+    let numbers = [];
+    let x = 0;
+
+    function addElement() {
+        numbers[x] = document.getElementById("element-input").value;
+        alert("Element " + numbers[x] + " added at index: " + x);
+        x++;
+        document.getElementById("element-input").value = null;
+    }
+
+    function displayElement() {
+        let elementList = "<hr>";
+        for (let i = 0; i < numbers.length; i++) {
+            elementList += "Element " + i + " = " + numbers[i] + "<br>";
+         }
+        document.getElementById("element-list").innerHTML = elementList;
+    }
+</script>
+</body>
+</html>

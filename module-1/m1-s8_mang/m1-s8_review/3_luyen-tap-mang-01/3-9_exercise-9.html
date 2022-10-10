@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Exercise 9</title>
+</head>
+<body>
+    <button onclick="typeElement(numbers1)">Nhập phần tử mảng 1</button>
+    <button onclick="typeElement(numbers2)">Nhập phần tử mảng 2</button>
+    <button onclick="concatenateArray()">Nối 2 mảng</button>
+    <button onclick="displayArray()">Hiện mảng</button>
+<script>
+    let numbers1 = [];
+    let numbers2 = [];
+    let numbers3 = new Array(20);
+
+    function typeElement(numbers) {
+        let inputNumber = parseInt(prompt("Nhập phần tử trong mảng"));
+        numbers.push(inputNumber);
+    }
+
+    function displayArray() {
+        console.log(numbers1);
+        console.log(numbers2);
+        console.log(numbers3);
+    }
+
+    function concatenateArray() {
+        numbers3 = numbers1.concat(numbers2);
+    }
+</script>
+    </body>
+</html>

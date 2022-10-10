@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Objects Moving</title>
+</head>
+
+<body>
+<div id="game"></div>
+<script>
+    class Person {
+        constructor(image, startX, startY, width, height, speed) {
+            this.image = image;
+            this.startX = startX;
+            this.startY = startY;
+            this.x = startX;
+            this.y = startY;
+            this.width = width;
+            this.height = height;
+            this.speed = speed;
+        };
+
+        displayPerson() {
+            document.getElementById("game").innerHTML =
+                `<img src="${this.image}" width="${this.width}" height="${this.height}"
+                alt="Person Image" style="position:absolute; top:${this.y}px; left:${this.x}px;"/>`;
+        };
+
+        move(speedX, speedY) {
+            this.x += speedX;
+            this.y += speedY;
+        };
+
+        getDistance() {
+            this.dWidth = window.innerWidth - this.x - this.width - this.speed;
+            this.dHeight = window.innerHeight - this.y - this.height - this.speed;
+        };
+
+        resetStep() {
+            this.leftSteps = 0;
+            this.upSteps = 0;
+        };
+
+        goAround() {
+            if (this.x <= this.dWidth && this.leftSteps === 0) {
+                this.move(this.speed, 0);
+                this.displayPerson();
+            } else if (this.y <= this.dHeight && this.upSteps === 0) {
+                this.move(0, this.speed);
+                this.displayPerson();
+            } else if (this.x > this.startX) {
+                this.move(-this.speed, 0);
+                this.leftSteps++;
+                this.displayPerson();
+            } else if (this.y > this.startY) {
+                this.move(0, -this.speed);
+                this.upSteps++;
+                this.displayPerson();
+            }
+            ;
+            if (this.x === this.startX && this.y === this.startY) {
+                this.resetStep();
+            }
+        };
+    }
+
+    let person = new Person("character.png", 20, 20, 100, 100, 20);
+    person.displayPerson();
+    person.getDistance();
+    person.resetStep();
+
+    function start() {
+        person.goAround();
+    }
+
+    setInterval(start, 100);
+</script>
+</body>
+
+</html>

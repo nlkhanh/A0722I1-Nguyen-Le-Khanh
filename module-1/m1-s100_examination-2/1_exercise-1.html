@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cau 1</title>
+</head>
+<body>
+<script>
+    let n;
+    do {
+        n = parseInt(1 * prompt("Nhập số phần tử của mảng: "));
+        if ((n > 50) || (n <= 0) || isNaN(n)) {
+            alert("Bạn đã nhập sai!")
+        }
+    } while ((n > 50) || (n <= 0) || isNaN(n));
+    let arr = Array(n);
+    for (let i = 0; i < n; i++) {
+        do {
+            arr[i] = parseInt(1 * prompt("Nhập phần tử thứ " + i + ": "));
+            if (isNaN(arr[i])) {
+                alert("Bạn đã nhập sai.");
+            }
+        } while (isNaN(arr[i]))
+    }
+    let sum = 0;
+    let count = 0;
+    for (let i = 0; i < arr.length; i+=2) {
+        if (arr[i] % 2 !== 0) {
+            sum += arr[i];
+            count++;
+        }
+    }
+    let average = sum/count;
+    alert("Trung bình các số lẻ ở vị trí chẵn là: " + average);
+</script>
+</body>
+</html>

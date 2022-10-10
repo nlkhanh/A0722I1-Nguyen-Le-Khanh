@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Flash Lamp Class</title>
+</head>
+<body>
+
+<script>
+    class Battery {
+        constructor(energy) {
+            this.energy = energy;
+        }
+
+        getEnergy() {
+            return this.energy;
+        }
+
+        decreaseEnergy() {
+            if (this.energy > 0) {
+                this.energy--;
+            }
+        }
+    }
+
+    class FlashLamp {
+        constructor(Battery, status) {
+            this.battery = Battery;
+            this.status = status;
+        }
+
+        getBatteryInfo() {
+            return this.battery.getEnergy();
+        }
+
+        turnOnOff() {
+            this.status = !this.status;
+        }
+
+        light() {
+            if (this.status) {
+                alert("Lighting")
+                this.battery.decreaseEnergy();
+            } else {
+                alert("Not lighting")
+            }
+        }
+    }
+
+    let battery = new Battery(100);
+    let flashLamp = new FlashLamp(battery, false);
+    document.write("Battery info: " + flashLamp.getBatteryInfo() + "<br/>");
+    flashLamp.light();
+    document.write("Turn on<br/>")
+    flashLamp.turnOnOff();
+    flashLamp.light();
+    document.write("Battery info: " + flashLamp.getBatteryInfo() + "<br/>");
+    document.write("Turn off<br/>")
+    flashLamp.turnOnOff();
+    flashLamp.light();
+</script>
+</body>
+</html>

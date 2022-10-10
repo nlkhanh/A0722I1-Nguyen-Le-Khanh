@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Exercise 2</title>
+    </head>
+    <body>
+        
+        <script>
+            let numbers = [3, 1, 15, 27, -1, -5, 2, 10, -12, 20];
+            let max = numbers[0];
+            for (let v of numbers) {
+                if (v > max) {
+                    max = v;
+                }
+            }
+            document.write(`Số ${max} là số lớn nhất trong mảng, có vị trí là ${numbers.indexOf(max)}`)
+        </script>
+    </body>
+</html>

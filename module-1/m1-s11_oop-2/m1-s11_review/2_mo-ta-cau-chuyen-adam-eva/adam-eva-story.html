@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Adam and Eve Story</title>
+</head>
+
+<body>
+<script>
+    class Apple {
+        constructor() {
+            this.weight = 10;
+        }
+
+        decrease() {
+            this.weight--;
+        }
+
+        isEmpty() {
+            return this.weight === 0;
+        }
+
+        getWeight() {
+            return this.weight;
+        }
+    }
+
+    class Human {
+        constructor() {
+        }
+
+        isMale() {
+            return this.gender;
+        }
+
+        setGender(gender) {
+            this.gender = gender;
+        }
+
+        checkApple(Apple) {
+            return Apple.isEmpty();
+        }
+
+        eatApple(Apple) {
+            if (!this.checkApple(Apple)) {
+                this.weight++;
+                Apple.decrease();
+            }
+        }
+
+        say() {
+            let string = prompt("say: ")
+            document.writeln(this.name + " say: " + string);
+        }
+
+        getName() {
+            return this.name;
+        }
+
+        setName(name) {
+            this.name = name;
+        }
+
+        getWeight() {
+            return this.weight
+        }
+
+        setWeight(weight) {
+            this.weight = weight;
+        }
+    }
+
+
+    let apple = new Apple();
+    let human1 = new Human();
+    human1.setName("Adam");
+    human1.setGender(true);
+    human1.setWeight(80);
+    let human2 = new Human();
+    human2.setName("Eve");
+    human2.setGender(false);
+    human2.setWeight(55);
+
+    do {
+        human1.checkApple(apple);
+        human1.eatApple(apple);
+        human2.checkApple(apple);
+        human2.eatApple(apple);
+    } while (!apple.isEmpty())
+
+    console.log("apple: " + apple.getWeight());
+    console.log(human1.getName() + ": " + human1.getWeight());
+    console.log(human2.getName() + ": " + human2.getWeight());
+    human1.say();
+</script>
+</body>
+
+</html>

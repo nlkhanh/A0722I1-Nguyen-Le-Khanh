@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 2</title>
+</head>
+<body>
+
+<script>
+    let a, b, c, d;
+    a = inputInt("tử số thứ 1");
+    b = inputInt("mẫu số thứ 1");
+    c = inputInt("tử số thứ 2");
+    d = inputInt("mẫu số thứ 2");
+
+    function inputInt(nameOfNum) {
+        let num;
+        do {
+            num = 1 * prompt("Nhập " + nameOfNum + ": ");
+            if (isNaN(num)) {
+                alert("Bạn đã nhập sai");
+            }
+        } while (isNaN(num))
+        return num;
+    }
+
+    if (isEqual(a, b, c, d)) {
+        alert("2 phân số bằng nhau")
+    } else {
+        alert("2 phân số KHÔNG bằng nhau")
+    }
+
+    function isEqual(a, b, c, d) {
+        let result = false;
+        let maxCommonDivisor = getMaxCommonDivisor(a, b);
+        a /= maxCommonDivisor;
+        b /= maxCommonDivisor;
+        maxCommonDivisor = getMaxCommonDivisor(c, d);
+        c /= maxCommonDivisor;
+        d /= maxCommonDivisor;
+        if ((a === c) || (b === d)) {
+            result = true;
+        }
+        return result;
+    }
+
+    function getMaxCommonDivisor(num1, num2) {
+        let min = num1;
+        if (num2 < min) {
+            min = num2;
+        }
+        let maxCommonDivisor = 1;
+        for (let i = min; i >= 2; i--) {
+            if ((num1 % i === 0) && (num2 % i) === 0) {
+                maxCommonDivisor = i;
+                break;
+            }
+        }
+        return maxCommonDivisor;
+    }
+</script>
+</body>
+</html>

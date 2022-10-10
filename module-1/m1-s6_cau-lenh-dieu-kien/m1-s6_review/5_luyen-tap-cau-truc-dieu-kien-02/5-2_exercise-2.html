@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 2</title>
+</head>
+<body>
+
+
+<script>
+    let inputMeter = parseFloat(prompt("Nhập độ dài mét"));
+    let outputFeet;
+
+    if (!isNaN(inputMeter)) {
+        outputFeet = inputMeter * 3.2808;
+        document.write("Độ dài chuyển đổi là: " + outputFeet + " ft");
+    } else {
+        document.write("Bạn đã nhập chiều dài sai");
+    }
+</script>
+</body>
+</html>

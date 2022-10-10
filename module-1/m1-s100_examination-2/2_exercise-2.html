@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cau 2</title>
+</head>
+<body>
+
+<script>
+
+    function laCapSoThanThiet(so1, so2) {
+        let tongUocSo1 = tongUocSo(so1);
+        let tongUocSo2 = tongUocSo(so2);
+        return (tongUocSo1 === so2) && (tongUocSo2 === so1);
+    }
+
+    function tongUocSo(so) {
+        let tong = 0;
+        for (let i = 1; i < so; i++) {
+            if (so % i === 0) {
+                tong += i;
+            }
+        }
+        return tong;
+    }
+
+    function nhapSoNguyenDuong(stt) {
+        let so;
+        do {
+            so = parseInt(1 * prompt("Nhập số thứ " + stt + ": "));
+            if (isNaN(so) || (so <= 0)) {
+                alert("Bạn đã nhập sai.")
+            }
+        } while (isNaN(so) || (so <= 0))
+        return so;
+    }
+
+    let so1 = nhapSoNguyenDuong("1");
+    let so2 = nhapSoNguyenDuong("2");
+    alert(laCapSoThanThiet(so1, so2));
+</script>
+</body>
+</html>

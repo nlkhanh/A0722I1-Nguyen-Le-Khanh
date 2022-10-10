@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 5</title>
+</head>
+<body>
+
+<script>
+    let fibonacci2 = 0,
+        fibonacci1 = 1,
+        fibonacci = 1;
+    let sumFibonacci = fibonacci2 + fibonacci1 + fibonacci;
+    for (let count = 4; count <= 20; count++) {
+        fibonacci2 = fibonacci1;
+        fibonacci1 = fibonacci;
+        fibonacci = fibonacci1 + fibonacci2;
+        sumFibonacci += fibonacci;
+    }
+    document.write("Tổng 20 số đầu tiền trong dãy Fibonacci là: " + sumFibonacci);
+</script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 3</title>
+    <style>
+        table {
+            margin-top: 24px;
+        }
+
+        table, th, td {
+            border-collapse: collapse;
+            border: 1px solid #000000;
+        }
+
+        th, td {
+            padding: 2px 8px;
+        }
+    </style>
+</head>
+<body>
+<button onclick="themSoTk()">Thêm</button>
+<button onclick="xoaSoTk()">Xóa</button>
+<table id="table"></table>
+
+<script>
+    let danhSachSTK = [];
+
+    class SoTietKiem {
+        constructor(maSo, loaiTK, tenKH, cmnd, ngayMoSo, soTienTK) {
+            this.maSo = maSo;
+            this.loaiTK = loaiTK;
+            this.tenKH = tenKH;
+            this.cmnd = cmnd;
+            this.ngayMoSo = ngayMoSo;
+            this.soTienTK = soTienTK;
+        }
+    }
+
+    let maSo, loaiTK, tenKH, cmnd, ngayMoSo, soTienTK;
+
+    function themSoTk() {
+        do {
+            maSo = nhapChuoi("mã sổ", 5);
+            if (trungMaSo(maSo)) {
+                alert("Mã sổ đã trùng.")
+            }
+        } while (trungMaSo(maSo))
+        loaiTK = nhapChuoi("loại tiết kiệm", 10);
+        tenKH = nhapChuoi("họ tên của bạn", 30);
+        cmnd = nhapSo("CMND");
+        do {
+            ngayMoSo = prompt("Nhập ngày mở sổ tiết kiệm (ví dụ: 12/02/2022): ")
+            if (!ngayHopLe(ngayMoSo)) {
+                alert("Bạn đã nhập sai.")
+            }
+        } while (!ngayHopLe(ngayMoSo));
+        soTienTK = nhapSo("số tiền tiết kiệm");
+        let stk = new SoTietKiem(maSo, loaiTK, tenKH, cmnd, ngayMoSo, soTienTK);
+        danhSachSTK.push(stk);
+        hienThi();
+    }
+
+    function xoaSoTk() {
+        let maSoXoa = prompt("Nhập mã sổ bạn muốn xóa");
+        if (!trungMaSo(maSoXoa)) {
+            alert("Không có mã sổ vừa nhập.")
+        } else {
+            if (confirm("Bạn có muốn xóa sổ tiết kiệm với mã sổ là '" + maSoXoa + "': ")) {
+                for (let i = 0; i < danhSachSTK.length; i++) {
+                    if (maSoXoa === danhSachSTK[i].maSo) {
+                        danhSachSTK.splice(i, 1);
+                    }
+                }
+                hienThi();
+            }
+        }
+    }
+
+    function nhapChuoi(tenChuoi, chiSoToiDa) {
+        let chuoi;
+        do {
+            chuoi = prompt("Nhập " + tenChuoi + ": ");
+            if (!hopLe(chuoi, chiSoToiDa)) {
+                alert("Bạn đã nhập sai.")
+            }
+        } while (!hopLe(chuoi, chiSoToiDa))
+        return chuoi;
+    }
+
+    function hopLe(bien, doDaiToiDa) {
+        let ketQua = true;
+        if (bien.length > doDaiToiDa) {
+            ketQua = false;
+        }
+        return ketQua;
+    }
+
+    function trungMaSo(maSo) {
+        let ketQua = false;
+        for (let i = 0; i < danhSachSTK.length; i++) {
+            if (danhSachSTK[i].maSo === maSo) {
+                ketQua = true;
+                break;
+            }
+        }
+        return ketQua;
+    }
+
+    function nhapSo(tenSo) {
+        let so;
+        do {
+            so = 1 * prompt("Nhập " + tenSo + ": ");
+            if (isNaN(so)) {
+                alert("Bạn đã nhập sai.")
+            }
+        } while (isNaN(so))
+        return so;
+    }
+
+    let namHienTai = new Date();
+
+    function ngayHopLe(ngayMoSo) {
+        let dinhDangNgay = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+        if (!dinhDangNgay.test(ngayMoSo)) {
+            return false;
+        }
+        let ngayThangNam = ngayMoSo.split("/");
+        let ngay = 1 * ngayThangNam[0];
+        let thang = 1 * ngayThangNam[1];
+        let nam = 1 * ngayThangNam[2];
+        if (nam > namHienTai.getFullYear() || nam < 1000 || thang <= 0 || thang > 12) {
+            return false;
+        }
+        let ngayTrongThang = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        if (namNhuan(nam)) {
+            ngayTrongThang[1] = 29;
+        }
+        return ngay > 0 && ngay < ngayTrongThang[thang - 1];
+    }
+
+    function namNhuan(nam) {
+        let chiaHetCho4 = (nam % 4 === 0);
+        if (chiaHetCho4) {
+            let chiaHetCho100 = (nam % 100 === 0);
+            if (chiaHetCho100) {
+                let chiaHetCho400 = (nam % 400 === 0);
+                if (chiaHetCho400) {
+                    return true;
+                }
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    function hienThi() {
+        let bang = document.getElementById("table");
+        let noiDung = "<thead><tr>" +
+            "<th>Mã Sổ</th>" +
+            "<th>Loại tiết kiệm</th>" +
+            "<th>Tên khách hàng</th>" +
+            "<th>CMND</th> " +
+            "<th>Ngày mở sổ</th> " +
+            "<th>Số tiền TK</th> " +
+            "</tr></thead>" +
+            "<tbody>";
+        for (let i = 0; i < danhSachSTK.length; i++) {
+            noiDung +=
+                "<tr><td>" + danhSachSTK[i].maSo + "</td>" +
+                "<td>" + danhSachSTK[i].loaiTK + "</td>" +
+                "<td>" + danhSachSTK[i].tenKH + "</td>" +
+                "<td>" + danhSachSTK[i].cmnd + "</td>" +
+                "<td>" + danhSachSTK[i].ngayMoSo + "</td>" +
+                "<td>" + danhSachSTK[i].soTienTK + "</td>" +
+                "</tr>";
+        }
+        noiDung += "</tbody>"
+        bang.innerHTML = noiDung;
+    }
+</script>
+</body>
+</html>

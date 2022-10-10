@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 6</title>
+</head>
+<body>
+
+<script>
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 11; j++) {
+            switch (i) {
+                case 0:
+                    switch (j) {
+                        case 2:
+                        case 3:
+                        case 7:
+                        case 8:
+                            document.writeln("*");
+                            break;
+                        default:
+                            document.writeln("&nbsp;&nbsp;");
+                    }
+                    break;
+                case 1:
+                    switch (j) {
+                        case 1:
+                        case 4:
+                        case 6:
+                        case 9:
+                            document.writeln("*");
+                            break;
+                        case 2:
+                        case 3:
+                        case 7:
+                        case 8:
+                            document.writeln("&nbsp;&nbsp;");
+                            break;
+                        default:
+                            document.writeln("&nbsp;&nbsp;");
+                    }
+                    break;
+                case 2:
+                    switch (j) {
+                        case 0:
+                        case 5:
+                        case 10:
+                            document.writeln("*");
+                            break;
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                        case 6:
+                        case 7:
+                        case 8:
+                        case 9:
+                            document.writeln("&nbsp;&nbsp;");
+                            break;
+                        default:
+                            document.writeln("&nbsp;&nbsp;");
+                    }
+                    break;
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                    if (j === (i - 2) || j === (12 - i)) {
+                        document.writeln("*");
+                    } else if ((j > (i - 2)) && (j < (12 - i))) {
+                        document.writeln("&nbsp;&nbsp;");
+                    } else {
+                        document.writeln("&nbsp;&nbsp;");
+                    }
+                    break;
+            }
+        }
+        document.write("<br>");
+    }
+</script>
+</body>
+</html>

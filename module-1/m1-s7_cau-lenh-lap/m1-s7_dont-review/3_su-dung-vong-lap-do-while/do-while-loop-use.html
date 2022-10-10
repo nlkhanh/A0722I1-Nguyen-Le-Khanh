@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Do While Use</title>
+</head>
+<body>
+
+<script>
+    let inputNum = null;
+    do {
+        inputNum = parseInt(prompt("Enter a number"));
+    } while (isNaN(inputNum) || inputNum <= 0 || inputNum > 10);
+    alert("Số bạn vừa nhập là: " + inputNum);
+</script>
+</body>
+</html>

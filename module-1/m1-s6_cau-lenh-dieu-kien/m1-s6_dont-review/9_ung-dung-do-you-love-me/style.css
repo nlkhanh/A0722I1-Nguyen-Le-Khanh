@@ -1,0 +1,32 @@
+main {
+    width: 90%;
+    height: 90%;
+    position: absolute;
+}
+
+#container {
+    width: 500px;
+    margin-left: 300px;
+    margin-top: 100px;
+}
+
+.button__container {
+    display: inline-block;
+}
+
+#button__container--no {
+    margin-left: 12px;
+}
+
+button {
+    width: 70px;
+    height: 30px;
+    padding: 0;
+}
+
+#button--no {
+    position: absolute;
+    top: 159px;
+    left: 386px;
+}
+

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Driving game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        canvas {
+            margin-left: 16px;
+            margin-top: 16px;
+            float: left;
+        }
+
+        #button-container {
+            display: inline-block;
+            margin-top: 18px;
+            margin-left: 8px;
+            float: right;
+            width: calc(100vw - 1026px);
+        }
+
+        button {
+            cursor: pointer;
+            margin-right: 18px;
+            min-width: 100px;
+            margin-bottom: 18px;
+            padding: 2px 0;
+        }
+    </style>
+</head>
+
+<body>
+<canvas id="canvas" height="600" width="1000" style="border: 1px solid #000000"></canvas>
+<div id="button-container">
+    <button onclick="resetGame()">Reset game</button>
+    <button onclick="playGame()">Play game</button>
+</div>
+
+<script src="Player.js"></script>
+<script src="Barrier.js"></script>
+<script>
+    let c = document.getElementById("canvas");
+    let ctx = c.getContext("2d");
+    let player = new Player();
+    player.setImgSrc("car-up.png");
+    player.setPosition(c.width / 2, c.height / 2);
+    player.setSpeed(6);
+    player.draw(ctx);
+    let award = new Barrier(true);
+    award.setPosition(100, 200);
+    award.setImgSrc();
+    award.draw(ctx);
+    let barrier = new Barrier(false);
+    barrier.setPosition(600, 200);
+    barrier.setImgSrc();
+    barrier.draw(ctx);
+
+    // function movePlayer() {
+    //     player.erase(ctx);
+    //     player.move(0, -player.speed);
+    //     player.draw(ctx);
+    // }
+    // setInterval(movePlayer, 500);
+
+    document.addEventListener("keydown", (e) => {
+        console.log(player.touchBarrier(barrier));
+        console.log("Px: " + player.x, "Py: " + player.y, "Pw: " + player.width), "Ph: " + player.height;
+        console.log("Bx: " + barrier.x, "By: " + barrier.y, "Bw: " + barrier.width, "Bh: " + barrier.height);
+        if (!player.touchBorder(c) && !player.touchBarrier(barrier)) {
+            if(player.touchBarrier(award)) {
+                player.increasePoint();
+                award.erase(ctx);
+            }
+            let imgSrc = player.getImgSrc();
+            let speed = player.getSpeed();
+            player.erase(ctx);
+            switch (e.key) {
+                case "ArrowUp":
+                    if (imgSrc.includes("car-up.png")) {
+                        player.move(0, -speed);
+                        player.draw(ctx);
+                    } else if (imgSrc !== "") {
+                        player.setImgSrc("car-up.png");
+                        player.draw(ctx);
+                    }
+                    break;
+                case "ArrowRight":
+                    if (imgSrc.includes("car-right.png")) {
+                        player.move(speed, 0);
+                        player.draw(ctx);
+                    } else if (imgSrc !== "") {
+                        player.setImgSrc("car-right.png");
+                        player.draw(ctx);
+                    }
+                    break;
+                case "ArrowDown":
+                    if (imgSrc.includes("car-down.png")) {
+                        player.move(0, speed);
+                        player.draw(ctx);
+                    } else if (imgSrc !== "") {
+                        player.setImgSrc("car-down.png");
+                        player.draw(ctx);
+                    }
+                    break;
+                case "ArrowLeft":
+                    if (imgSrc.includes("car-left.png")) {
+                        player.move(-speed, 0);
+                        player.draw(ctx);
+                    } else if (imgSrc !== "") {
+                        player.setImgSrc("car-left.png");
+                        player.draw(ctx);
+                    }
+                    break;
+                case "Control":
+                    player.increaseSpeed(2);
+                    player.draw(ctx);
+                    break;
+            }
+        }
+    })
+</script>
+</body>
+
+</html>

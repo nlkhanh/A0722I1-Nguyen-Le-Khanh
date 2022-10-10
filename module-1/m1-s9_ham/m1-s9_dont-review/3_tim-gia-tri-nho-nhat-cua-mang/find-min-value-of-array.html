@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find Min Value of Array</title>
+</head>
+<body>
+<button onclick="minArray(array1)">Giá trị nhỏ nhất của mảng 1</button>
+<button onclick="minArray(array2)">Giá trị nhỏ nhất của mảng 2</button>
+<button onclick="minArray(array3)">Giá trị nhỏ nhất của mảng 3</button>
+<button onclick="minArray(array4)">Giá trị nhỏ nhất của mảng 4</button>
+<script>
+    let array1 = [3, 5, 1, 8, -3, 7, 8];
+    let array2 = [7, 12, 6, 9, 20, 56, 89];
+    let array3 = [];
+    let array4 = [0, 0, 0, 0, 0, 0];
+
+    function minArray(array) {
+        let min = array[0];
+        for (let v of array) {
+            if (v < min) {
+                min = v;
+            }
+        }
+        alert(min);
+    }
+</script>
+</body>
+</html>

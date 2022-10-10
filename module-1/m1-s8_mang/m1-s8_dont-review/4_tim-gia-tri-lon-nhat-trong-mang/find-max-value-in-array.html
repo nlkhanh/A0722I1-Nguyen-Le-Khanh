@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Find Max Value in Array</title>
+    </head>
+    <body>
+        <script>
+            let numbers = [-3, 5, 1, 3, 2, 10];
+            let max = numbers[0];
+            let index = 0;
+
+            numbers.forEach(i => {
+                if (numbers[i] > max) {
+                    max = numbers[i];
+                    index = i;
+                }
+            })
+            alert("max: " + max + " at position " + index);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display Output</title>
+    <style>
+        ul {
+          list-style: none;
+        }
+
+        h2 {
+            font-weight: unset;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <ul>
+            <li>
+                <h2 >Bài tập 1 - alert():</h2>
+                <button type="button" onclick="showMessage1();">Click Me!</button>
+            </li>
+            <li>
+                <h2>Bài tập 2 - document.getElementById().innerHTML:</h2>
+                <div id="messageDiv"></div>
+                <button type="button" onclick="showMessage2()">Click Me!</button>
+            </li>
+            <li>
+                <h2>Bài tập 3 - document.write():</h2>
+                <button type="button" onclick="showMessage3()">Click Me!</button>
+            </li>
+            <li>
+                <h2>Bài tập 4 - console.log():</h2>
+                <button type="button" onclick="showMessage4()">Click Me!</button>
+            </li>
+        </ul>
+    </main>
+    <script>
+        //bài tập 1
+        function showMessage1() {
+            alert('Xin chào!');
+        }
+
+        //bài tập 2
+        function showMessage2() {
+            document.getElementById('messageDiv').innerHTML = 'Xin chào!';
+        }
+
+        //bài tập 3
+        function showMessage3() {
+            document.write('Xin chào!');
+        }
+
+        //bài tập 4
+        function showMessage4() {
+            console.log('Xin chào!');
+        }
+    </script>
+</body>
+</html>

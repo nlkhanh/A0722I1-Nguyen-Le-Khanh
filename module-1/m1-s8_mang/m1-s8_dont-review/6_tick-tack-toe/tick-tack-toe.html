@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Tick Tack Toe</title>
+        <style>
+            .container {
+                width: 200px;
+                margin: auto;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h3>Tick Tack Toe game</h3>
+            <p id="game-display"></p>
+            <input type="button" name="player1" id="player1" value="Người chơi 1" onclick="play('x')"><br>
+            <br>
+            <input type="button" name="player2" id="player2" value="Người chơi 2" onclick="play('o')">
+        </div>
+
+        <script>
+            let gameDisplay = document.getElementById("game-display");
+            let board = [];
+            let data = "";
+
+            for (let i = 0; i < 7; i++) {
+                board[i] = [".", ".", ".", ".", ".", "", ""];
+            }
+
+            for (let i = 0; i < 5; i++) {
+                for (let j = 0; j < 5; j++) {
+                    data += board[i][j] + "&nbsp;&nbsp;";
+                }
+                data += "<br/>";
+            }
+            gameDisplay.innerHTML = data;
+
+            function checkFinished(char) {
+                let equalCheck = 0;
+                for (let i = 0; i < 5; i++) {
+                    for (let j = 0; j < 5; j++) {
+                        if (
+                            (board[i][j] === char) &&
+                            (
+                                (board[i][j] === board[i][j+1] &&
+                                    board[i][j] === board[i][j+2]) ||
+                                (board[i][j] === board[i+1][j] &&
+                                    board[i][j] === board[i+2][j]) ||
+                                (board[i][j] === board[i+1][j-1] &&
+                                    board[i][j] === board[i+2][j-2]) ||
+                                (board[i][j] === board[i+1][j+1] &&
+                                    board[i][j] === board[i+2][j+2])
+                            )
+                        ) {
+                            return "win";
+                        } else if (board[i][j] === ".") {
+                                equalCheck++;
+                        }
+                    }
+                }
+                if (equalCheck === 0) {
+                    return "equal";
+                }
+            }
+
+            function play(char) {
+                let positionX = parseInt(prompt("Chọn số thứ tự hàng")) - 1;
+                let positionY = parseInt(prompt("Chọn số thứ tự cột")) - 1;
+                data = "";
+                if (board[positionX][positionY] === ".") {
+                    board[positionX][positionY] = char;
+                } else {
+                    alert("Bạn đã nhập vị trí sai");
+                }
+                for (let i =0; i < 5; i++) {
+                    for (let j = 0; j < 5; j++) {
+                        data += board[i][j] + "&nbsp;&nbsp;";
+                    }
+                    data += "<br/>";
+                }
+                gameDisplay.innerHTML = data;
+
+                let finished = checkFinished(char);
+                if (finished === "win") {
+                    if (char === "x") {
+                        alert("Người chơi 1 win")
+                    } else if (char === "o") {
+                        alert("Người chơi 2 win")
+                    }
+                    data = "";
+                    for (let i = 0; i < 5; i++) {
+                        for (let j = 0; j < 5; j++) {
+                            board[i][j] = ".";
+                            data += board[i][j] + "&nbsp;&nbsp;";
+                        }
+                        data += "<br/>";
+                    }
+                    gameDisplay.innerHTML = data;
+                } else if (finished === "equal") {
+                    alert("Hòa!!!");
+                    data = "";
+                    for (let i = 0; i < 5; i++) {
+                        for (let j = 0; j < 5; j++) {
+                            board[i][j] = ".";
+                            data += board[i][j] + "&nbsp;&nbsp;";
+                        }
+                        data += "<br/>";
+                    }
+                    gameDisplay.innerHTML = data;
+                }
+            }
+
+
+        </script>
+    </body>
+</html>

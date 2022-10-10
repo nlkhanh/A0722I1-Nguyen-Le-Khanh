@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 5</title>
+</head>
+<body>
+
+<script>
+    let edgeTriangle1 = parseFloat(prompt("Nhập độ dài cạnh thứ nhất của tam giác"));
+    let edgeTriangle2 = parseFloat(prompt("Nhập độ dài cạnh thứ hai của tam giác"));
+    let areaTriangle;
+    areaTriangle = edgeTriangle1 * edgeTriangle2 / 2;
+    if (!isNaN(areaTriangle) && areaTriangle >= 0) {
+        document.write("Diện tích hình tam giác vuông là: " + areaTriangle);
+    } else {
+        document.write("Bạn đã nhập độ dài cạnh sai")
+    }
+</script>
+</body>
+</html>

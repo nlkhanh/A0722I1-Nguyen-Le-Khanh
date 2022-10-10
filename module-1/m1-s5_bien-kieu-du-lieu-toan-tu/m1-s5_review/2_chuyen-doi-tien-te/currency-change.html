@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Change</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <form action="" method="get" name="currency-change-form" class="clearfix">
+            <ul>
+                <li>
+                    <label for="amount">Amount</label>
+                    <input type="number" name="amount" id="amount">
+                </li>
+                <li>
+                    <label for="from-currency">From Currency</label>
+                    <select name="form-currency" id="from-currency">
+                        <option value="VND" selected>VietNam</option>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                    </select>
+                </li>
+                <li>
+                    <label for="to-currency">To Currency</label>
+                    <select name="to-currency" id="to-currency">
+                        <option value="VND">VietNam</option>
+                        <option value="USD" selected>USD</option>
+                        <option value="EUR">EUR</option>
+                    </select>
+                </li>
+            </ul>
+            <div id="button-container">
+                <input type="button" name="convert" value="Convert" id="convert-button" onclick="currencyChange()">
+            </div>
+        </form>
+        <div id="result-container">
+            <span>Result: </span>
+            <span id="result-value"></span>
+            <span id="result-unit"></span>
+        </div>
+    </main>
+
+<script src="main.js"></script>
+</body>
+</html>

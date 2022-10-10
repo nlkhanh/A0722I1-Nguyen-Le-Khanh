@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 1</title>
+</head>
+<body>
+
+<script>
+    let n;
+    do {
+        n = 1 * prompt("Nhập số phần tử của mảng: ");
+        if ((n < 50) || (n <= 0) || isNaN(n)) {
+            alert("Bạn đã nhập sai!")
+        }
+    } while ((n > 50) || (n <= 0) || isNaN(n));
+    let arr = Array(n);
+    let arrPrimed = Array();
+    for (let i = 0; i < n; i++) {
+        do {
+            arr[i] = 1 * prompt("Nhập phần tử thứ " + i + ": ");
+            if (isNaN(arr[i])) {
+                alert("Bạn đã nhập sai!")
+            }
+        } while (isNaN(arr[i]));
+        if (isPrimed(arr[i])) {
+            arrPrimed.push(arr[i]);
+        }
+    }
+    document.writeln("Mảng của bạn đã nhập là: " + arr.join(", ") + "<br>");
+    document.writeln("Mảng chứa số nguyên tố là: " + arrPrimed.join(", "));
+
+    function isPrimed(inputNum) {
+        let count = 0;
+        if (inputNum >= 2) {
+            for (let i = 2; i < inputNum; i++) {
+                if (inputNum % i === 0) {
+                    count++;
+                    break;
+                }
+            }
+        }
+        return !((inputNum < 2) || (count !== 0));
+    }
+</script>
+</body>
+</html>

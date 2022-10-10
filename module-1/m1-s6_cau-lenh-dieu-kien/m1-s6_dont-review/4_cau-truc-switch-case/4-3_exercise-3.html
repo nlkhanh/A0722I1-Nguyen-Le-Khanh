@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 3</title>
+</head>
+<body>
+<script>
+    let inputNumber = parseFloat(prompt("Type a number"));
+    let positiveNumber = inputNumber > 0;
+    let negativeNumber = inputNumber < 0;
+
+// use if-else-if command
+    if (positiveNumber) {
+        alert(1);
+    } else if (negativeNumber) {
+        alert(-1);
+    } else {
+        alert(0);
+    }
+
+// use switch-case command
+    switch (positiveNumber) {
+        case true:
+            alert(1);
+            break;
+        case false:
+            switch (negativeNumber) {
+                case true:
+                    alert(-1);
+                    break;
+            }
+            break;
+        default:
+            alert(0);
+    }
+</script>
+</body>
+</html>

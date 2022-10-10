@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Exercise 6</title>
+</head>
+<body>
+    <button onclick="typeElement()">Nhập phần tử</button>
+    <button onclick="checkElement()">Nhập phần tử muốn kiểm tra</button>
+    <button onclick="displayArray()">Hiện mảng</button>
+    <script>
+        let numbers = [];
+
+        function typeElement() {
+            let inputNumber = parseInt(prompt("Nhập phần tử trong mảng"));
+            numbers.push(inputNumber);
+        }
+
+        function displayArray() {
+            console.log(numbers)
+        }
+
+        function checkElement() {
+            let inputNumber = parseInt(prompt("Nhập số muốn kiểm tra"));
+            if (numbers.indexOf(inputNumber) !== -1) {
+                alert(inputNumber + " is in the array");
+            }  else {
+                alert(inputNumber + " is not in the array");
+            }
+        }
+
+    </script>
+</body>
+</html>

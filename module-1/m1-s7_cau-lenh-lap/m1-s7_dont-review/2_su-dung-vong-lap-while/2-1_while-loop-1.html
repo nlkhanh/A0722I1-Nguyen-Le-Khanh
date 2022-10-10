@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>While Loop Use 1</title>
+</head>
+<body>
+
+<script>
+    let inputNum = parseInt(prompt("Enter a number"), 0);
+    let result = 0;
+    let i = 1;
+    if (!isNaN(inputNum)) {
+        while (inputNum !== -1) {
+            document.write(`Số thứ ${i} bạn nhập  là: <b>${inputNum}</b> <br>`);
+            result += inputNum;
+            document.write(`Tổng ${i} số bạn đã nhập là <b>${result}</b> <br>`);
+            i++;
+            inputNum = parseInt(prompt("Enter next number"), 0);
+            if (isNaN(inputNum)) {
+                document.write(`Bạn đã nhập số thứ ${i + 1} sai`);
+                break;
+            }
+        }
+    } else {
+        document.write("Bạn đã nhập số sai")
+    }
+</script>
+</body>
+</html>

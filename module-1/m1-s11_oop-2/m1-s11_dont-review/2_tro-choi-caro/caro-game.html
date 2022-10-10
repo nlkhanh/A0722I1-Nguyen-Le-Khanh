@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Caro Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #start-btn {
+            margin: 24px 0px 48px 16px;
+            padding: 2px 8px;
+            cursor: pointer;
+        }
+
+        #table-caro {
+            position: relative;
+            top: 0;
+            left: 0;
+            margin-left: 16px;
+            cursor: pointer;
+        }
+
+        #overlay {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            top: 96px;
+            left: 16px;
+            width: 398px;
+            height: 398px;
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+<button id="start-btn" onclick="resetGame()">Start</button>
+<div id="overlay"></div>
+<div id="table-caro"></div>
+
+<script src="Game.js"></script>
+<script src="Player.js"></script>
+<script>
+    let tableCaro = document.getElementById("table-caro");
+    let content = ""
+    for (let i = 0; i < 10; i++) {
+        content += `<div class='row' id='row__${i}'>`
+        for (let j = 0; j < 10; j++) {
+            content += `<div class="cell" id="cell__${i}--${j}" onclick="play(${i}, ${j})"
+                        style="
+                            display: inline-block;
+                            width: 38px;
+                            height: 38px;
+                            text-align: center;
+                            line-height: 38px;
+                            user-select: none;
+                            color: red;
+                            font-size: 18px;
+                            border: 1px solid blue;
+                            position: absolute;
+                            top: ${i * 40}px;
+                            left: ${j * 40}px;
+                        "></div>`
+        }
+        content += "</div>"
+    }
+    tableCaro.innerHTML = content;
+
+    let cellArr = Array(10);
+    for (let i = 0; i < cellArr.length; i++) {
+        cellArr[i] = Array(10);
+    }
+    for (let i = 0; i < cellArr.length; i++) {
+        for (let j = 0; j < cellArr[i].length; j++) {
+            cellArr[i][j] = document.getElementById(`cell__${i}--${j}`);
+        }
+    }
+
+    let valueArr = Array(10);
+    for (let i = 0; i < valueArr.length; i++) {
+        valueArr[i] = Array(10);
+    }
+    for (let i = 0; i < valueArr.length; i++) {
+        for (let j = 0; j < valueArr[i].length; j++) {
+            valueArr[i][j] = cellArr[i][j].innerHTML;
+        }
+    }
+
+    let player1 = new Player("player 1", true, "X");
+    let player2 = new Player("player 2", false, "O");
+    let game = new Game(player1, player2);
+    game.setCellArr(cellArr);
+    game.setValueArr(valueArr);
+    function play(i, j) {
+        game.playATurn(i, j);
+    }
+    function resetGame() {
+        game.reset();
+    }
+</script>
+</body>
+</html>

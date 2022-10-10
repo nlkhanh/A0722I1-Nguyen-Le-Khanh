@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Funny Circle</title>
+</head>
+<body>
+<canvas id="my-canvas" width="1000px" height="500px" style="border: 1px solid #000000;"></canvas>
+
+<script src="Circle.js"></script>
+<script>
+    let c = document.getElementById("my-canvas");
+    let ctx = c.getContext("2d");
+    function autoMove() {
+        ctx.clearRect(0, 0, c.width, c.height);
+        for (let i = 0; i <30; i++) {
+            let circle = new Circle();
+            circle.draw(c, ctx);
+        }
+    }
+    setInterval(autoMove, 1000);
+
+
+</script>
+</body>
+</html>

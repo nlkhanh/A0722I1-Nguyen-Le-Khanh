@@ -1,0 +1,82 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Fira Code";
+    font-size: 14px;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+main {
+    width: 1040px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #dedede;
+}
+
+ul {
+    list-style: none;
+    display: block;
+    width: 800px;
+    float: left;
+}
+
+ul li {
+    width: calc(100% / 3);
+    float: left;
+}
+
+ul li label,
+ul li input,
+ul li select {
+    display: block;
+    width: 50%;
+    margin: auto;
+}
+
+ul li label {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+ul li input,
+ul li select {
+    padding: 2px 4px;
+}
+
+#button-container {
+    width: 190px;
+    float: right;
+}
+
+#button-container #convert-button {
+    display: block;
+    padding: 4px 24px 4px 24px;
+    margin-top: 18px;
+    margin-left: -24px;
+    font-weight: bold;
+    color: white;
+    background-color: lightblue;
+    border: 1px solid lightblue;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+#button-container #convert-button:hover {
+    background-color: blue;
+}
+
+#result-container {
+    margin-top: 24px;
+    margin-left: 68px;
+    color: blue;
+}

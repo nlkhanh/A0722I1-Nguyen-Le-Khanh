@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Exercise 3</title>
+    </head>
+    <body>
+        
+        <script>
+            let numbers = [3, 1, 15, 27, -1, -5, 2, 10, -12, 20];
+            let max = numbers[0];
+            let sum = 0;
+            let avg = 0;
+            for (let v of numbers) {
+                if (v > max) {
+                    max = v;
+                }
+                sum += v;
+            }
+
+            document.write(`Số ${max} là số lớn nhất trong mảng <br>`)
+            avg = sum / numbers.length;
+            document.write(`Trung bình cộng của các số trong mảng là: ${sum} / ${numbers.length} = ${avg}`);        
+        </script>
+    </body>
+</html>
