@@ -13,7 +13,7 @@ public class InterestCalculator {
         double interestRate = input.nextDouble();
         double totalInterest = 0;
         for (int i = 0; i < month; i++) {
-            totalInterest += money * (interestRate/100)/12 * month;
+            totalInterest += money * (interestRate / 100) / 12 * month;
         }
         System.out.println("Total of interest: " + totalInterest);
     }

@@ -1,8 +1,18 @@
-package m2s2_loop_array.m2s2_dont_review;
+package m2s3_method.m2s3_dont_review;
 
 import java.util.Scanner;
 
-public class MaxValueInArrayFinding {
+public class MinValueInArrayFindingMethod {
+    public static int getMinValue(int[] numbers) {
+        int min = numbers[0];
+        for (int v : numbers) {
+            if (v < min) {
+                min = v;
+            }
+        }
+        return min;
+    }
+
     public static void main(String[] args) {
         int size;
         int[] array;
@@ -19,18 +29,10 @@ public class MaxValueInArrayFinding {
             System.out.println("Enter element " + (i + 1) + " : ");
             array[i] = input.nextInt();
         }
-        System.out.print("Property list: ");
+        System.out.print("Array list: ");
         for (int v : array) {
             System.out.print(v + "\t");
         }
-        int max = array[0];
-        int index = 1;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] > max) {
-                max = array[i];
-                index = i + 1;
-            }
-        }
-        System.out.println("\nThe largest property value in the list is " + max + ", at position " + index);
+        System.out.println("\nMinimum value of array is: " + getMinValue(array));
     }
 }

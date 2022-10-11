@@ -9,10 +9,10 @@ public class LeapYearChecking {
         int year = input.nextInt();
         boolean isLeapYear = false;
         boolean isDivisible4 = year % 4 == 0;
-        boolean isDivisible100 = year % 100 == 0;
-        boolean isDivisible400 = year % 400 == 0;
         if (isDivisible4) {
+            boolean isDivisible100 = year % 100 == 0;
             if (isDivisible100) {
+                boolean isDivisible400 = year % 400 == 0;
                 if (isDivisible400) {
                     isLeapYear = true;
                 }
