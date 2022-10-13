@@ -1,8 +1,20 @@
 package m2s3_method.m2s3_review;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class SumMainDiagonalSquareArrayCalculator {
+
+    public static int[] getSumMainDiagonal(int[][] array) {
+        int sum1 = 0;
+        int sum2 = 0;
+        for (int i = 0; i < array.length; i++) {
+            sum1 += array[i][i];
+            sum2 += array[i][array.length - 1 - i];
+        }
+        return new int[]{sum1, sum2};
+    }
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int size;
@@ -27,10 +39,6 @@ public class SumMainDiagonalSquareArrayCalculator {
             }
             System.out.println();
         }
-        int sum = 0;
-        for (int i = 0; i < array.length; i++) {
-            sum += array[i][i];
-        }
-        System.out.println("Sum of main diagonal line is " + sum);
+        System.out.println("Sum main diagonal of square array is: " + Arrays.toString(getSumMainDiagonal(array)));
     }
 }
