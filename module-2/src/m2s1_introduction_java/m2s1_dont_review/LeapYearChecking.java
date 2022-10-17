@@ -8,12 +8,12 @@ public class LeapYearChecking {
         System.out.println("Enter a year: ;");
         int year = input.nextInt();
         boolean isLeapYear = false;
-        boolean isDivisible4 = year % 4 == 0;
-        if (isDivisible4) {
-            boolean isDivisible100 = year % 100 == 0;
-            if (isDivisible100) {
-                boolean isDivisible400 = year % 400 == 0;
-                if (isDivisible400) {
+        boolean isDivisibleFour = year % 4 == 0;
+        if (isDivisibleFour) {
+            boolean isDivisibleAHundred = year % 100 == 0;
+            if (isDivisibleAHundred) {
+                boolean isDivisibleFourHundred = year % 400 == 0;
+                if (isDivisibleFourHundred) {
                     isLeapYear = true;
                 }
             } else {

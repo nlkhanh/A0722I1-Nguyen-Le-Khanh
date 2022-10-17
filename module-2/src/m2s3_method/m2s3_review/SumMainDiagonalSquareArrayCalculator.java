@@ -6,13 +6,13 @@ import java.util.Scanner;
 public class SumMainDiagonalSquareArrayCalculator {
 
     public static int[] getSumMainDiagonal(int[][] array) {
-        int sum1 = 0;
-        int sum2 = 0;
+        int firstNumber = 0;
+        int secondNumber = 0;
         for (int i = 0; i < array.length; i++) {
-            sum1 += array[i][i];
-            sum2 += array[i][array.length - 1 - i];
+            firstNumber += array[i][i];
+            secondNumber += array[i][array.length - 1 - i];
         }
-        return new int[]{sum1, sum2};
+        return new int[]{firstNumber, secondNumber};
     }
 
     public static void main(String[] args) {
