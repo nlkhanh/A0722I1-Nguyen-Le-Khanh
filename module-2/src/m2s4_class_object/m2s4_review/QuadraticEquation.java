@@ -1,43 +1,43 @@
 package m2s4_class_object.m2s4_review;
 
 public class QuadraticEquation {
-    private double a, b, c;
+    private double firstCoefficient, secondCoefficient, constantTerm;
 
     public QuadraticEquation(double a, double b, double c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
+        this.firstCoefficient = a;
+        this.secondCoefficient = b;
+        this.constantTerm = c;
     }
 
-    public double getA() {
-        return this.a;
+    public double getFirstCoefficient() {
+        return this.firstCoefficient;
     }
 
-    public double getB() {
-        return this.b;
+    public double getSecondCoefficient() {
+        return this.secondCoefficient;
     }
 
-    public double getC() {
-        return this.c;
+    public double getConstantTerm() {
+        return this.constantTerm;
     }
 
     public double getDiscriminant() {
-        return Math.pow(this.b, 2) - (4 * this.a * this.c);
+        return Math.pow(this.secondCoefficient, 2) - (4 * this.firstCoefficient * this.constantTerm);
     }
 
-    public double getRoot1() {
+    public double getFirstRoot() {
         if (this.getDiscriminant() < 0) {
             return 0;
         } else {
-            return (-this.b + Math.pow(this.getDiscriminant(), 0.5)) / (2 * this.a);
+            return (-this.secondCoefficient + Math.pow(this.getDiscriminant(), 0.5)) / (2 * this.firstCoefficient);
         }
     }
 
-    public double getRoot2() {
+    public double getSecondRoot() {
         if (this.getDiscriminant() < 0) {
             return 0;
         } else {
-            return (-this.b - Math.pow(this.getDiscriminant(), 0.5)) / (2 * this.a);
+            return (-this.secondCoefficient - Math.pow(this.getDiscriminant(), 0.5)) / (2 * this.firstCoefficient);
         }
     }
 }
