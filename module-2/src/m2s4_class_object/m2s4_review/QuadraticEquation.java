@@ -3,10 +3,10 @@ package m2s4_class_object.m2s4_review;
 public class QuadraticEquation {
     private double firstCoefficient, secondCoefficient, constantTerm;
 
-    public QuadraticEquation(double a, double b, double c) {
-        this.firstCoefficient = a;
-        this.secondCoefficient = b;
-        this.constantTerm = c;
+    public QuadraticEquation(double firstCoefficient, double secondCoefficient, double constantTerm) {
+        this.firstCoefficient = firstCoefficient;
+        this.secondCoefficient = secondCoefficient;
+        this.constantTerm = constantTerm;
     }
 
     public double getFirstCoefficient() {
