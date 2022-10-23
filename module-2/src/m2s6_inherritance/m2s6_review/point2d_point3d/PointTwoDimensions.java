@@ -1,14 +1,13 @@
 package m2s6_inherritance.m2s6_review.point2d_point3d;
 
-public class Point2D {
-    private float x = 0.0f;
-    private float y = 0.0f;
+public class PointTwoDimensions {
+    private float x;
+    private float y;
 
-    public Point2D() {
-
+    public PointTwoDimensions() {
     }
 
-    public Point2D(float x, float y) {
+    public PointTwoDimensions(float x, float y) {
         this.x = x;
         this.y = y;
     }

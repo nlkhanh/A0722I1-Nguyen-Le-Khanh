@@ -1,12 +1,12 @@
 package m2s6_inherritance.m2s6_review.point2d_point3d;
 
-public class Point3D extends Point2D {
-    private float z = 0.0f;
+public class PointThreeDimensions extends PointTwoDimensions {
+    private float z;
 
-    public Point3D() {
+    public PointThreeDimensions() {
     }
 
-    public Point3D(float x, float y, float z) {
+    public PointThreeDimensions(float x, float y, float z) {
         super(x, y);
         this.z = z;
     }
