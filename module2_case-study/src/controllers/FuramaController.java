@@ -1,5 +1,9 @@
 package controllers;
 
+import models.person.Employee;
+import services.customer.CustomerServiceImpl;
+import services.employee.EmployeeServiceImpl;
+
 import java.util.Scanner;
 
 public class FuramaController {
@@ -21,20 +25,57 @@ public class FuramaController {
             choice = Integer.parseInt(input.nextLine());
             switch (choice) {
                 case 1:
-                    System.out.println("---- Employee Management ----");
-                    System.out.println("1. Display list employees");
-                    System.out.println("2. Add new employee");
-                    System.out.println("3. Edit employee");
-                    System.out.println("4. Return main menu");
-                    System.out.println("Enter your choice: ");
-                    choice = Integer.parseInt(input.nextLine());
+                    do {
+                        EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+                        System.out.println("---- Employee Management ----");
+                        System.out.println("1. Display list employees");
+                        System.out.println("2. Add new employee");
+                        System.out.println("3. Edit employee");
+                        System.out.println("4. Return main menu");
+                        System.out.println("Enter your choice: ");
+                        choice = Integer.parseInt(input.nextLine());
+                        switch (choice) {
+                            case 1:
+                                employeeService.displayAll();
+                                break;
+                            case 2:
+                                employeeService.add();
+                                break;
+                            case 3:
+                                employeeService.set();
+                                break;
+                            case 4:
+                                break;
+                            default:
+                                System.out.println("Invalid input!");
+                        }
+                    } while (choice != 4);
+                    break;
                 case 2:
-                    System.out.println("---- Customer Management ----");
-                    System.out.println("1. Display list customers");
-                    System.out.println("2. Add new customer");
-                    System.out.println("3. Edit customer");
-                    System.out.println("4. Return main menu");
-                    choice = Integer.parseInt(input.nextLine());
+                    do {
+                        CustomerServiceImpl customerService = new CustomerServiceImpl();
+                        System.out.println("---- Customer Management ----");
+                        System.out.println("1. Display list customers");
+                        System.out.println("2. Add new customer");
+                        System.out.println("3. Edit customer");
+                        System.out.println("4. Return main menu");
+                        choice = Integer.parseInt(input.nextLine());
+                        switch (choice) {
+                            case 1:
+                                customerService.displayAll();
+                                break;
+                            case 2:
+                                customerService.add();
+                                break;
+                            case 3:
+                                customerService.set();
+                                break;
+                            case 4:
+                                break;
+                            default:
+                                System.out.println("Invalid input!");
+                        }
+                    } while (choice != 4);
                     break;
                 case 3:
                     System.out.println("---- Facility Management ----");
@@ -65,7 +106,7 @@ public class FuramaController {
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Invalid Input!");
+                    System.out.println("Invalid input!");
             }
         } while (true);
     }

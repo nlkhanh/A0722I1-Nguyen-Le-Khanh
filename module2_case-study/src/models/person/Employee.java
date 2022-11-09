@@ -1,5 +1,6 @@
 package models.person;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Employee extends Person{
@@ -15,7 +16,7 @@ public class Employee extends Person{
         this.position = position;
     }
 
-    public Employee(String code, String name, Date birthday, boolean gender, int id, int phone, String email, int salary, String professional, String position) {
+    public Employee(String code, String name, LocalDate birthday, boolean gender, int id, int phone, String email, int salary, String professional, String position) {
         super(code, name, birthday, gender, id, phone, email);
         this.salary = salary;
         this.professional = professional;

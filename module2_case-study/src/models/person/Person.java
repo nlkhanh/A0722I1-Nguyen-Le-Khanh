@@ -1,11 +1,12 @@
 package models.person;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public abstract class Person {
     private String personCode;
     private String name;
-    private Date birthday = new Date();
+    private LocalDate birthday;
     private boolean gender;
     private int id;
     private int phone;
@@ -14,7 +15,7 @@ public abstract class Person {
     public Person() {
     }
 
-    public Person(String code, String name, Date birthday, boolean gender, int id, int phone, String email) {
+    public Person(String code, String name, LocalDate birthday, boolean gender, int id, int phone, String email) {
         this.personCode = code;
         this.name = name;
         this.birthday = birthday;
@@ -40,11 +41,11 @@ public abstract class Person {
         this.name = name;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 

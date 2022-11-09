@@ -1,5 +1,6 @@
 package models.person;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Customer extends Person {
@@ -14,7 +15,7 @@ public class Customer extends Person {
         this.customerType = customerType;
     }
 
-    public Customer(String code, String name, Date birthday, boolean gender, int id, int phone, String email, String address, String customerType) {
+    public Customer(String code, String name, LocalDate birthday, boolean gender, int id, int phone, String email, String address, String customerType) {
         super(code, name, birthday, gender, id, phone, email);
         this.address = address;
         this.customerType = customerType;

@@ -23,8 +23,7 @@ public class MyLinkedListTest {
         System.out.println();
         System.out.println("-----remove-----");
         myLinkedList.remove(2);
-        System.out.println(myLinkedList.remove(new Integer(-1
-        )));
+        System.out.println(myLinkedList.remove(new Integer(-1)));
         for (int i = 0; i < myLinkedList.size(); i++) {
             System.out.print(myLinkedList.get(i) + "\t");
         }

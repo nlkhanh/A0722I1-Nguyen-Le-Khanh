@@ -1,6 +1,5 @@
 package m2s8_clean_code_refactoring.m2s8_review.refactoring;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -13,13 +12,13 @@ import static org.junit.Assert.*;
 @RunWith(Parameterized.class)
 public class TennisGameTest {
 
-    private int player1Score;
-    private int player2Score;
+    private int firstPlayerScore;
+    private int secondPlayerScore;
     private String expectedScore;
 
-    public TennisGameTest(int player1Score, int player2Score, String expectedScore) {
-        this.player1Score = player1Score;
-        this.player2Score = player2Score;
+    public TennisGameTest(int player1Score, int secondPlayerScore, String expectedScore) {
+        this.firstPlayerScore = player1Score;
+        this.secondPlayerScore = secondPlayerScore;
         this.expectedScore = expectedScore;
     }
 
@@ -69,15 +68,15 @@ public class TennisGameTest {
 
     @Test
     public void checkAllScores() {
-        int highestScore = Math.max(this.player1Score, this.player2Score);
-        int m_score1 = 0;
-        int m_score2 = 0;
+        int highestScore = Math.max(this.firstPlayerScore, this.secondPlayerScore);
+        int mFirstScore = 0;
+        int mSecondScore = 0;
         for (int i = 0; i < highestScore; i++) {
-            if (i < this.player1Score)
-                m_score1 += 1;
-            if (i < this.player2Score)
-                m_score2 += 1;
+            if (i < this.firstPlayerScore)
+                mFirstScore += 1;
+            if (i < this.secondPlayerScore)
+                mSecondScore += 1;
         }
-        assertEquals(this.expectedScore, TennisGame.getScore("John", "Bill", m_score1, m_score2));
+        assertEquals(this.expectedScore, TennisGame.getScore("John", "Bill", mFirstScore, mSecondScore));
     }
 }
