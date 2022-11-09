@@ -1,7 +1,5 @@
 package m2s9_dsa_list.review.linkedlist_class_method;
 
-import java.util.function.BinaryOperator;
-
 public class MyLinkedList<E> {
     Node head;
     int numNodes = 0;
@@ -11,21 +9,20 @@ public class MyLinkedList<E> {
 
     private class Node {
         Node next;
-        Object data;
+        E data;
 
         public Node(E data) {
             this.data = data;
         }
 
         public E getData() {
-            return (E) data;
+            return data;
         }
     }
 
     public void addFirst(E element) {
         Node temp = head;
-        Node newNode = new Node(element);
-        head = newNode;
+        head = new Node(element);
         head.next = temp;
         numNodes++;
     }
@@ -54,9 +51,8 @@ public class MyLinkedList<E> {
                 previous = previous.next;
             }
             Node temp = previous.next;
-            Node newNode = new Node(element);
-            previous.next = newNode;
-            newNode.next = temp;
+            previous.next = new Node(element);
+            previous.next.next = temp;
             numNodes++;
         }
     }
@@ -87,7 +83,7 @@ public class MyLinkedList<E> {
     public boolean remove(E element) {
         Node current = head;
         for (int i = 0; i < numNodes; i++) {
-            if (current.getData() == element) {
+            if (current.getData().equals(element)) {
                 remove(i);
                 return true;
             }
@@ -101,7 +97,7 @@ public class MyLinkedList<E> {
     }
 
     public MyLinkedList<E> clone() {
-        MyLinkedList<E> newLinkedList = new MyLinkedList<E>();
+        MyLinkedList<E> newLinkedList = new MyLinkedList<>();
         Node current = head;
         for (int i = 0; i < numNodes; i++) {
             newLinkedList.addLast(current.getData());
@@ -113,7 +109,7 @@ public class MyLinkedList<E> {
     public boolean contains(E object) {
         Node current = head;
         for (int i = 0; i < numNodes; i++) {
-            if (current.getData() == object) {
+            if (current.getData().equals(object)) {
                 return true;
             }
             current = current.next;
@@ -124,7 +120,7 @@ public class MyLinkedList<E> {
     public int indexOf(E object) {
         Node current = head;
         for (int i = 0; i < numNodes; i++) {
-            if (current.getData() == object) {
+            if (current.getData().equals(object)) {
                 return i;
             }
             current = current.next;
@@ -133,14 +129,16 @@ public class MyLinkedList<E> {
     }
 
     public E get(int index) {
-        if (index < 0 || index >= numNodes) {
-            throw new IndexOutOfBoundsException("Index: " + index + " out of bounds");
-        } else if (numNodes > 0) {
-            Node current = head;
-            for (int i = 0; i < index; i++) {
-                current = current.next;
+        if (numNodes > 0) {
+            if (index < 0 || index >= numNodes) {
+                throw new IndexOutOfBoundsException("Index: " + index + " out of bounds");
+            } else {
+                Node current = head;
+                for (int i = 0; i < index; i++) {
+                    current = current.next;
+                }
+                return current.getData();
             }
-            return current.getData();
         }
         return null;
     }

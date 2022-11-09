@@ -19,7 +19,7 @@ public class PalindromeCheck {
 
         boolean isEqual = true;
         for (int i = 0; i < strQueue.size(); i++) {
-            if (!Objects.equals(strQueue.poll(), strStack.pop())) {
+            if (strQueue.poll().equals(strStack.pop())) {
                 isEqual = false;
                 break;
             }

@@ -1,19 +1,16 @@
 package m2s9_dsa_list.review.arraylist_class_method;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class MyList<E> {
     private int size = 0;
     private final int DEFAULT_CAPACITY = 10;
-    private Object[] elements;
+    private E[] elements;
 
     public MyList() {
-        elements = (E[])new Object[DEFAULT_CAPACITY];
+        elements = (E[]) new Object[DEFAULT_CAPACITY];
     }
 
     public MyList(int capacity) {
-        elements = new Object[capacity];
+        elements = (E[]) new Object[capacity];
     }
 
     public void add(int index, E element) {
@@ -23,9 +20,7 @@ public class MyList<E> {
             add(element);
         } else {
             ensureCapacity(size + 1);
-            for (int i = size - 1; i >= index; i--) {
-                elements[i + 1] = elements[i];
-            }
+            System.arraycopy(elements, index, elements, index + 1, size - index);
             elements[index] = element;
             size++;
         }
@@ -33,11 +28,10 @@ public class MyList<E> {
 
     public E remove(int index) {
         E temp = null;
-        if (index > 0 || index < size) {
+        if (index > 0 && index < size) {
             temp = (E) elements[index];
-            for (int i = index; i < size - 1; i++) {
-                elements[i] = elements[i + 1];
-            }
+            System.arraycopy(elements, index + 1, elements, index, size - 1 - index);
+            elements[size - 1] = null;
             size--;
         }
         return temp;
@@ -48,7 +42,7 @@ public class MyList<E> {
     }
 
     public MyList<E> clone() {
-        MyList<E> temp = new MyList<E>();
+        MyList<E> temp = new MyList<>();
         temp.elements = elements;
         temp.size = size;
         return temp;
@@ -56,7 +50,7 @@ public class MyList<E> {
 
     public boolean contains(E o) {
         for (Object element : elements) {
-            if (element == o) {
+            if (element.equals(o)) {
                 return true;
             }
         }
@@ -65,7 +59,7 @@ public class MyList<E> {
 
     public int indexOf(E o) {
         for (int i = 0; i < size; i++) {
-            if (elements[i] == o) {
+            if (elements[i].equals(o)) {
                 return i;
             }
         }
@@ -79,7 +73,7 @@ public class MyList<E> {
     }
 
     private void ensureCapacity(int minCapacity) {
-        Object[] newElements = (E[]) new Object[minCapacity];
+        E[] newElements = (E[]) new Object[minCapacity];
         System.arraycopy(elements, 0, newElements, 0, size);
         elements = newElements;
     }
@@ -88,7 +82,7 @@ public class MyList<E> {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + " out of bounds");
         } else {
-            return (E) elements[index];
+            return elements[index];
         }
     }
 

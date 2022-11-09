@@ -4,15 +4,15 @@ import models.person.Customer;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class CustomerServiceImpl implements CustomerService {
-    private static ArrayList<Customer> customers;
+    private static LinkedList<Customer> customers;
 
     static {
-        customers = new ArrayList<Customer>();
+        customers = new LinkedList<>();
     }
 
     public CustomerServiceImpl() {
@@ -39,7 +39,7 @@ public class CustomerServiceImpl implements CustomerService {
         LocalDate birthdate = LocalDate.parse(date, formatter);
         boolean gender;
         do {
-            System.out.println("Enter customer gender: ");
+            System.out.println("Choose customer gender: ");
             System.out.println("1. Male");
             System.out.println("2. Female");
             System.out.println("Enter your choice: ");
@@ -99,7 +99,7 @@ public class CustomerServiceImpl implements CustomerService {
                             break;
                         case 3:
                             do {
-                                System.out.println("Choice your gender: ");
+                                System.out.println("Choose new gender: ");
                                 System.out.println("1. Male");
                                 System.out.println("2. Female");
                                 System.out.println("Enter your choice: ");
