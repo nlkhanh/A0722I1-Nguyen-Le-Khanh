@@ -1,8 +1,8 @@
 package models.facility;
 
 public class House extends Facility {
-    String roomType;
-    byte numberOfFloor;
+    private String roomType;
+    private byte numberOfFloor;
 
     public House() {
     }

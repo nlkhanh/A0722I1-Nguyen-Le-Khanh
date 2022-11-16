@@ -9,17 +9,17 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class EmployeeServiceImpl implements EmployeeService {
-    private static ArrayList<Employee> employees;
+    private static final ArrayList<Employee> EMPLOYEES;
 
     static {
-        employees = new ArrayList<Employee>();
+        EMPLOYEES = new ArrayList<>();
     }
 
     public EmployeeServiceImpl() {
     }
 
     public void displayAll() {
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             System.out.println(employee);
         }
     }
@@ -44,70 +44,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         String email = input.nextLine();
         System.out.println("Enter employee salary: ");
         int salary = Integer.parseInt(input.nextLine());
-        String professional = null;
-        do {
-            System.out.println("Choose employee professional: ");
-            System.out.println("1. Intermediate");
-            System.out.println("2. College");
-            System.out.println("3. University");
-            System.out.println("Enter your choice: ");
-            choice = Integer.parseInt(input.nextLine());
-            switch (choice) {
-                case 1:
-                    professional = "Intermediate";
-                    break;
-                case 2:
-                    professional = "College";
-                    break;
-                case 3:
-                    professional = "University";
-                    break;
-                default:
-                    System.out.println("Invalid input");
-            }
-        } while (choice != 1 && choice != 2 && choice != 3);
-        String position = null;
-        do {
-            System.out.println("Choose employee position: ");
-            System.out.println("1. Receptionist");
-            System.out.println("2. Staff");
-            System.out.println("3. Expert");
-            System.out.println("4. Supervisor");
-            System.out.println("5. Manager");
-            System.out.println("6. Director");
-            System.out.println("Enter your choice: ");
-            choice = Integer.parseInt(input.nextLine());
-            switch (choice) {
-                case 1:
-                    position = "Receptionist";
-                    break;
-                case 2:
-                    position = "Staff";
-                    break;
-                case 3:
-                    position = "Expert";
-                    break;
-                case 4:
-                    position = "Supervisor";
-                    break;
-                case 5:
-                    position = "Manager";
-                    break;
-                case 6:
-                    position = "Director";
-                    break;
-                default:
-                    System.out.println("Invalid input");
-            }
-        } while (choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5 && choice != 6);
-        employees.add(new Employee(code, name, birthdate, gender, id, phone, email, salary, professional, position));
+        String professional = setProfessional();
+        String position = setPosition();
+        EMPLOYEES.add(new Employee(code, name, birthdate, gender, id, phone, email, salary, professional, position));
     }
 
     public void set() {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter code of employee you want: ");
         String code = input.nextLine();
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             if (Objects.equals(employee.getPersonCode(), code)) {
                 System.out.println(employee);
                 int choice;
@@ -139,26 +85,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                             employee.setBirthday(newBirthdate);
                             break;
                         case 3:
-                            do {
-                                System.out.println("Choose your gender: ");
-                                System.out.println("1. Male");
-                                System.out.println("2. Female");
-                                System.out.println("Enter your choice: ");
-                                choice = Integer.parseInt(input.nextLine());
-                                switch (choice) {
-                                    case 1:
-                                        employee.setGender(true);
-                                        break;
-                                    case 2:
-                                        employee.setGender(false);
-                                        break;
-                                    default:
-                                        System.out.println("Invalid input!");
-                                }
-                                if (choice != 1 && choice != 2) {
-                                    System.out.println("Invalid input!");
-                                }
-                            } while (choice != 1 && choice != 2);
+                            employee.setGender(setGender());
                             break;
                         case 4:
                             System.out.println("Enter a new ID: ");
@@ -181,67 +108,13 @@ public class EmployeeServiceImpl implements EmployeeService {
                             employee.setSalary(newSalary);
                             break;
                         case 8:
-                            do {
-                                System.out.println("Choose new professional: ");
-                                System.out.println("1. Intermediate");
-                                System.out.println("2. College");
-                                System.out.println("3. University");
-                                System.out.println("Enter your choice: ");
-                                choice = Integer.parseInt(input.nextLine());
-                                switch (choice) {
-                                    case 1:
-                                        employee.setProfessional("Intermediate");
-                                        break;
-                                    case 2:
-                                        employee.setProfessional("College");
-                                        break;
-                                    case 3:
-                                        employee.setProfessional("University");
-                                        break;
-                                    default:
-                                        System.out.println("Invalid input");
-                                }
-                            } while (choice != 1 && choice != 2 && choice != 3);
+                            employee.setProfessional(setProfessional());
                             break;
                         case 9:
-                            do {
-                                System.out.println("Choose new position: ");
-                                System.out.println("1. Receptionist");
-                                System.out.println("2. Staff");
-                                System.out.println("3. Expert");
-                                System.out.println("4. Supervisor");
-                                System.out.println("5. Manager");
-                                System.out.println("6. Director");
-                                System.out.println("Enter your choice: ");
-                                choice = Integer.parseInt(input.nextLine());
-                                switch (choice) {
-                                    case 1:
-                                        employee.setPosition("Receptionist");
-                                        break;
-                                    case 2:
-                                        employee.setPosition("Staff");
-                                        break;
-                                    case 3:
-                                        employee.setPosition("Expert");
-                                        break;
-                                    case 4:
-                                        employee.setPosition("Supervisor");
-                                        break;
-                                    case 5:
-                                        employee.setPosition("Manager");
-                                        break;
-                                    case 6:
-                                        employee.setPosition("Director");
-                                        break;
-                                    default:
-                                        System.out.println("Invalid input");
-                                }
-                            } while (choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5 && choice != 6);
+                            employee.setPosition(setPosition());
                             break;
                         case 0:
                             break;
-                        default:
-                            System.out.println("Invalid input!");
                     }
                 } while (choice != 0);
                 System.out.println("Information after edited: ");
@@ -274,5 +147,64 @@ public class EmployeeServiceImpl implements EmployeeService {
     private String setProfessional() {
         int choice = 0;
         Scanner input = new Scanner(System.in);
+        String professional = "";
+        do {
+            System.out.println("Choose new professional: ");
+            System.out.println("1. Intermediate");
+            System.out.println("2. College");
+            System.out.println("3. University");
+            System.out.println("Enter your choice: ");
+            choice = Integer.parseInt(input.nextLine());
+            switch (choice) {
+                case 1:
+                    professional = "Intermediate";
+                    break;
+                case 2:
+                    professional = "College";
+                    break;
+                case 3:
+                    professional = "University";
+                    break;
+            }
+        } while (choice < 1 || choice > 3);
+        return professional;
+    }
+
+    private String setPosition() {
+        int choice = 0;
+        Scanner input = new Scanner(System.in);
+        String position = "";
+        do {
+            System.out.println("Choose new position: ");
+            System.out.println("1. Receptionist");
+            System.out.println("2. Staff");
+            System.out.println("3. Expert");
+            System.out.println("4. Supervisor");
+            System.out.println("5. Manager");
+            System.out.println("6. Director");
+            System.out.println("Enter your choice: ");
+            choice = Integer.parseInt(input.nextLine());
+            switch (choice) {
+                case 1:
+                    position = "Receptionist";
+                    break;
+                case 2:
+                    position = "Staff";
+                    break;
+                case 3:
+                    position = "Expert";
+                    break;
+                case 4:
+                    position = "Supervisor";
+                    break;
+                case 5:
+                    position = "Manager";
+                    break;
+                case 6:
+                    position = "Director";
+                    break;
+            }
+        } while (choice < 1 || choice > 6);
+        return position;
     }
 }

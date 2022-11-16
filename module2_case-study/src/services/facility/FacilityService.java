@@ -5,4 +5,6 @@ import services.Service;
 
 public interface FacilityService extends Service {
     void displayMaintenance();
+
+    void increaseNumberOfUse(Facility facility);
 }

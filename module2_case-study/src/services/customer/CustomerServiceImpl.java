@@ -5,14 +5,13 @@ import models.person.Customer;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class CustomerServiceImpl implements CustomerService {
-    private static LinkedList<Customer> customers;
+    private static final LinkedList<Customer> CUSTOMERS;
 
     static {
-        customers = new LinkedList<>();
+        CUSTOMERS = new LinkedList<>();
     }
 
     public CustomerServiceImpl() {
@@ -20,7 +19,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void displayAll() {
-        for (Customer customer : customers) {
+        for (Customer customer : CUSTOMERS) {
             System.out.println(customer);
         }
     }
@@ -45,9 +44,6 @@ public class CustomerServiceImpl implements CustomerService {
             System.out.println("Enter your choice: ");
             choice = Integer.parseInt(input.nextLine());
             gender = (choice == 1);
-            if (choice != 1 && choice != 2) {
-                System.out.println("Invalid input!");
-            }
         } while (choice != 1 && choice != 2);
         System.out.println("Enter customer ID: ");
         int id = Integer.parseInt(input.nextLine());
@@ -59,7 +55,7 @@ public class CustomerServiceImpl implements CustomerService {
         String address = input.nextLine();
         System.out.println("Enter customer type: ");
         String customerType = input.nextLine();
-        customers.add(new Customer(code, name, birthdate, gender, id, phone, email, address, customerType));
+        CUSTOMERS.add(new Customer(code, name, birthdate, gender, id, phone, email, address, customerType));
     }
 
     @Override
@@ -67,8 +63,8 @@ public class CustomerServiceImpl implements CustomerService {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter code of customer you want: ");
         String code = input.nextLine();
-        for (Customer customer : customers) {
-            if (Objects.equals(customer.getPersonCode(), code)) {
+        for (Customer customer : CUSTOMERS) {
+            if (customer.getPersonCode().equals(code)) {
                 System.out.println(customer);
                 int choice;
                 do {
@@ -111,8 +107,6 @@ public class CustomerServiceImpl implements CustomerService {
                                     case 2:
                                         customer.setGender(false);
                                         break;
-                                    default:
-                                        System.out.println("Invalid input!");
                                 }
                             } while (choice != 1 && choice != 2);
                             break;
@@ -143,8 +137,6 @@ public class CustomerServiceImpl implements CustomerService {
                             break;
                         case 0:
                             break;
-                        default:
-                            System.out.println("Invalid input!");
                     }
                 } while (choice != 0);
                 System.out.println("Information after edited: ");

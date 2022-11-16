@@ -1,9 +1,9 @@
 package models.facility;
 
 public class Villa extends Facility {
-    String roomType;
-    byte numberOfFloor;
-    double poolArea;
+    private String roomType;
+    private byte numberOfFloor;
+    private double poolArea;
 
     public Villa() {
     }
