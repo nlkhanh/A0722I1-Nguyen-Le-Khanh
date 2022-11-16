@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class BinarySearchingRecursion {
     public static int binarySearch(int[] arr, int left, int right, int value) {
-        int middle = (left + right) / 2;
         if (left <= right) {
+            int middle = (left + right) / 2;
             if (arr[middle] == value) {
                 return middle;
             } else if (arr[middle] > value) {
