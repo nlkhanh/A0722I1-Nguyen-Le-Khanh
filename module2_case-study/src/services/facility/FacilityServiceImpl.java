@@ -79,47 +79,212 @@ public class FacilityServiceImpl implements FacilityService {
     public void set() {
     }
 
-    private Facility addNew(int serviceType) {
-        int choice = 0;
-        Scanner input = new Scanner(System.in);
-        System.out.println("Enter service name: ");
-        String name = input.nextLine();
-        System.out.println("Enter service area: ");
-        double area = Double.parseDouble(input.nextLine());
-        System.out.println("Enter service cost: ");
-        double cost = Double.parseDouble(input.nextLine());
-        System.out.println("Enter maximum number of people: ");
-        int maxNumOfPeople = Integer.parseInt(input.nextLine());
-        System.out.println("Enter rent's type: ");
-        String rentType = input.nextLine();
-        String servicesType;
-        String roomType;
-        byte numberOfFloor;
+    private Facility addNew(int serviceTypeNum) {
+        int numOfFloor;
         double poolArea;
-        String freeServices;
-        switch (serviceType) {
+        String servicesType, roomType, freeServices;
+
+        String code = getCode(serviceTypeNum);
+        String name = getName();
+        double serviceArea = getArea();
+        double cost = getCost();
+        int maxNumOfPeople = getMaxNumOfPeople();
+        String rentType = getRentType();
+
+        switch (serviceTypeNum) {
             case 1:
                 servicesType = "Villa";
-                System.out.println("Enter room's type: ");
-                roomType = input.nextLine();
-                System.out.println("Enter number of floor: ");
-                numberOfFloor = Byte.parseByte(input.nextLine());
-                System.out.println("Enter area of pool: ");
-                poolArea = Double.parseDouble(input.nextLine());
-                return new Villa(name, area, cost, maxNumOfPeople, rentType, servicesType, roomType, numberOfFloor, poolArea);
+                roomType = getRoomType();
+                numOfFloor = getNumOfFloor();
+                poolArea = getArea();
+                return new Villa(name, serviceArea, cost, maxNumOfPeople, rentType, servicesType, code, roomType, numOfFloor, poolArea);
             case 2:
                 servicesType = "House";
-                System.out.println("Enter room's type: ");
-                roomType = input.nextLine();
-                System.out.println("Enter number of floor: ");
-                numberOfFloor = Byte.parseByte(input.nextLine());
-                return new House(name, area, cost, maxNumOfPeople, rentType, servicesType, roomType, numberOfFloor);
+                roomType = getRoomType();
+                numOfFloor = getNumOfFloor();
+                return new House(name, serviceArea, cost, maxNumOfPeople, rentType, servicesType, code, roomType, numOfFloor);
             case 3:
+                Scanner input = new Scanner(System.in);
                 servicesType = "Room";
                 System.out.println("Enter free service: ");
                 freeServices = input.nextLine();
-                return new Room(name, area, cost, maxNumOfPeople, rentType, servicesType, freeServices);
+                return new Room(name, serviceArea, cost, maxNumOfPeople, rentType, servicesType, code, freeServices);
         }
         return null;
+    }
+
+    private String getCode(int serviceType) {
+        Scanner input = new Scanner(System.in);
+        String code = null;
+        int choice;
+        do {
+            System.out.println("Do you want to get random code or write code by yourself?");
+            System.out.println("1: Random code");
+            System.out.println("2: Write code");
+            System.out.println("Enter your choice: ");
+            choice = Integer.parseInt(input.nextLine());
+            if (choice == 1) {
+                code = getRandomCode(serviceType);
+            } else if (choice == 2) {
+                code = writeCode(serviceType);
+            } else {
+                System.out.println("Invalid input!");
+            }
+        } while (choice != 1 && choice != 2);
+        return code;
+    }
+
+    private String getRandomCode(int serviceType) {
+        int randomNum = (int) (Math.random() * (9999 - 1000 + 1) + 1000);
+        if (serviceType == 1) {
+            return "SVVL-" + randomNum;
+        } else if (serviceType == 2) {
+            return "SVHO-" + randomNum;
+        } else {
+            return "SVRO-" + randomNum;
+        }
+    }
+
+    private String writeCode(int serviceType) {
+        String serviceAbbreviation, code;
+        Scanner input = new Scanner(System.in);
+        boolean isRightCode;
+        if (serviceType == 1) {
+            serviceAbbreviation = "VL";
+        } else if (serviceType == 2) {
+            serviceAbbreviation = "HO";
+        } else {
+            serviceAbbreviation = "RO";
+        }
+        do {
+            System.out.println("Enter your code: ");
+            code = input.nextLine();
+            isRightCode = code.matches("SV" + serviceAbbreviation + "-\\d{4}");
+            if (!isRightCode) {
+                System.out.println("Invalid code!");
+            }
+        } while (!isRightCode);
+        return code;
+    }
+
+    private String getName() {
+        Scanner input = new Scanner(System.in);
+        String name;
+        boolean isRightName = false;
+        do {
+            System.out.println("Enter service's name: ");
+            name = input.nextLine();
+            isRightName = name.matches("[A-Z][a-z]+");
+            if (!isRightName) {
+                System.out.println("Invalid name!");
+            }
+        } while (!isRightName);
+        return name;
+    }
+
+    private double getArea() {
+        Scanner input = new Scanner(System.in);
+        boolean isAreaRight = false;
+        double area = 0;
+        do {
+            System.out.println("Enter area: ");
+            try {
+                area = Double.parseDouble(input.nextLine());
+                isAreaRight = area > 30;
+                if (!isAreaRight) {
+                    System.out.println("Area must be more than 30!");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input");
+            }
+        } while (!isAreaRight);
+        return area;
+    }
+
+    private double getCost() {
+        Scanner input = new Scanner(System.in);
+        boolean isCostRight = false;
+        double cost = 0;
+        do {
+            System.out.println("Enter cost: ");
+            try {
+                cost = Double.parseDouble(input.nextLine());
+                isCostRight = cost > 0;
+                if (!isCostRight) {
+                    System.out.println("Cost must be more than 0!");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input");
+            }
+        } while (!isCostRight);
+        return cost;
+    }
+
+    private int getMaxNumOfPeople() {
+        Scanner input = new Scanner(System.in);
+        boolean isNumRight = false;
+        int num = 0;
+        do {
+            System.out.println("Enter maximum number of people: ");
+            try {
+                num = Integer.parseInt(input.nextLine());
+                isNumRight = num > 0 && num < 20;
+                if (!isNumRight) {
+                    System.out.println("Maximum number of people must be between 1 and 19!");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input");
+            }
+        } while (!isNumRight);
+        return num;
+    }
+
+    private int getNumOfFloor() {
+        Scanner input = new Scanner(System.in);
+        boolean isNumRight = false;
+        int num = 0;
+        do {
+            System.out.println("Enter number of floor: ");
+            try {
+                num = Integer.parseInt(input.nextLine());
+                isNumRight = num > 0;
+                if (!isNumRight) {
+                    System.out.println("Number of floor must be more than 0!");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input");
+            }
+        } while (!isNumRight);
+        return num;
+    }
+
+    private String getRentType() {
+        Scanner input = new Scanner(System.in);
+        String rentType;
+        boolean isRightRentType;
+        do {
+            System.out.println("Enter service's rentType: ");
+            rentType = input.nextLine();
+            isRightRentType = rentType.matches("[A-Z][a-z]+");
+            if (!isRightRentType) {
+                System.out.println("Invalid rentType!");
+            }
+        } while (!isRightRentType);
+        return rentType;
+    }
+
+    private String getRoomType() {
+        Scanner input = new Scanner(System.in);
+        String roomType;
+        boolean isRightRoomType;
+        do {
+            System.out.println("Enter service's roomType: ");
+            roomType = input.nextLine();
+            isRightRoomType = roomType.matches("[A-Z][a-z]+");
+            if (!isRightRoomType) {
+                System.out.println("Invalid roomType!");
+            }
+        } while (!isRightRoomType);
+        return roomType;
     }
 }

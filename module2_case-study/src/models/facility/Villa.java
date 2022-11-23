@@ -2,22 +2,22 @@ package models.facility;
 
 public class Villa extends Facility {
     private String roomType;
-    private byte numberOfFloor;
+    private int numOfFloor;
     private double poolArea;
 
     public Villa() {
     }
 
-    public Villa(String roomType, byte numberOfFloor, double poolArea) {
+    public Villa(String roomType, int numberOfFloor, double poolArea) {
         this.roomType = roomType;
-        this.numberOfFloor = numberOfFloor;
+        this.numOfFloor = numberOfFloor;
         this.poolArea = poolArea;
     }
 
-    public Villa(String name, double area, double cost, int maxNumOfPeople, String rentType, String servicesType, String roomType, byte numberOfFloor, double poolArea) {
-        super(name, area, cost, maxNumOfPeople, rentType, servicesType);
+    public Villa(String name, double area, double cost, int maxNumOfPeople, String rentType, String servicesType, String code, String roomType, int numberOfFloor, double poolArea) {
+        super(name, area, cost, maxNumOfPeople, rentType, servicesType, code);
         this.roomType = roomType;
-        this.numberOfFloor = numberOfFloor;
+        this.numOfFloor = numberOfFloor;
         this.poolArea = poolArea;
     }
 
@@ -29,12 +29,12 @@ public class Villa extends Facility {
         this.roomType = roomType;
     }
 
-    public byte getNumberOfFloor() {
-        return numberOfFloor;
+    public int getNumOfFloor() {
+        return numOfFloor;
     }
 
-    public void setNumberOfFloor(byte numberOfFloor) {
-        this.numberOfFloor = numberOfFloor;
+    public void setNumOfFloor(int numOfFloor) {
+        this.numOfFloor = numOfFloor;
     }
 
     public double getPoolArea() {
@@ -48,14 +48,15 @@ public class Villa extends Facility {
     @Override
     public String toString() {
         return "Villa{" +
-                "name='" + super.getName() + '\'' +
-                ", area=" + super.getArea() +
+                "code='" + super.getCode() + '\'' +
+                ", name='" + super.getName() + '\'' +
+                ", area=" + super.getServiceArea() +
                 ", cost=" + super.getCost() +
                 ", maxNumOfPeople=" + super.getMaxNumOfPeople() +
                 ", rentType=" + super.getRentType() +
                 ", servicesType=" + super.getServicesType() +
                 ", roomType=" + roomType +
-                ", numberOfFloor=" + numberOfFloor +
+                ", numberOfFloor=" + numOfFloor +
                 ", poolArea=" + poolArea +
                 '}';
     }

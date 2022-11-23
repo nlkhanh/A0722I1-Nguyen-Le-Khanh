@@ -2,20 +2,20 @@ package models.facility;
 
 public class House extends Facility {
     private String roomType;
-    private byte numberOfFloor;
+    private int numOfFloor;
 
     public House() {
     }
 
-    public House(String roomType, byte numberOfFloor) {
+    public House(String roomType, int numOfFloor) {
         this.roomType = roomType;
-        this.numberOfFloor = numberOfFloor;
+        this.numOfFloor = numOfFloor;
     }
 
-    public House(String name, double area, double cost, int maxNumOfPeople, String rentType, String servicesType, String roomType, byte numberOfFloor) {
-        super(name, area, cost, maxNumOfPeople, rentType, servicesType);
+    public House(String name, double area, double cost, int maxNumOfPeople, String rentType, String servicesType, String code , String roomType, int numOfFloor) {
+        super(name, area, cost, maxNumOfPeople, rentType, servicesType, code);
         this.roomType = roomType;
-        this.numberOfFloor = numberOfFloor;
+        this.numOfFloor = numOfFloor;
     }
 
     public String getRoomType() {
@@ -26,25 +26,26 @@ public class House extends Facility {
         this.roomType = roomType;
     }
 
-    public byte getNumberOfFloor() {
-        return numberOfFloor;
+    public int getNumOfFloor() {
+        return numOfFloor;
     }
 
-    public void setNumberOfFloor(byte numberOfFloor) {
-        this.numberOfFloor = numberOfFloor;
+    public void setNumOfFloor(int numOfFloor) {
+        this.numOfFloor = numOfFloor;
     }
 
     @Override
     public String toString() {
         return "House{" +
-                "name='" + super.getName() + '\'' +
-                ", area=" + super.getArea() +
+                "code='" + super.getCode() + '\'' +
+                ", name='" + super.getName() + '\'' +
+                ", area=" + super.getServiceArea() +
                 ", cost=" + super.getCost() +
                 ", maxNumOfPeople=" + super.getMaxNumOfPeople() +
                 ", rentType=" + super.getRentType() +
                 ", servicesType=" + super.getServicesType() +
                 ", roomType=" + roomType +
-                ", numberOfFloor=" + numberOfFloor +
+                ", numOfFloor=" + numOfFloor +
                 '}';
     }
 }

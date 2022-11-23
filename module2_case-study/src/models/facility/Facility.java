@@ -2,22 +2,24 @@ package models.facility;
 
 public abstract class Facility {
     private String name;
-    private double area;
+    private double serviceArea;
     private double cost;
     private int maxNumOfPeople;
     private String rentType;
     private String servicesType;
+    private String code;
 
     public Facility() {
     }
 
-    public Facility(String name, double area, double cost, int maxNumOfPeople, String rentType, String servicesType) {
+    public Facility(String name, double serviceArea, double cost, int maxNumOfPeople, String rentType, String servicesType, String code) {
         this.name = name;
-        this.area = area;
+        this.serviceArea = serviceArea;
         this.cost = cost;
         this.maxNumOfPeople = maxNumOfPeople;
         this.rentType = rentType;
         this.servicesType = servicesType;
+        this.code = code;
     }
 
     public String getName() {
@@ -28,12 +30,12 @@ public abstract class Facility {
         this.name = name;
     }
 
-    public double getArea() {
-        return area;
+    public double getServiceArea() {
+        return serviceArea;
     }
 
-    public void setArea(double area) {
-        this.area = area;
+    public void setServiceArea(double serviceArea) {
+        this.serviceArea = serviceArea;
     }
 
     public double getCost() {
@@ -68,11 +70,20 @@ public abstract class Facility {
         this.servicesType = servicesType;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     @Override
     public String toString() {
         return "Facility{" +
-                "name='" + name + '\'' +
-                ", area=" + area +
+                "code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", service area=" + serviceArea +
                 ", cost=" + cost +
                 ", maxNumOfPeople=" + maxNumOfPeople +
                 ", rentType=" + rentType +
