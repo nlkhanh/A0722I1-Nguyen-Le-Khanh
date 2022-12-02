@@ -37,6 +37,15 @@ public class Customer extends Person {
         this.customerType = customerType;
     }
 
+    public String getInfo() {
+        String[] birthdayArr = String.format("%s", getBirthday()).split("-");
+        String birthdayStr = birthdayArr[2] + "/" + birthdayArr[1] + "/" + birthdayArr[0];
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s",
+                getPersonCode(), getName(), birthdayStr, isGender(),
+                getId(), getPhone(), getEmail(), getAddress(),
+                getCustomerType());
+    }
+
     @Override
     public String toString() {
         return "Customer{" +

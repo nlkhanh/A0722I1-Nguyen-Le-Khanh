@@ -1,19 +1,20 @@
 package services.customer;
 
 import models.person.Customer;
+import repository.customer.CustomerRepositoryImpl;
 import utils.user_exception.UserException;
+import utils.user_exception.Validate;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 public class CustomerServiceImpl implements CustomerService {
-    private static final LinkedList<Customer> CUSTOMERS;
+    private static final CustomerRepositoryImpl CUSTOMER_REPOSITORY;
 
     static {
-        CUSTOMERS = new LinkedList<>();
+        CUSTOMER_REPOSITORY = new CustomerRepositoryImpl();
     }
 
     public CustomerServiceImpl() {
@@ -21,9 +22,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void displayAll() {
-        for (Customer customer : CUSTOMERS) {
-            System.out.println(customer);
-        }
+        CUSTOMER_REPOSITORY.displayAll();
     }
 
     @Override
@@ -33,26 +32,34 @@ public class CustomerServiceImpl implements CustomerService {
         String code = input.nextLine();
         System.out.println("Enter customer name: ");
         String name = input.nextLine();
-        LocalDate birthdate;
+        LocalDate birthdate = getBirthdate();
+        boolean gender = getGender();
+        int id;
         while (true) {
             try {
-                birthdate = getBirthdate();
+                System.out.println("Enter customer ID: ");
+                id = Integer.parseInt(input.nextLine());
                 break;
-            } catch (UserException e) {
-                System.out.println(e.getMessage());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
             }
         }
-        boolean gender = getGender();
-        System.out.println("Enter customer ID: ");
-        int id = Integer.parseInt(input.nextLine());
-        System.out.println("Enter customer phone: ");
-        int phone = Integer.parseInt(input.nextLine());
+        int phone;
+        while (true) {
+            try {
+                System.out.println("Enter customer phone: ");
+                phone = Integer.parseInt(input.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
+            }
+        }
         System.out.println("Enter customer email: ");
         String email = input.nextLine();
         System.out.println("Enter customer address: ");
         String address = input.nextLine();
         String customerType = getCustomerType();
-        CUSTOMERS.add(new Customer(code, name, birthdate, gender, id, phone, email, address, customerType));
+        CUSTOMER_REPOSITORY.add(new Customer(code, name, birthdate, gender, id, phone, email, address, customerType));
     }
 
     @Override
@@ -60,11 +67,11 @@ public class CustomerServiceImpl implements CustomerService {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter code of customer you want: ");
         String code = input.nextLine();
-        for (Customer customer : CUSTOMERS) {
-            if (customer.getPersonCode().equals(code)) {
-                System.out.println(customer);
-                int choice;
-                do {
+        Customer customer = CUSTOMER_REPOSITORY.find(code);
+        if (customer != null) {
+            System.out.println("Customer you want to edit is: " + customer);
+            while (true) {
+                try {
                     System.out.println("What do you want to edit:?");
                     System.out.println("1. Name");
                     System.out.println("2. Birthdate");
@@ -76,84 +83,92 @@ public class CustomerServiceImpl implements CustomerService {
                     System.out.println("8. Customer type");
                     System.out.println("0. Exit");
                     System.out.println("Enter your choice: ");
-                    choice = Integer.parseInt(input.nextLine());
+                    int choice = Integer.parseInt(input.nextLine());
                     switch (choice) {
                         case 1:
                             System.out.println("Enter customer name: ");
-                            String newName = input.nextLine();
-                            customer.setName(newName);
+                            customer.setName(input.nextLine());
                             break;
                         case 2:
-                            while (true) {
-                                try {
-                                    customer.setBirthday(getBirthdate());
-                                    break;
-                                } catch (UserException e) {
-                                    System.out.println(e.getMessage());
-                                }
-                            }
+                            customer.setBirthday(getBirthdate());
                             break;
                         case 3:
                             customer.setGender(getGender());
                             break;
                         case 4:
-                            System.out.println("Enter customer ID: ");
-                            int newId = Integer.parseInt(input.nextLine());
-                            customer.setId(newId);
+                            while (true) {
+                                try {
+                                    System.out.println("Enter customer ID: ");
+                                    customer.setId(Integer.parseInt(input.nextLine()));
+                                    break;
+                                } catch (NumberFormatException e) {
+                                    System.out.println("Invalid input!");
+                                }
+                            }
                             break;
                         case 5:
-                            System.out.println("Enter customer phone: ");
-                            int newPhone = Integer.parseInt(input.nextLine());
-                            customer.setPhone(newPhone);
+                            while (true) {
+                                try {
+                                    System.out.println("Enter customer phone: ");
+                                    customer.setPhone(Integer.parseInt(input.nextLine()));
+                                    break;
+                                } catch (NumberFormatException e) {
+                                    System.out.println("Invalid input!");
+                                }
+                            }
                             break;
                         case 6:
                             System.out.println("Enter customer email: ");
-                            String newEmail = input.nextLine();
-                            customer.setEmail(newEmail);
+                            customer.setEmail(input.nextLine());
                             break;
                         case 7:
                             System.out.println("Enter customer address: ");
-                            String newAddress = input.nextLine();
-                            customer.setAddress(newAddress);
+                            customer.setAddress(input.nextLine());
                             break;
                         case 8:
                             customer.setCustomerType(getCustomerType());
                             break;
                         case 0:
                             break;
+                        default:
+                            System.out.println("Your choice must be from 0 to 8!");
                     }
-                } while (choice != 0);
-                System.out.println("Information after edited: ");
-                System.out.println(customer);
-                return;
+                    if (choice == 0) {
+                        System.out.println("Customer after edit is: " + customer);
+                        CUSTOMER_REPOSITORY.set(customer);
+                        return;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input!");
+                }
             }
         }
         System.out.println("Invalid code!");
     }
 
     private boolean getGender() {
-        int choice = 0;
-        Scanner input = new Scanner(System.in);
-        boolean gender = false;
-        do {
+        while (true) {
             System.out.println("Choose customer gender: ");
             System.out.println("1. Male");
             System.out.println("2. Female");
             System.out.println("Enter your choice: ");
-            choice = Integer.parseInt(input.nextLine());
-            if (choice != 1 && choice != 2) {
+            try {
+                Scanner input = new Scanner(System.in);
+                int choice = Integer.parseInt(input.nextLine());
+                if (choice == 1) {
+                    return true;
+                } else if (choice == 2) {
+                    return false;
+                }
+                System.out.println("Your choice must be 1 or 2!");
+            } catch (NumberFormatException e) {
                 System.out.println("Invalid input!");
-            } else {
-                gender = (choice == 1);
             }
-        } while (choice != 1 && choice != 2);
-        return gender;
+        }
     }
 
     private String getCustomerType() {
-        Scanner input = new Scanner(System.in);
-        int choice = -1;
-        do {
+        while (true) {
             System.out.println("Choose a customer type: ");
             System.out.println("1. Diamond");
             System.out.println("2. Platinum");
@@ -162,7 +177,8 @@ public class CustomerServiceImpl implements CustomerService {
             System.out.println("5. Member");
             System.out.println("Enter your choice: ");
             try {
-                choice = Integer.parseInt(input.nextLine());
+                Scanner input = new Scanner(System.in);
+                int choice = Integer.parseInt(input.nextLine());
                 switch (choice) {
                     case 1:
                         return "Diamond";
@@ -174,92 +190,30 @@ public class CustomerServiceImpl implements CustomerService {
                         return "Silver";
                     case 5:
                         return "Member";
-                    default:
-                        System.out.println("Invalid choice! (Your input must be from 1 to 5)");
                 }
+                System.out.println("Invalid choice! (Your input must be from 1 to 5)");
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input!");
             }
-        } while (choice < 1 || choice > 5);
-        return null;
+        }
     }
 
-    private LocalDate getBirthdate() throws UserException {
+    private LocalDate getBirthdate() {
         Scanner input = new Scanner(System.in);
-        String date;
-        LocalDate birthDate;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        System.out.println("Enter a birthdate: ");
-        date = input.next();
-        boolean isRightFormat = date.matches("^\\d{2}/\\d{2}/\\d{4}$");
-        int day, month, year;
-        if (!isRightFormat) {
-            throw new UserException();
-        } else {
-            day = Integer.parseInt(date.substring(0, 2));
-            month = Integer.parseInt(date.substring(3, 5));
-            year = Integer.parseInt(date.substring(6));
-
-            boolean isRightMonth = month >= 1 && month <= 12;
-            if (!isRightMonth) {
-                throw new UserException();
-            }
-
-            boolean isRightDay;
-            switch (month) {
-                case 2:
-                    if (isLeapYear(year)) {
-                        isRightDay = day >= 1 && day <= 29;
-                    } else {
-                        isRightDay = day >= 1 && day <= 28;
-                    }
-                    if (!isRightDay) {
-                        throw new UserException();
-                    }
+        LocalDate birthDate;
+        while (true) {
+            try {
+                System.out.println("Enter a birthdate: ");
+                String date = input.next();
+                if (Validate.isRightBirthDate(date)) {
+                    birthDate = LocalDate.parse(date, formatter);
                     break;
-                case 1:
-                case 3:
-                case 5:
-                case 7:
-                case 8:
-                case 10:
-                case 12:
-                    isRightDay = day >= 1 && day <= 31;
-                    if (!isRightDay) {
-                        throw new UserException();
-                    }
-                    break;
-                case 4:
-                case 6:
-                case 9:
-                case 11:
-                    isRightDay = day >= 1 && day <= 30;
-                    if (!isRightDay) {
-                        throw new UserException();
-                    }
-                    break;
+                }
+            } catch (UserException e) {
+                System.out.println(e.getMessage());
             }
         }
-        birthDate = LocalDate.parse(date, formatter);
-        int age = Period.between(birthDate, LocalDate.now()).getYears();
-        boolean isRightAge = age >= 18 && age <= 100;
-        if (!isRightAge) {
-            throw new UserException();
-        } else {
-            return birthDate;
-        }
-    }
-
-    private boolean isLeapYear(int year) {
-        boolean isDivisibleBy4 = year % 4 == 0;
-        if (isDivisibleBy4) {
-            boolean isDivisibleBy100 = year % 100 == 0;
-            if (isDivisibleBy100) {
-                return year % 400 == 0;
-            } else {
-                return true;
-            }
-        }
-        return false;
+        return birthDate;
     }
 }

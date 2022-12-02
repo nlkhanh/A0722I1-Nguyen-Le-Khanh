@@ -4,16 +4,16 @@ import models.facility.Facility;
 import models.facility.House;
 import models.facility.Room;
 import models.facility.Villa;
+import repository.facility.FacilityRepositoryImpl;
+import utils.user_exception.Validate;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class FacilityServiceImpl implements FacilityService {
-    private static final Map<Facility, Integer> FACILITIES;
+    private static final FacilityRepositoryImpl FACILITY_REPOSITORY;
 
     static {
-        FACILITIES = new LinkedHashMap<>();
+        FACILITY_REPOSITORY = new FacilityRepositoryImpl();
     }
 
     public FacilityServiceImpl() {
@@ -21,9 +21,7 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public void displayAll() {
-        for (Facility facility : FACILITIES.keySet()) {
-            System.out.println(facility + ", number of use: " + FACILITIES.get(facility));
-        }
+        FACILITY_REPOSITORY.displayAll();
     }
 
     @Override
@@ -40,16 +38,13 @@ public class FacilityServiceImpl implements FacilityService {
             choice = Integer.parseInt(input.nextLine());
             switch (choice) {
                 case 1:
-                    Facility villaTemp = addNew(1);
-                    FACILITIES.put(villaTemp, 0);
+                    FACILITY_REPOSITORY.add(addNew(1));
                     break;
                 case 2:
-                    Facility houseTemp = addNew(2);
-                    FACILITIES.put(houseTemp, 0);
+                    FACILITY_REPOSITORY.add(addNew(2));
                     break;
                 case 3:
-                    Facility roomTemp = addNew(3);
-                    FACILITIES.put(roomTemp, 0);
+                    FACILITY_REPOSITORY.add(addNew(3));
                     break;
                 case 4:
                     break;
@@ -59,39 +54,30 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public void displayMaintenance() {
-        for (Facility facility : FACILITIES.keySet()) {
-            if (FACILITIES.get(facility) == 5) {
-                System.out.println(facility + ", number of use: " + FACILITIES.get(facility));
-            }
-        }
+        FACILITY_REPOSITORY.displayMaintenance();
     }
 
     @Override
     public void increaseNumberOfUse(Facility facility) {
-        if (FACILITIES.get(facility) == 5) {
-            FACILITIES.put(facility, 1);
-        } else {
-            FACILITIES.put(facility, FACILITIES.get(facility) + 1);
-        }
+        FACILITY_REPOSITORY.increaseNumberOfUse(facility);
     }
 
     @Override //No implement
     public void set() {
     }
 
-    private Facility addNew(int serviceTypeNum) {
+    private Facility addNew(int serviceTypeCode) {
         int numOfFloor;
         double poolArea;
         String servicesType, roomType, freeServices;
-
-        String code = getCode(serviceTypeNum);
+        String code = getCode(serviceTypeCode);
         String name = getName();
         double serviceArea = getArea();
         double cost = getCost();
         int maxNumOfPeople = getMaxNumOfPeople();
         String rentType = getRentType();
 
-        switch (serviceTypeNum) {
+        switch (serviceTypeCode) {
             case 1:
                 servicesType = "Villa";
                 roomType = getRoomType();
@@ -113,178 +99,144 @@ public class FacilityServiceImpl implements FacilityService {
         return null;
     }
 
-    private String getCode(int serviceType) {
+    private String getCode(int serviceTypeCode) {
         Scanner input = new Scanner(System.in);
-        String code = null;
         int choice;
-        do {
+        while (true) {
             System.out.println("Do you want to get random code or write code by yourself?");
             System.out.println("1: Random code");
             System.out.println("2: Write code");
             System.out.println("Enter your choice: ");
             choice = Integer.parseInt(input.nextLine());
             if (choice == 1) {
-                code = getRandomCode(serviceType);
+                return getRandomCode(serviceTypeCode);
             } else if (choice == 2) {
-                code = writeCode(serviceType);
+                return writeCode(serviceTypeCode);
             } else {
                 System.out.println("Invalid input!");
             }
-        } while (choice != 1 && choice != 2);
-        return code;
+        }
     }
 
-    private String getRandomCode(int serviceType) {
+    private String getRandomCode(int serviceTypeCode) {
         int randomNum = (int) (Math.random() * (9999 - 1000 + 1) + 1000);
-        if (serviceType == 1) {
+        if (serviceTypeCode == 1) {
             return "SVVL-" + randomNum;
-        } else if (serviceType == 2) {
+        } else if (serviceTypeCode == 2) {
             return "SVHO-" + randomNum;
-        } else {
-            return "SVRO-" + randomNum;
         }
+        return "SVRO-" + randomNum;
     }
 
-    private String writeCode(int serviceType) {
-        String serviceAbbreviation, code;
+    private String writeCode(int serviceTypeCode) {
         Scanner input = new Scanner(System.in);
-        boolean isRightCode;
-        if (serviceType == 1) {
-            serviceAbbreviation = "VL";
-        } else if (serviceType == 2) {
-            serviceAbbreviation = "HO";
-        } else {
-            serviceAbbreviation = "RO";
-        }
-        do {
+        while (true) {
             System.out.println("Enter your code: ");
-            code = input.nextLine();
-            isRightCode = code.matches("SV" + serviceAbbreviation + "-\\d{4}");
-            if (!isRightCode) {
-                System.out.println("Invalid code!");
+            String code = input.nextLine();
+            if (Validate.isRightServiceCode(code, serviceTypeCode)) {
+                return code;
             }
-        } while (!isRightCode);
-        return code;
+            System.out.println("Code is not valid!");
+        }
     }
 
     private String getName() {
         Scanner input = new Scanner(System.in);
-        String name;
-        boolean isRightName = false;
-        do {
+        while (true) {
             System.out.println("Enter service's name: ");
-            name = input.nextLine();
-            isRightName = name.matches("[A-Z][a-z]+");
-            if (!isRightName) {
-                System.out.println("Invalid name!");
+            String name = input.nextLine();
+            if (Validate.isRightNameOrType(name)) {
+                return name;
             }
-        } while (!isRightName);
-        return name;
+            System.out.println("Invalid name!");
+        }
     }
 
     private double getArea() {
         Scanner input = new Scanner(System.in);
-        boolean isAreaRight = false;
-        double area = 0;
-        do {
+        while (true) {
             System.out.println("Enter area: ");
             try {
-                area = Double.parseDouble(input.nextLine());
-                isAreaRight = area > 30;
-                if (!isAreaRight) {
-                    System.out.println("Area must be more than 30!");
+                double area = Double.parseDouble(input.nextLine());
+                if (Validate.isRightArea(area)) {
+                    return area;
                 }
+                System.out.println("Area must be more than 30!");
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input");
             }
-        } while (!isAreaRight);
-        return area;
+        }
     }
 
     private double getCost() {
         Scanner input = new Scanner(System.in);
-        boolean isCostRight = false;
-        double cost = 0;
-        do {
+        while (true) {
             System.out.println("Enter cost: ");
             try {
-                cost = Double.parseDouble(input.nextLine());
-                isCostRight = cost > 0;
-                if (!isCostRight) {
-                    System.out.println("Cost must be more than 0!");
+                double cost = Double.parseDouble(input.nextLine());
+                if (Validate.isRightCost(cost)) {
+                    return cost;
                 }
+                System.out.println("Cost must be more than 0!");
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input");
             }
-        } while (!isCostRight);
-        return cost;
+        }
     }
 
     private int getMaxNumOfPeople() {
         Scanner input = new Scanner(System.in);
-        boolean isNumRight = false;
-        int num = 0;
-        do {
+        while (true) {
             System.out.println("Enter maximum number of people: ");
             try {
-                num = Integer.parseInt(input.nextLine());
-                isNumRight = num > 0 && num < 20;
-                if (!isNumRight) {
-                    System.out.println("Maximum number of people must be between 1 and 19!");
+                int numberOfPeople = Integer.parseInt(input.nextLine());
+                if (Validate.isRightNumberOfPeople(numberOfPeople)) {
+                    return numberOfPeople;
                 }
+                System.out.println("Maximum number of people must be between 1 and 19!");
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input");
             }
-        } while (!isNumRight);
-        return num;
+        }
     }
 
     private int getNumOfFloor() {
         Scanner input = new Scanner(System.in);
-        boolean isNumRight = false;
-        int num = 0;
-        do {
+        while (true) {
             System.out.println("Enter number of floor: ");
             try {
-                num = Integer.parseInt(input.nextLine());
-                isNumRight = num > 0;
-                if (!isNumRight) {
-                    System.out.println("Number of floor must be more than 0!");
+                int numberOfFloor = Integer.parseInt(input.nextLine());
+                if (Validate.isRightNumberOfFloor(numberOfFloor)) {
+                    return numberOfFloor;
                 }
+                System.out.println("Number of floor must be more than 0!");
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input");
             }
-        } while (!isNumRight);
-        return num;
+        }
     }
 
     private String getRentType() {
         Scanner input = new Scanner(System.in);
-        String rentType;
-        boolean isRightRentType;
-        do {
+        while (true) {
             System.out.println("Enter service's rentType: ");
-            rentType = input.nextLine();
-            isRightRentType = rentType.matches("[A-Z][a-z]+");
-            if (!isRightRentType) {
-                System.out.println("Invalid rentType!");
+            String rentType = input.nextLine();
+            if (Validate.isRightNameOrType(rentType)) {
+                return rentType;
             }
-        } while (!isRightRentType);
-        return rentType;
+            System.out.println("Invalid type of rent!");
+        }
     }
 
     private String getRoomType() {
         Scanner input = new Scanner(System.in);
-        String roomType;
-        boolean isRightRoomType;
-        do {
+        while (true) {
             System.out.println("Enter service's roomType: ");
-            roomType = input.nextLine();
-            isRightRoomType = roomType.matches("[A-Z][a-z]+");
-            if (!isRightRoomType) {
-                System.out.println("Invalid roomType!");
+            String roomType = input.nextLine();
+            if (Validate.isRightNameOrType(roomType)) {
+                return roomType;
             }
-        } while (!isRightRoomType);
-        return roomType;
+            System.out.println("Invalid roomType!");
+        }
     }
 }

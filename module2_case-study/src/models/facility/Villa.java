@@ -46,6 +46,13 @@ public class Villa extends Facility {
     }
 
     @Override
+    public String getInfo() {
+        return String.format("%s, %s, %s, %s, %s, %s, %s, %s, %s, %s", getName(), getServiceArea(),
+                getCost(), getMaxNumOfPeople(), getRentType(), getServicesType(), getCode(), getRoomType(),
+                getNumOfFloor(), getPoolArea());
+    }
+
+    @Override
     public String toString() {
         return "Villa{" +
                 "code='" + super.getCode() + '\'' +

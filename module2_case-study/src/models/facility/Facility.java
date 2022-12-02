@@ -78,6 +78,8 @@ public abstract class Facility {
         this.code = code;
     }
 
+    public abstract String getInfo();
+
     @Override
     public String toString() {
         return "Facility{" +

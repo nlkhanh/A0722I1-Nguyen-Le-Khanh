@@ -1,29 +1,26 @@
 package services.employee;
 
 import models.person.Employee;
+import repository.employee.EmployeeRepositoryImpl;
 import utils.user_exception.UserException;
+import utils.user_exception.Validate;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class EmployeeServiceImpl implements EmployeeService {
-    private static final ArrayList<Employee> EMPLOYEES;
+    private static final EmployeeRepositoryImpl EMPLOYEE_REPOSITORY;
 
     static {
-        EMPLOYEES = new ArrayList<>();
+        EMPLOYEE_REPOSITORY = new EmployeeRepositoryImpl();
     }
 
     public EmployeeServiceImpl() {
     }
 
     public void displayAll() {
-        for (Employee employee : EMPLOYEES) {
-            System.out.println(employee);
-        }
+        EMPLOYEE_REPOSITORY.displayAll();
     }
 
     public void add() {
@@ -32,38 +29,46 @@ public class EmployeeServiceImpl implements EmployeeService {
         String code = input.nextLine();
         System.out.println("Enter employee name: ");
         String name = input.nextLine();
-        LocalDate birthdate;
+        LocalDate birthdate = getBirthdate();
+        boolean gender = getGender();
+        int id;
         while (true) {
             try {
-                birthdate = getBirthdate();
+                System.out.println("Enter employee ID: ");
+                id = Integer.parseInt(input.nextLine());
                 break;
-            } catch (UserException e) {
-                System.out.println(e.getMessage());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
             }
         }
-        boolean gender = getGender();
-        System.out.println("Enter employee ID: ");
-        int id = Integer.parseInt(input.nextLine());
-        System.out.println("Enter employee phone: ");
-        int phone = Integer.parseInt(input.nextLine());
+        int phone;
+        while (true) {
+            try {
+                System.out.println("Enter employee phone: ");
+                phone = Integer.parseInt(input.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
+            }
+        }
         System.out.println("Enter employee email: ");
         String email = input.nextLine();
         System.out.println("Enter employee salary: ");
         int salary = Integer.parseInt(input.nextLine());
         String professional = setProfessional();
         String position = setPosition();
-        EMPLOYEES.add(new Employee(code, name, birthdate, gender, id, phone, email, salary, professional, position));
+        EMPLOYEE_REPOSITORY.add(new Employee(code, name, birthdate, gender, id, phone, email, salary, professional, position));
     }
 
     public void set() {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter code of employee you want: ");
         String code = input.nextLine();
-        for (Employee employee : EMPLOYEES) {
-            if (Objects.equals(employee.getPersonCode(), code)) {
-                System.out.println(employee);
-                int choice;
-                do {
+        Employee employee = EMPLOYEE_REPOSITORY.find(code);
+        if (employee != null) {
+            System.out.println("Employee you want to edit is: " + employee);
+            while (true) {
+                try {
                     System.out.println("What do you wanna edit:?");
                     System.out.println("1. Name");
                     System.out.println("2. Birthdate");
@@ -76,45 +81,47 @@ public class EmployeeServiceImpl implements EmployeeService {
                     System.out.println("9. Position");
                     System.out.println("0. Exit");
                     System.out.println("Enter your choice: ");
-                    choice = Integer.parseInt(input.nextLine());
+                    int choice = Integer.parseInt(input.nextLine());
                     switch (choice) {
                         case 1:
-                            System.out.println("Enter a new name: ");
-                            String newName = input.nextLine();
-                            employee.setName(newName);
+                            System.out.println("Enter employee name: ");
+                            employee.setName(input.nextLine());
                             break;
                         case 2:
-                            while (true) {
-                                try {
-                                    employee.setBirthday(getBirthdate());
-                                    break;
-                                } catch (UserException e) {
-                                    System.out.println(e.getMessage());
-                                }
-                            }
+                            employee.setBirthday(getBirthdate());
                             break;
                         case 3:
                             employee.setGender(getGender());
                             break;
                         case 4:
-                            System.out.println("Enter a new ID: ");
-                            int newId = Integer.parseInt(input.nextLine());
-                            employee.setId(newId);
+                            while (true) {
+                                try {
+                                    System.out.println("Enter employee ID: ");
+                                    employee.setId(Integer.parseInt(input.nextLine()));
+                                    break;
+                                } catch (NumberFormatException e) {
+                                    System.out.println("Invalid input!");
+                                }
+                            }
                             break;
                         case 5:
-                            System.out.println("Enter a new phone: ");
-                            int newPhone = Integer.parseInt(input.nextLine());
-                            employee.setPhone(newPhone);
+                            while (true) {
+                                try {
+                                    System.out.println("Enter employee phone: ");
+                                    employee.setPhone(Integer.parseInt(input.nextLine()));
+                                    break;
+                                } catch (NumberFormatException e) {
+                                    System.out.println("Invalid input!");
+                                }
+                            }
                             break;
                         case 6:
-                            System.out.println("Enter a new email: ");
-                            String newEmail = input.nextLine();
-                            employee.setEmail(newEmail);
+                            System.out.println("Enter employee email: ");
+                            employee.setEmail(input.nextLine());
                             break;
                         case 7:
-                            System.out.println("Enter a new salary: ");
-                            int newSalary = Integer.parseInt(input.nextLine());
-                            employee.setSalary(newSalary);
+                            System.out.println("Enter employee salary: ");
+                            employee.setSalary(Integer.parseInt(input.nextLine()));
                             break;
                         case 8:
                             employee.setProfessional(setProfessional());
@@ -124,66 +131,70 @@ public class EmployeeServiceImpl implements EmployeeService {
                             break;
                         case 0:
                             break;
+                        default:
+                            System.out.println("Your choice must be from 0 to 9!");
                     }
-                } while (choice != 0);
-                System.out.println("Information after edited: ");
-                System.out.println(employee);
-                return;
+                    if (choice == 0) {
+                        EMPLOYEE_REPOSITORY.set(employee);
+                        System.out.println("Employee after edited is: " + employee);
+                        return;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input!");
+                }
             }
+
         }
         System.out.println("Invalid code!");
     }
 
     private boolean getGender() {
-        int choice = 0;
-        Scanner input = new Scanner(System.in);
-        boolean gender = false;
-        do {
+        while (true) {
             System.out.println("Choose employee gender: ");
             System.out.println("1. Male");
             System.out.println("2. Female");
             System.out.println("Enter your choice: ");
-            choice = Integer.parseInt(input.nextLine());
-            if (choice != 1 && choice != 2) {
+            try {
+                Scanner input = new Scanner(System.in);
+                int choice = Integer.parseInt(input.nextLine());
+                if (choice == 1) {
+                    return true;
+                } else if (choice == 2) {
+                    return false;
+                }
+                System.out.println("Your choice must be 1 or 2!");
+            } catch (NumberFormatException e) {
                 System.out.println("Invalid input!");
-            } else {
-                gender = (choice == 1);
             }
-        } while (choice != 1 && choice != 2);
-        return gender;
+        }
     }
 
     private String setProfessional() {
-        int choice = 0;
-        Scanner input = new Scanner(System.in);
-        String professional = "";
-        do {
+        while (true) {
             System.out.println("Choose new professional: ");
             System.out.println("1. Intermediate");
             System.out.println("2. College");
             System.out.println("3. University");
             System.out.println("Enter your choice: ");
-            choice = Integer.parseInt(input.nextLine());
-            switch (choice) {
-                case 1:
-                    professional = "Intermediate";
-                    break;
-                case 2:
-                    professional = "College";
-                    break;
-                case 3:
-                    professional = "University";
-                    break;
+            try {
+                Scanner input = new Scanner(System.in);
+                int choice = Integer.parseInt(input.nextLine());
+                switch (choice) {
+                    case 1:
+                        return "Intermediate";
+                    case 2:
+                        return "College";
+                    case 3:
+                        return "University";
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
             }
-        } while (choice < 1 || choice > 3);
-        return professional;
+        }
     }
 
     private String setPosition() {
-        int choice = 0;
-        Scanner input = new Scanner(System.in);
-        String position = "";
-        do {
+        while (true) {
             System.out.println("Choose new position: ");
             System.out.println("1. Receptionist");
             System.out.println("2. Staff");
@@ -192,107 +203,46 @@ public class EmployeeServiceImpl implements EmployeeService {
             System.out.println("5. Manager");
             System.out.println("6. Director");
             System.out.println("Enter your choice: ");
-            choice = Integer.parseInt(input.nextLine());
-            switch (choice) {
-                case 1:
-                    position = "Receptionist";
-                    break;
-                case 2:
-                    position = "Staff";
-                    break;
-                case 3:
-                    position = "Expert";
-                    break;
-                case 4:
-                    position = "Supervisor";
-                    break;
-                case 5:
-                    position = "Manager";
-                    break;
-                case 6:
-                    position = "Director";
-                    break;
+            try {
+                Scanner input = new Scanner(System.in);
+                int choice = Integer.parseInt(input.nextLine());
+                switch (choice) {
+                    case 1:
+                        return "Receptionist";
+                    case 2:
+                        return "Staff";
+                    case 3:
+                        return "Expert";
+                    case 4:
+                        return "Supervisor";
+                    case 5:
+                        return "Manager";
+                    case 6:
+                        return "Director";
+                }
+                System.out.println("Your choice must be from 1 to 6!");
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
             }
-        } while (choice < 1 || choice > 6);
-        return position;
+        }
     }
 
-    private LocalDate getBirthdate() throws UserException {
-        Scanner input = new Scanner(System.in);
-        String date;
-        LocalDate birthDate;
+    private LocalDate getBirthdate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        System.out.println("Enter a birthdate: ");
-        date = input.next();
-        boolean isRightFormat = date.matches("^\\d{2}/\\d{2}/\\d{4}$");
-        int day, month, year;
-        if (!isRightFormat) {
-            throw new UserException();
-        } else {
-            day = Integer.parseInt(date.substring(0, 2));
-            month = Integer.parseInt(date.substring(3, 5));
-            year = Integer.parseInt(date.substring(6));
-
-            boolean isRightMonth = month >= 1 && month <= 12;
-            if (!isRightMonth) {
-                throw new UserException();
-            }
-
-            boolean isRightDay;
-            switch (month) {
-                case 2:
-                    if (isLeapYear(year)) {
-                        isRightDay = day >= 1 && day <= 29;
-                    } else {
-                        isRightDay = day >= 1 && day <= 28;
-                    }
-                    if (!isRightDay) {
-                        throw new UserException();
-                    }
+        LocalDate birthDate;
+        while (true) {
+            try {
+                System.out.println("Enter a birthdate: ");
+                Scanner input = new Scanner(System.in);
+                String date = input.next();
+                if (Validate.isRightBirthDate(date)) {
+                    birthDate = LocalDate.parse(date, formatter);
                     break;
-                case 1:
-                case 3:
-                case 5:
-                case 7:
-                case 8:
-                case 10:
-                case 12:
-                    isRightDay = day >= 1 && day <= 31;
-                    if (!isRightDay) {
-                        throw new UserException();
-                    }
-                    break;
-                case 4:
-                case 6:
-                case 9:
-                case 11:
-                    isRightDay = day >= 1 && day <= 30;
-                    if (!isRightDay) {
-                        throw new UserException();
-                    }
-                    break;
+                }
+            } catch (UserException e) {
+                System.out.println(e.getMessage());
             }
         }
-        birthDate = LocalDate.parse(date, formatter);
-        int age = Period.between(birthDate, LocalDate.now()).getYears();
-        boolean isRightAge = age >= 18 && age <= 100;
-        if (!isRightAge) {
-            throw new UserException();
-        } else {
-            return birthDate;
-        }
-    }
-
-    private boolean isLeapYear(int year) {
-        boolean isDivisibleBy4 = year % 4 == 0;
-        if (isDivisibleBy4) {
-            boolean isDivisibleBy100 = year % 100 == 0;
-            if (isDivisibleBy100) {
-                return year % 400 == 0;
-            } else {
-                return true;
-            }
-        }
-        return false;
+        return birthDate;
     }
 }

@@ -19,7 +19,7 @@ public class IllegalTriangleExceptionTest {
     }
 
     private static boolean isTriangle(double firstSide, double secondSide, double thirdSide) {
-        boolean isNegativeSide = firstSide * secondSide * thirdSide < 0;
+        boolean isNegativeSide = firstSide < 0 || secondSide < 0 || thirdSide < 0;
         boolean isRightSide = ((firstSide + secondSide) > thirdSide) && ((firstSide + thirdSide) > secondSide) && ((secondSide + thirdSide) > firstSide);
         return (!isNegativeSide && isRightSide);
     }

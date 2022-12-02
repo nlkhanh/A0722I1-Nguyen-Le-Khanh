@@ -3,12 +3,13 @@ package models.person;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class Employee extends Person{
+public class Employee extends Person {
     private int salary;
     private String professional;
     private String position;
 
-    public Employee() {}
+    public Employee() {
+    }
 
     public Employee(int salary, String professional, String position) {
         this.salary = salary;
@@ -45,6 +46,15 @@ public class Employee extends Person{
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public String getInfo() {
+        String[] birthdayArr = String.format("%s", getBirthday()).split("-");
+        String birthdayStr = birthdayArr[2] + "/" + birthdayArr[1] + "/" + birthdayArr[0];
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
+                getPersonCode(), getName(), birthdayStr, isGender(),
+                getId(), getPhone(), getEmail(), getSalary(),
+                getProfessional(), getPosition());
     }
 
     @Override
