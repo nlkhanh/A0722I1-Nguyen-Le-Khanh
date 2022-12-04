@@ -14,24 +14,16 @@ public class FacilityRepositoryImpl implements FacilityRepository {
     private static final String ROOM_PATH = "E:\\codegym\\exercises\\A0722I1-Nguyen-Le-Khanh\\module2_case-study\\src\\data\\room.csv";
 
     @Override
-    public void displayAll() {
-        LinkedHashMap<Facility, Integer> facilities = readCSV();
-        for (Facility facility : facilities.keySet()) {
-            System.out.println(facility + ", uses: " + facilities.get(facility));
-        }
-    }
-
-    @Override
     public void add(Facility facility) {
-        LinkedHashMap<Facility, Integer> facilities = readCSV();
+        LinkedHashMap<Facility, Integer> facilities = read();
         facilities.put(facility, 0);
-        writeCSV(facilities);
+        write(facilities);
     }
 
     @Override
     public Facility find(String code) {
-        LinkedHashMap<Facility, Integer> facilities = readCSV();
-        for  (Facility facility : facilities.keySet()) {
+        LinkedHashMap<Facility, Integer> facilities = read();
+        for (Facility facility : facilities.keySet()) {
             if (facility.getCode().equals(code)) {
                 return facility;
             }
@@ -40,56 +32,35 @@ public class FacilityRepositoryImpl implements FacilityRepository {
     }
 
     @Override
-    public void displayMaintenance() {
-        LinkedHashMap<Facility, Integer> facilities = readCSV();
+    public void displayAll() {
+        LinkedHashMap<Facility, Integer> facilities = read();
         for (Facility facility : facilities.keySet()) {
-            if (facilities.get(facility) == 5) {
-                System.out.println(facility + ", number of use: " + facilities.get(facility));
-            }
+            System.out.println(facility + ", uses: " + facilities.get(facility));
         }
     }
 
     @Override
-    public void increaseNumberOfUse(Facility facility) {
-        LinkedHashMap<Facility, Integer> facilities = readCSV();
-        if (find(facility.getCode()) != null) {
-            if (facilities.get(facility) == 5) {
-                facilities.put(facility, 1);
-            } else {
-                facilities.put(facility, facilities.get(facility) + 1);
-            }
-        } else {
-            System.out.println("Your facility is not exist");
-        }
-    }
-
-    @Override
-    public LinkedHashMap<Facility, Integer> readCSV() {
-        LinkedHashMap<Facility, Integer> villas = readCSV(VILLA_PATH);
-        LinkedHashMap<Facility, Integer> houses = readCSV(HOUSE_PATH);
-        LinkedHashMap<Facility, Integer> rooms = readCSV(ROOM_PATH);
+    public LinkedHashMap<Facility, Integer> read() {
+        LinkedHashMap<Facility, Integer> villas = read(VILLA_PATH);
+        LinkedHashMap<Facility, Integer> houses = read(HOUSE_PATH);
+        LinkedHashMap<Facility, Integer> rooms = read(ROOM_PATH);
         LinkedHashMap<Facility, Integer> facilities = new LinkedHashMap<>();
-        if (villas != null) {
-            for (Facility villa : villas.keySet()) {
-                facilities.put(villa, villas.get(villa));
-            }
+        for (Facility villa : villas.keySet()) {
+            facilities.put(villa, villas.get(villa));
         }
-        if (houses != null) {
-            for (Facility house : houses.keySet()) {
-                facilities.put(house, houses.get(house));
-            }
+        for (Facility house : houses.keySet()) {
+            facilities.put(house, houses.get(house));
         }
-        if (rooms != null) {
-            for (Facility room : rooms.keySet()) {
-                facilities.put(room, rooms.get(room));
-            }
+        for (Facility room : rooms.keySet()) {
+            facilities.put(room, rooms.get(room));
         }
         return facilities;
     }
 
-    private LinkedHashMap<Facility, Integer> readCSV(String SOURCE_PATH) {
+    @Override
+    public LinkedHashMap<Facility, Integer> read(String SOURCE_PATH) {
+        LinkedHashMap<Facility, Integer> facilities = new LinkedHashMap<>();
         try {
-            LinkedHashMap<Facility, Integer> facilities = new LinkedHashMap<>();
             FileReader fileReader = new FileReader(SOURCE_PATH);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
@@ -110,15 +81,14 @@ public class FacilityRepositoryImpl implements FacilityRepository {
             }
             bufferedReader.close();
             fileReader.close();
-            return facilities;
         } catch (IOException e) {
             System.out.println("An exception have occur! Cannot read your data.");
-            return null;
         }
+        return facilities;
     }
 
     @Override
-    public void writeCSV(LinkedHashMap<Facility, Integer> facilities) {
+    public void write(LinkedHashMap<Facility, Integer> facilities) {
         try {
             FileWriter fileWriter = new FileWriter(VILLA_PATH);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
@@ -146,17 +116,26 @@ public class FacilityRepositoryImpl implements FacilityRepository {
     }
 
     @Override
-    public void add() {
-
+    public void displayMaintenance() {
+        LinkedHashMap<Facility, Integer> facilities = read();
+        for (Facility facility : facilities.keySet()) {
+            if (facilities.get(facility) == 5) {
+                System.out.println(facility + ", number of use: " + facilities.get(facility));
+            }
+        }
     }
 
     @Override
-    public void remove() {
-
-    }
-
-    @Override
-    public void set() {
-
+    public void increaseNumberOfUse(Facility facility) {
+        LinkedHashMap<Facility, Integer> facilities = read();
+        if (find(facility.getCode()) != null) {
+            if (facilities.get(facility) == 5) {
+                facilities.put(facility, 1);
+            } else {
+                facilities.put(facility, facilities.get(facility) + 1);
+            }
+        } else {
+            System.out.println("Your facility is not exist");
+        }
     }
 }

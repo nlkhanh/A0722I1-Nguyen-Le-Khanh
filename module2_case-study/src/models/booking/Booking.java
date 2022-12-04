@@ -1,27 +1,25 @@
 package models.booking;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Booking {
     private String bookingCode;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String customerCode;
     private String serviceName;
     private String serviceType;
-    private Contract contract;
 
     public Booking() {
     }
 
-    public Booking(String bookingCode, Date startDate, Date endDate, String customerCode, String serviceName, String serviceType, Contract contract) {
+    public Booking(String bookingCode, LocalDate startDate, LocalDate endDate, String customerCode, String serviceName, String serviceType) {
         this.bookingCode = bookingCode;
         this.startDate = startDate;
         this.endDate = endDate;
         this.customerCode = customerCode;
         this.serviceName = serviceName;
         this.serviceType = serviceType;
-        this.contract = contract;
     }
 
     public String getBookingCode() {
@@ -32,19 +30,24 @@ public class Booking {
         this.bookingCode = bookingCode;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public String getDateStr(LocalDate date) {
+        String[] dateStrArr = String.format("%s", date).split("-");
+        return dateStrArr[2] + "/" + dateStrArr[1] + "/" + dateStrArr[0];
+    }
+
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -72,12 +75,29 @@ public class Booking {
         this.serviceType = serviceType;
     }
 
-    public Contract getContract() {
-        return contract;
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
-    public void setContract(Contract contract) {
-        this.contract = contract;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if ((obj == null) || (obj.getClass() != this.getClass())) {
+            return false;
+        }
+        Booking booking = (Booking) obj;
+        return ((this.getBookingCode().equals(booking.getBookingCode())) ||
+                (this.getStartDate().equals(booking.getStartDate()) &&
+                        this.getEndDate().equals(booking.getEndDate()) &&
+                        this.getServiceName().equals(booking.getServiceName()) &&
+                        this.getServiceType().equals(booking.getServiceType())));
+    }
+
+    public String getInfo() {
+        return String.format("%s, %s, %s, %s, %s, %s", getBookingCode(), getDateStr(getStartDate()), getDateStr(getEndDate()), getCustomerCode(), getServiceName(), getServiceType());
     }
 
     @Override
@@ -89,7 +109,6 @@ public class Booking {
                 ", customerCode='" + customerCode + '\'' +
                 ", serviceName='" + serviceName + '\'' +
                 ", serviceType='" + serviceType + '\'' +
-                ", " + contract.toString() +
                 '}';
     }
 }

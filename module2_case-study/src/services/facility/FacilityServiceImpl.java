@@ -5,7 +5,7 @@ import models.facility.House;
 import models.facility.Room;
 import models.facility.Villa;
 import repository.facility.FacilityRepositoryImpl;
-import utils.user_exception.Validate;
+import utils.Validate;
 
 import java.util.Scanner;
 
@@ -66,17 +66,21 @@ public class FacilityServiceImpl implements FacilityService {
     public void set() {
     }
 
+    @Override
+    public Facility find(String code) {
+        return FACILITY_REPOSITORY.find(code);
+    }
+
     private Facility addNew(int serviceTypeCode) {
-        int numOfFloor;
-        double poolArea;
-        String servicesType, roomType, freeServices;
         String code = getCode(serviceTypeCode);
         String name = getName();
         double serviceArea = getArea();
         double cost = getCost();
         int maxNumOfPeople = getMaxNumOfPeople();
         String rentType = getRentType();
-
+        int numOfFloor;
+        double poolArea;
+        String servicesType, roomType, freeServices;
         switch (serviceTypeCode) {
             case 1:
                 servicesType = "Villa";
@@ -100,35 +104,6 @@ public class FacilityServiceImpl implements FacilityService {
     }
 
     private String getCode(int serviceTypeCode) {
-        Scanner input = new Scanner(System.in);
-        int choice;
-        while (true) {
-            System.out.println("Do you want to get random code or write code by yourself?");
-            System.out.println("1: Random code");
-            System.out.println("2: Write code");
-            System.out.println("Enter your choice: ");
-            choice = Integer.parseInt(input.nextLine());
-            if (choice == 1) {
-                return getRandomCode(serviceTypeCode);
-            } else if (choice == 2) {
-                return writeCode(serviceTypeCode);
-            } else {
-                System.out.println("Invalid input!");
-            }
-        }
-    }
-
-    private String getRandomCode(int serviceTypeCode) {
-        int randomNum = (int) (Math.random() * (9999 - 1000 + 1) + 1000);
-        if (serviceTypeCode == 1) {
-            return "SVVL-" + randomNum;
-        } else if (serviceTypeCode == 2) {
-            return "SVHO-" + randomNum;
-        }
-        return "SVRO-" + randomNum;
-    }
-
-    private String writeCode(int serviceTypeCode) {
         Scanner input = new Scanner(System.in);
         while (true) {
             System.out.println("Enter your code: ");

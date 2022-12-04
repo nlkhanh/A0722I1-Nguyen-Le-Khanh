@@ -1,20 +1,23 @@
 package repository.facility;
 
 import models.facility.Facility;
-import repository.Repository;
 
 import java.util.LinkedHashMap;
 
-public interface FacilityRepository extends Repository {
-    void add(Facility facility);
+public interface FacilityRepository {
+    void add(Facility e);
 
     Facility find(String code);
+
+    void displayAll();
+
+    LinkedHashMap<Facility, Integer> read();
+
+    LinkedHashMap<Facility, Integer> read(String path);
+
+    void write(LinkedHashMap<Facility, Integer> facilities);
 
     void displayMaintenance();
 
     void increaseNumberOfUse(Facility facility);
-
-    LinkedHashMap<Facility, Integer> readCSV();
-
-    void writeCSV(LinkedHashMap<Facility, Integer> facilities);
 }

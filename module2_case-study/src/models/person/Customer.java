@@ -1,7 +1,6 @@
 package models.person;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Customer extends Person {
     String address;
@@ -38,10 +37,8 @@ public class Customer extends Person {
     }
 
     public String getInfo() {
-        String[] birthdayArr = String.format("%s", getBirthday()).split("-");
-        String birthdayStr = birthdayArr[2] + "/" + birthdayArr[1] + "/" + birthdayArr[0];
         return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s",
-                getPersonCode(), getName(), birthdayStr, isGender(),
+                getPersonCode(), getName(), getBirthdayStr(), isMale(),
                 getId(), getPhone(), getEmail(), getAddress(),
                 getCustomerType());
     }
@@ -51,8 +48,8 @@ public class Customer extends Person {
         return "Customer{" +
                 "code='" + super.getPersonCode() + '\'' +
                 ", name='" + super.getName() + '\'' +
-                ", birthday=" + super.getBirthday() +
-                ", gender=" + super.isGender() +
+                ", birthday=" + super.getBirthdayStr() +
+                ", gender=" + super.isMale() +
                 ", id=" + super.getId() +
                 ", phone=" + super.getPhone() +
                 ", email='" + super.getEmail() + '\'' +

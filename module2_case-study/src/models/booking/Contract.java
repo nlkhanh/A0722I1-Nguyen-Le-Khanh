@@ -1,36 +1,36 @@
 package models.booking;
 
 public class Contract {
-    private int contractNum;
+    private String contractNumber;
     private String bookingCode;
     private double deposits;
-    private double payments;
+    private double totalBill;
     private String customerCode;
 
     private Contract() {
     }
 
-    public Contract(int contractNum, String bookingCode, double deposits, double payments, String customerCode) {
-        this.contractNum = contractNum;
+    public Contract(String contractNumber, String bookingCode, double deposits, double totalBill, String customerCode) {
+        this.contractNumber = contractNumber;
         this.bookingCode = bookingCode;
         this.deposits = deposits;
-        this.payments = payments;
+        this.totalBill = totalBill;
         this.customerCode = customerCode;
     }
 
-    public int getContractNum() {
-        return contractNum;
+    public String getContractNumber() {
+        return contractNumber;
     }
 
-    public void setContractNum(int contractNum) {
-        this.contractNum = contractNum;
+    public void setContractNumber(String contractNumber) {
+        this.contractNumber = contractNumber;
     }
 
     public String getBookingCode() {
         return bookingCode;
     }
 
-    public void setBookingCode(String bookingCode) {
+    private void setBookingCode(String bookingCode) {
         this.bookingCode = bookingCode;
     }
 
@@ -42,29 +42,33 @@ public class Contract {
         this.deposits = deposits;
     }
 
-    public double getPayments() {
-        return payments;
+    public double getTotalBill() {
+        return totalBill;
     }
 
-    public void setPayments(double payments) {
-        this.payments = payments;
+    public void setTotalBill(double totalBill) {
+        this.totalBill = totalBill;
     }
 
     public String getCustomerCode() {
         return customerCode;
     }
 
-    public void setCustomerCode(String customerCode) {
+    private void setCustomerCode(String customerCode) {
         this.customerCode = customerCode;
+    }
+
+    public String getInfo() {
+        return String.format("%s, %s, %s, %s, %s", getContractNumber(), getBookingCode(), getDeposits(), getTotalBill(), getCustomerCode());
     }
 
     @Override
     public String toString() {
         return "contract{" +
-                "contractNum=" + contractNum +
+                "contractNum=" + contractNumber +
                 ", bookingCode='" + bookingCode + '\'' +
                 ", deposits=" + deposits +
-                ", payments=" + payments +
+                ", total bill=" + totalBill +
                 ", customerCode='" + customerCode + '\'' +
                 '}';
     }

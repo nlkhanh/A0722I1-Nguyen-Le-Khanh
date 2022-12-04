@@ -1,11 +1,15 @@
 package repository;
 
-public interface Repository {
-    void add();
+public interface Repository<T, C> {
+    void add(T e);
 
-    void remove();
+    void set(T e);
 
-    void set();
+    T find(String code);
 
     void displayAll();
+
+    C read();
+
+    void write(C list);
 }

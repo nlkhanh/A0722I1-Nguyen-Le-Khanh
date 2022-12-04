@@ -49,7 +49,12 @@ public abstract class Person {
         this.birthday = birthday;
     }
 
-    public boolean isGender() {
+    public String getBirthdayStr() {
+        String[] birthdayArr = String.format("%s", getBirthday()).split("-");
+        return birthdayArr[2] + "/" + birthdayArr[1] + "/" + birthdayArr[0];
+    }
+
+    public boolean isMale() {
         return gender;
     }
 

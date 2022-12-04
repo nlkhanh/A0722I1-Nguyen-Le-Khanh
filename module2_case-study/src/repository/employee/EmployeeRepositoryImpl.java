@@ -12,72 +12,46 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     private static final String SOURCE_PATH = "E:\\codegym\\exercises\\A0722I1-Nguyen-Le-Khanh\\module2_case-study\\src\\data\\employee.csv";
 
     @Override
-    public void set(Employee employee) {
-        List<Employee> employees = readCSV();
-        if (employees != null) {
-            for (int i = 0; i < employees.size(); i++) {
-                if (employees.get(i).getPersonCode().equals(employee.getPersonCode())) {
-                    employees.set(i, employee);
-                    break;
-                }
-            }
-        } else {
-            System.out.println("Your list is null!");
-        }
+    public void add(Employee employee) {
+        List<Employee> employees = read();
+        employees.add(employee);
+        write(employees);
     }
 
     @Override
-    public void displayAll() {
-        List<Employee> employees = readCSV();
-        if (employees != null) {
-            for (Employee employee : employees) {
-                System.out.println(employee);
+    public void set(Employee employee) {
+        List<Employee> employees = read();
+        for (int i = 0; i < employees.size(); i++) {
+            if (employees.get(i).getPersonCode().equals(employee.getPersonCode())) {
+                employees.set(i, employee);
+                break;
             }
         }
     }
 
     @Override
     public Employee find(String code) {
-        List<Employee> employees = readCSV();
-        if (employees != null) {
-            for (Employee employee : employees) {
-                if (employee.getPersonCode().equals(code)) {
-                    return employee;
-                }
+        List<Employee> employees = read();
+        for (Employee employee : employees) {
+            if (employee.getPersonCode().equals(code)) {
+                return employee;
             }
         }
         return null;
     }
 
     @Override
-    public void add(Employee employee) {
-        List<Employee> employees = readCSV();
-        if (employees == null) {
-            employees = new ArrayList<>();
+    public void displayAll() {
+        List<Employee> employees = read();
+        for (Employee employee : employees) {
+            System.out.println(employee);
         }
-        employees.add(employee);
-        writeCSV(employees);
     }
 
     @Override
-    public void remove() {
-
-    }
-
-    @Override
-    public void add() {
-
-    }
-
-    @Override
-    public void set() {
-
-    }
-
-    @Override
-    public List<Employee> readCSV() {
+    public List<Employee> read() {
+        List<Employee> employees = new ArrayList<>();
         try {
-            List<Employee> employees = new ArrayList<>();
             FileReader fileReader = new FileReader(SOURCE_PATH);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
@@ -98,15 +72,14 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
             }
             bufferedReader.close();
             fileReader.close();
-            return employees;
         } catch (IOException e) {
             System.out.println("An exception have occur! Cannot read your data.");
-            return null;
         }
+        return employees;
     }
 
     @Override
-    public void writeCSV(List<Employee> employees) {
+    public void write(List<Employee> employees) {
         try {
             FileWriter fileWriter = new FileWriter(SOURCE_PATH);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
