@@ -7,6 +7,7 @@ import models.facility.Villa;
 import repository.facility.FacilityRepositoryImpl;
 import utils.Validate;
 
+import java.util.Map;
 import java.util.Scanner;
 
 public class FacilityServiceImpl implements FacilityService {
@@ -69,6 +70,11 @@ public class FacilityServiceImpl implements FacilityService {
     @Override
     public Facility find(String code) {
         return FACILITY_REPOSITORY.find(code);
+    }
+
+    @Override
+    public Map<Facility, Integer> findAll() {
+        return FACILITY_REPOSITORY.read();
     }
 
     private Facility addNew(int serviceTypeCode) {

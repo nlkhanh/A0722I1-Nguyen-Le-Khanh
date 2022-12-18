@@ -5,6 +5,7 @@ import repository.customer.CustomerRepositoryImpl;
 import services.person.PersonServiceImpl;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class CustomerServiceImpl extends PersonServiceImpl implements CustomerService {
@@ -62,6 +63,11 @@ public class CustomerServiceImpl extends PersonServiceImpl implements CustomerSe
     @Override
     public Customer find(String code) {
         return CUSTOMER_REPOSITORY.find(code);
+    }
+
+    @Override
+    public List<Customer> findAll() {
+        return CUSTOMER_REPOSITORY.read();
     }
 
     @Override

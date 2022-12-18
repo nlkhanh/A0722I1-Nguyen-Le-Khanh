@@ -36,6 +36,7 @@ public class Customer extends Person {
         this.customerType = customerType;
     }
 
+    @Override
     public String getInfo() {
         return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s",
                 getPersonCode(), getName(), getBirthdayStr(), isMale(),

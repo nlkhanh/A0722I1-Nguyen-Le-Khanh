@@ -1,7 +1,6 @@
 package models.person;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public abstract class Person {
     private String personCode;
@@ -86,16 +85,5 @@ public abstract class Person {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "personCode='" + personCode + '\'' +
-                ", name='" + name + '\'' +
-                ", birthday=" + birthday +
-                ", gender=" + gender +
-                ", id=" + id +
-                ", phone=" + phone +
-                ", email='" + email + '\'' +
-                '}';
-    }
+    public abstract String getInfo();
 }

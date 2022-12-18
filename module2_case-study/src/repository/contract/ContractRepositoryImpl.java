@@ -4,13 +4,14 @@ import models.booking.Contract;
 
 import java.io.*;
 import java.util.LinkedHashSet;
+import java.util.Set;
 
-public class ContractRepositoryImpl implements ContractRepository{
+public class ContractRepositoryImpl implements ContractRepository {
     private static final String SOURCE_PATH = "E:\\codegym\\exercises\\A0722I1-Nguyen-Le-Khanh\\module2_case-study\\src\\data\\contract.csv";
 
     @Override
     public void add(Contract e) {
-        LinkedHashSet<Contract> contracts = read();
+        Set<Contract> contracts = read();
         contracts.add(e);
         write(contracts);
     }
@@ -22,7 +23,7 @@ public class ContractRepositoryImpl implements ContractRepository{
 
     @Override
     public Contract find(String code) {
-        LinkedHashSet<Contract> contracts = read();
+        Set<Contract> contracts = read();
         for (Contract contract : contracts) {
             if (contract.getContractNumber().equals(code)) {
                 return contract;
@@ -33,14 +34,18 @@ public class ContractRepositoryImpl implements ContractRepository{
 
     @Override
     public void displayAll() {
-        LinkedHashSet<Contract> contracts = read();
-        for (Contract contract : contracts) {
-            System.out.println(contract);
+        Set<Contract> contracts = read();
+        if (contracts.size() == 0) {
+            System.out.println("There are not contract in repository");
+        } else {
+            for (Contract contract : contracts) {
+                System.out.println(contract);
+            }
         }
     }
 
     @Override
-    public LinkedHashSet<Contract> read() {
+    public Set<Contract> read() {
         LinkedHashSet<Contract> contracts = new LinkedHashSet<>();
         try {
             FileReader fileReader = new FileReader(SOURCE_PATH);
@@ -64,7 +69,7 @@ public class ContractRepositoryImpl implements ContractRepository{
     }
 
     @Override
-    public void write(LinkedHashSet<Contract> contracts) {
+    public void write(Set<Contract> contracts) {
         try {
             FileWriter fileWriter = new FileWriter(SOURCE_PATH);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);

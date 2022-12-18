@@ -7,8 +7,7 @@ import repository.contract.ContractRepositoryImpl;
 import services.booking.BookingService;
 import services.booking.BookingServiceImpl;
 
-import java.util.Queue;
-import java.util.Scanner;
+import java.util.*;
 
 public class ContractServiceImpl implements ContractService {
     private static final ContractRepository CONTRACT_REPOSITORY;
@@ -30,13 +29,26 @@ public class ContractServiceImpl implements ContractService {
     public void add() {
         BookingService bookingService = new BookingServiceImpl();
         Queue<Booking> villaHouseBookings = bookingService.findAllVillaHouse();
+        Set<Contract> contracts = CONTRACT_REPOSITORY.read();
+        Queue<Booking> bookings = new LinkedList<>();
+        for (Booking booking : villaHouseBookings) {
+            for (Contract contract : contracts) {
+                if (!booking.getBookingCode().equals(contract.getBookingCode())) {
+                    bookings.offer(booking);
+                }
+            }
+        }
         Booking nearestBooking;
-        while ((nearestBooking = villaHouseBookings.poll()) != null) {
-            System.out.println("Create contract for: " + nearestBooking);
-            String contractNumber = getContractNumber();
-            double deposits = getMoney("deposits");
-            double totalBill = getMoney("total bill");
-            CONTRACT_REPOSITORY.add(new Contract(contractNumber, nearestBooking.getBookingCode(), deposits, totalBill, nearestBooking.getCustomerCode()));
+        if (bookings.size() == 0) {
+            System.out.println("There are not booking need create contract!");
+        } else {
+            while ((nearestBooking = bookings.poll()) != null) {
+                System.out.println("Create contract for: " + nearestBooking);
+                String contractNumber = getContractNumber();
+                double deposits = getMoney("deposits");
+                double totalBill = getMoney("total bill");
+                CONTRACT_REPOSITORY.add(new Contract(contractNumber, nearestBooking.getBookingCode(), deposits, totalBill, nearestBooking.getCustomerCode()));
+            }
         }
     }
 
@@ -93,5 +105,10 @@ public class ContractServiceImpl implements ContractService {
     @Override
     public Contract find(String code) {
         return CONTRACT_REPOSITORY.find(code);
+    }
+
+    @Override
+    public Set<Contract> findAll() {
+        return CONTRACT_REPOSITORY.read();
     }
 }

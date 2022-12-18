@@ -3,7 +3,9 @@ package services.contract;
 import models.booking.Contract;
 import services.Service;
 
-public interface ContractService extends Service<Contract> {
+import java.util.Set;
+
+public interface ContractService extends Service<Contract, Set<Contract>> {
     String getContractNumber();
     double getMoney(String moneyType);
 }

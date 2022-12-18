@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Set;
 import java.util.TreeSet;
 
 public class BookingRepositoryImpl implements BookingRepository {
@@ -15,7 +16,7 @@ public class BookingRepositoryImpl implements BookingRepository {
 
     @Override
     public void add(Booking e) {
-        TreeSet<Booking> bookings = read();
+        Set<Booking> bookings = read();
         bookings.add(e);
         write(bookings);
     }
@@ -26,7 +27,7 @@ public class BookingRepositoryImpl implements BookingRepository {
 
     @Override
     public Booking find(String code) {
-        TreeSet<Booking> bookings = read();
+        Set<Booking> bookings = read();
         for (Booking booking : bookings) {
             if (booking.getBookingCode().equals(code)) {
                 return booking;
@@ -37,7 +38,7 @@ public class BookingRepositoryImpl implements BookingRepository {
 
     @Override
     public Queue<Booking> findAllVillaHouse() {
-        TreeSet<Booking> bookings = read();
+        Set<Booking> bookings = read();
         Queue<Booking> bookingQueue = new LinkedList<>();
         for (Booking booking : bookings) {
             if (booking.getServiceType().equals("Villa") || booking.getServiceType().equals("House")) {
@@ -49,15 +50,19 @@ public class BookingRepositoryImpl implements BookingRepository {
 
     @Override
     public void displayAll() {
-        TreeSet<Booking> bookings = read();
-        for (Booking booking : bookings) {
-            System.out.println(booking);
+        Set<Booking> bookings = read();
+        if (bookings.size() == 0) {
+            System.out.println("There are not booking in repository");
+        } else {
+            for (Booking booking : bookings) {
+                System.out.println(booking);
+            }
         }
     }
 
     @Override
-    public TreeSet<Booking> read() {
-        TreeSet<Booking> bookings = new TreeSet<>(new BookingComparator());
+    public Set<Booking> read() {
+        Set<Booking> bookings = new TreeSet<>(new BookingComparator());
         try {
             FileReader fileReader = new FileReader(SOURCE_PATH);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -82,7 +87,7 @@ public class BookingRepositoryImpl implements BookingRepository {
     }
 
     @Override
-    public void write(TreeSet<Booking> bookings) {
+    public void write(Set<Booking> bookings) {
         try {
             FileWriter fileWriter = new FileWriter(SOURCE_PATH);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);

@@ -47,6 +47,7 @@ public class Employee extends Person {
         this.position = position;
     }
 
+    @Override
     public String getInfo() {
         return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
                 getPersonCode(), getName(), getBirthdayStr(), isMale(),

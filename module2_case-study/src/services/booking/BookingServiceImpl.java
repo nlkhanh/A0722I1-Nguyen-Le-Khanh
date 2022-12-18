@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.Set;
 
 public class BookingServiceImpl implements BookingService {
     private static final BookingRepository BOOKING_REPOSITORY;
@@ -34,7 +35,15 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public void add() {
         Customer customer = getCustomer();
+        if (customer == null) {
+            System.out.println("There is not customer in repository to made booking!");
+            return;
+        }
         Facility facility = getFacility();
+        if (facility == null) {
+            System.out.println("There is not facility in repository to made booking!");
+            return;
+        }
         String bookingCode = getBookingCode();
         LocalDate startDate = getDate("start");
         LocalDate endDate = getDate("end");
@@ -64,6 +73,10 @@ public class BookingServiceImpl implements BookingService {
         while (true) {
             System.out.println("Choose a customer: ");
             CustomerService customerService = new CustomerServiceImpl();
+            if (customerService.findAll().size() == 0) {
+                customerService.displayAll();
+                return null;
+            }
             customerService.displayAll();
             System.out.println("Enter your customer code: ");
             String customerCode = input.nextLine();
@@ -82,7 +95,10 @@ public class BookingServiceImpl implements BookingService {
         while (true) {
             System.out.println("Choose a service: ");
             FacilityService facilityService = new FacilityServiceImpl();
-            facilityService.displayAll();
+            if ((facilityService.findAll().size() == 0)) {
+                facilityService.displayAll();
+                return null;
+            }
             System.out.println("Enter your service code: ");
             String facilityCode = input.nextLine();
             facility = facilityService.find(facilityCode);
@@ -117,6 +133,11 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public Booking find(String code) {
         return BOOKING_REPOSITORY.find(code);
+    }
+
+    @Override
+    public Set<Booking> findAll() {
+        return BOOKING_REPOSITORY.read();
     }
 
     @Override

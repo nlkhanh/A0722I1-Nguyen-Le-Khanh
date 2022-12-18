@@ -43,8 +43,12 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     @Override
     public void displayAll() {
         List<Customer> customers = read();
-        for (Customer customer : customers) {
-            System.out.println(customer);
+        if (customers.size() == 0) {
+            System.out.println("There are not customer in repository");
+        } else {
+            for (Customer customer : customers) {
+                System.out.println(customer);
+            }
         }
     }
 

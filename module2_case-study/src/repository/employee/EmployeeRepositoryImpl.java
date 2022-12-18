@@ -14,8 +14,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     @Override
     public void add(Employee employee) {
         List<Employee> employees = read();
-        employees.add(employee);
-        write(employees);
+            employees.add(employee);
+            write(employees);
     }
 
     @Override
@@ -43,8 +43,12 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     @Override
     public void displayAll() {
         List<Employee> employees = read();
-        for (Employee employee : employees) {
-            System.out.println(employee);
+        if (employees.size() == 0) {
+            System.out.println("There is not employee in repository");
+        } else {
+            for (Employee employee : employees) {
+                System.out.println(employee);
+            }
         }
     }
 

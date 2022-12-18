@@ -5,6 +5,7 @@ import repository.employee.EmployeeRepositoryImpl;
 import services.person.PersonServiceImpl;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeServiceImpl extends PersonServiceImpl implements EmployeeService {
@@ -53,8 +54,16 @@ public class EmployeeServiceImpl extends PersonServiceImpl implements EmployeeSe
         }
         System.out.println("Enter employee email: ");
         String email = input.nextLine();
-        System.out.println("Enter employee salary: ");
-        int salary = Integer.parseInt(input.nextLine());
+        int salary;
+        while (true) {
+            try {
+                System.out.println("Enter employee salary: ");
+                salary = Integer.parseInt(input.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
+            }
+        }
         String professional = setProfessional();
         String position = setPosition();
         EMPLOYEE_REPOSITORY.add(new Employee(code, name, birthdate, gender, id, phone, email, salary, professional, position));
@@ -151,7 +160,12 @@ public class EmployeeServiceImpl extends PersonServiceImpl implements EmployeeSe
 
     @Override
     public Employee find(String code) {
-        return null;
+        return EMPLOYEE_REPOSITORY.find(code);
+    }
+
+    @Override
+    public List<Employee> findAll() {
+        return EMPLOYEE_REPOSITORY.read();
     }
 
     @Override
