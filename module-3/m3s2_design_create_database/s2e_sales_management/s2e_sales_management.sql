@@ -9,7 +9,7 @@ create table `order` (
 	o_id int not null auto_increment primary key,
 	c_id int not null,
     o_date datetime not null,
-    o_total_price int not null,
+    o_total_price int,
     foreign key (c_id) references customer(c_id)
 );
 create table product (
