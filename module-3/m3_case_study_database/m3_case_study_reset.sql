@@ -1,3 +1,4 @@
+drop database m3_case_study_database;
 create database m3_case_study_database;
 use m3_case_study_database;
 create table vi_tri (
@@ -94,7 +95,6 @@ create table hop_dong_chi_tiet (
     foreign key (ma_hop_dong) references hop_dong(ma_hop_dong),
     foreign key (ma_dich_vu_di_kem) references dich_vu_di_kem(ma_dich_vu_di_kem)
 );
--- Cau 1:
 insert into vi_tri values (1,'Quản Lý'), (2,'Nhân Viên');
 insert into trinh_do values (1,'Trung Cấp'), (2,'Cao Đẳng'), (3,'Đại Học'), (4,'Sau Đại Học');
 insert into bo_phan values (1,'Sale-Marketing'), (2,'Hành chính'), (3,'Phục vụ'), (4,'Quản lý');
@@ -159,33 +159,29 @@ values (1,2,4,5),
 		(6,1,3,1),
 		(7,1,2,2),
 		(8,12,2,2);
--- Câu 2:
-select *
-from nhan_vien
-where (ho_ten like 'H%' or ho_ten like 'T%' or ho_ten like 'K%') and length(ho_ten) <= 16;
--- Câu 3:
-select * 
-from khach_hang
-where (timestampdiff(year,ngay_sinh, now()) between 18 and 50) and (dia_chi like '%Đà Nẵng%' or dia_chi like '%Quảng Trị%');
--- Câu 4:
-select khach_hang.ma_khach_hang, ho_ten, count(ma_hop_dong) as so_lan_dat_phong
-from khach_hang
-inner join loai_khach on khach_hang.ma_loai_khach = loai_khach.ma_loai_khach
-inner join hop_dong on khach_hang.ma_khach_hang = hop_dong.ma_khach_hang
-where ten_loai_khach like 'Diamond'
-group by hop_dong.ma_khach_hang
-order by so_lan_dat_phong asc;
--- Câu 5:
--- select khach_hang.ma_khach_hang, ho_ten, ten_loai_khach, hop_dong.ma_hop_dong, dich_vu.ten_dich_vu, ngay_lam_hop_dong, ngay_ket_thuc, (chi_phi_thue + sum(so_luong*gia)) as tong_tien
--- from khach_hang
--- left join (loai_khach, hop_dong, dich_vu, hop_dong_chi_tiet, dich_vu_di_kem)
--- on (khach_hang.ma_loai_khach = loai_khach.ma_loai_khach and khach_hang.ma_khach_hang = hop_dong.ma_khach_hang and hop_dong.ma_dich_vu = dich_vu.ma_dich_vu and hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong and hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem)
--- group by khach_hang.ma_khach_hang, hop_dong.ma_hop_dong;
-
-select khach_hang.ma_khach_hang, ho_ten, ten_loai_khach, hop_dong.ma_hop_dong, ten_dich_vu, ngay_lam_hop_dong, ngay_ket_thuc 
-from khach_hang
-inner join loai_khach on khach_hang.ma_loai_khach = loai_khach.ma_loai_khach
-left join hop_dong on khach_hang.ma_khach_hang = hop_dong.ma_khach_hang
-inner join dich_vu on hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
-group by hop_dong.ma_hop_dong
-order by hop_dong.ma_hop_dong;
+update khach_hang 
+set ma_loai_khach = (select ma_loai_khach from loai_khach where ten_loai_khach like 'Diamond')
+where 
+	ma_loai_khach = (select ma_loai_khach from loai_khach where ten_loai_khach like 'Platinium') and 
+    ma_khach_hang in (select tong_tien_theo_hop_dong.ma_khach_hang from
+							(select ma_khach_hang, if (hop_dong_chi_tiet.ma_hop_dong is null, dich_vu.chi_phi_thue, dich_vu.chi_phi_thue + sum(hop_dong_chi_tiet.so_luong * dich_vu_di_kem.gia)) as tong_tien_hop_dong
+							from khach_hang 
+							inner join loai_khach using(ma_loai_khach) 
+							inner join hop_dong using(ma_khach_hang) 
+							inner join dich_vu using (ma_dich_vu)
+							left join hop_dong_chi_tiet using (ma_hop_dong)
+							left join dich_vu_di_kem using (ma_dich_vu_di_kem)
+							where year(hop_dong.ngay_lam_hop_dong) = 2021
+							group by khach_hang.ma_khach_hang, hop_dong.ma_hop_dong) as tong_tien_theo_hop_dong
+						group by tong_tien_theo_hop_dong.ma_khach_hang
+						having sum(tong_tien_theo_hop_dong.tong_tien_hop_dong) > 10000000);
+update 
+dich_vu_di_kem, 
+(select ma_dich_vu_di_kem, sum(so_luong) 
+from hop_dong_chi_tiet 
+inner join hop_dong using(ma_hop_dong) 
+where year(ngay_lam_hop_dong) = 2020 
+group by ma_dich_vu_di_kem 
+having sum(so_luong) > 10) as temp 
+set dich_vu_di_kem.gia = dich_vu_di_kem.gia * 2
+where dich_vu_di_kem.ma_dich_vu_di_kem = temp.ma_dich_vu_di_kem;
