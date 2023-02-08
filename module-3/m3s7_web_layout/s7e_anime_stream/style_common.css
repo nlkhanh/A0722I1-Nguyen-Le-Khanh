@@ -1,0 +1,15 @@
+.col-3 {
+    width: calc(8.33% * 3);
+}
+
+.col-9 {
+    width: calc(8.33% * 9);
+}
+
+.col-12 {
+    width: 100%;
+}
+
+[class*="col-"] {
+    float: left;
+}

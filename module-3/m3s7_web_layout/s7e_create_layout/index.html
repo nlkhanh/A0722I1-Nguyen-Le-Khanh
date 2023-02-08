@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Layout with HTML5 and CSS</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        main {
+            margin: 16px;
+        }
+
+        header, footer {
+            background-color: black;
+        }
+
+        header h1, footer p {
+            color: white;
+        }
+
+        nav ul li {
+            float: left;
+            margin-right: 16px;
+        }
+
+        nav ul li a {
+            color: black;
+        }
+
+        section {
+            background-color: gainsboro;
+        }
+
+        section h2, section article h3, section article p {
+            margin-bottom: 8px;
+        }
+
+        section article {
+            background-color: white;
+            margin-bottom: 8px;
+        }
+
+        section article:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <header class="row col-12">
+        <h1>Monday Times</h1>
+    </header>
+    <nav class="row col-12">
+        <ul>
+            <li><a href="">News</a></li>
+            <li><a href="">Sports</a></li>
+            <li><a href="">Weather</a></li>
+        </ul>
+    </nav>
+    <section class="row col-12">
+        <h2>News Section</h2>
+        <article class="row col-12">
+            <h3>News Article</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in porta lorem. Morbi condimentum
+                est nibh, et consectetur tortor feugiat at.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in porta lorem. Morbi condimentum
+                est nibh, et consectetur tortor feugiat at.
+            </p>
+        </article>
+        <article class="row col-12">
+            <h3>News Article</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in porta lorem. Morbi condimentum
+                est nibh, et consectetur tortor feugiat at.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in porta lorem. Morbi condimentum
+                est nibh, et consectetur tortor feugiat at.
+            </p>
+        </article>
+    </section>
+    <footer class="row col-12">
+        <p>© 2014 Monday Times. All rights reserved.</p>
+    </footer>
+</main>
+</body>
+</html>

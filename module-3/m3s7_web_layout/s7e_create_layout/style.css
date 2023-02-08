@@ -1,0 +1,81 @@
+:root {
+    --col-1-width: calc(100% / 12);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Roboto, serif;
+    font-size: 14px;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.col-1 {
+    width: var(--col-1-width);
+}
+
+.col-2 {
+    width: calc(var(--col-1-width) * 2);
+}
+
+.col-3 {
+    width: calc(var(--col-1-width) * 3);
+}
+
+.col-4 {
+    width: calc(var(--col-1-width) * 4);
+}
+
+.col-5 {
+    width: calc(var(--col-1-width) * 5);
+}
+
+.col-6 {
+    width: calc(var(--col-1-width) * 6);
+}
+
+.col-7 {
+    width: calc(var(--col-1-width) * 7);
+}
+
+.col-8 {
+    width: calc(var(--col-1-width) * 8);
+}
+
+.col-9 {
+    width: calc(var(--col-1-width) * 9);
+}
+
+.col-10 {
+    width: calc(var(--col-1-width) * 10);
+}
+
+.col-11 {
+    width: calc(var(--col-1-width) * 11);
+}
+
+.col-12 {
+    width: calc(var(--col-1-width) * 12);
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 16px;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
