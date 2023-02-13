@@ -2,7 +2,7 @@
   <artifact type="jar" name="quadratic_equation:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/quadratic_equation_jar</output-path>
     <root id="archive" name="quadratic_equation.jar">
-      <element id="module-output" name="quadratic_equation" />
+      <element id="module-output" name="quadratic_equation_packaging" />
     </root>
   </artifact>
 </component>
