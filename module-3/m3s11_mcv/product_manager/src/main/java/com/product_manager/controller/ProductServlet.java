@@ -20,6 +20,7 @@ public class ProductServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
+
         switch (action) {
             case "create":
                 showCreateForm(request, response);
@@ -48,6 +49,7 @@ public class ProductServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
+
         switch (action) {
             case "create":
                 createProduct(request, response);

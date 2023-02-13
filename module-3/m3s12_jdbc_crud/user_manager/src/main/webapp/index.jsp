@@ -1,13 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>JSP - Hello World</title>
+    <title>User Management Application</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+<div class="container mt-5 text-center">
+    <h1 class="mb-5">CHÀO MỪNG ĐẾN VỚI HỆ THỐNG QUẢN LÝ USER</h1>
+    <p><a class="btn btn-primary " href="/user" role="button">Chọn để bắt đầu</a></p>
+</div>
 </body>
 </html>

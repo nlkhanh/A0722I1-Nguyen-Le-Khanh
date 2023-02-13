@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="dependency_packaging">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../dependency_packaging/dependency_packaging.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

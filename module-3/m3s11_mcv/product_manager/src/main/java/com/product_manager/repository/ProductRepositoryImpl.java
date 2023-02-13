@@ -47,7 +47,7 @@ public class ProductRepositoryImpl implements IProductRepository {
     public List<Product> findByName(String name) {
         List<Product> productList = new ArrayList<>();
         for (Product product: PRODUCT_MAP.values()) {
-            if (product.getName().equals(name)) {
+            if (product.getName().contains(name)) {
                 productList.add(product);
             }
         }
