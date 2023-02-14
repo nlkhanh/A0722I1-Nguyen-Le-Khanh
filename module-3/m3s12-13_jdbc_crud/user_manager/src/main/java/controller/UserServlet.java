@@ -139,9 +139,6 @@ public class UserServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
 //        userService.deleteUser(id);
         userService.deleteUserStore(id);
-//        List<User> users = userService.selectAllUsers();
-//        request.setAttribute("users", users);
-//        request.getRequestDispatcher("/user/list.jsp").forward(request, response);
         listUser(request, response);
     }
 
