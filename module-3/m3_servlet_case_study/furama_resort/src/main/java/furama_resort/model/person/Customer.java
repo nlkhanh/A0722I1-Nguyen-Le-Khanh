@@ -1,38 +1,32 @@
 package furama_resort.model.person;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Customer extends Person{
-    private boolean gender;
-    private String customerType;
+    private int customerTypeId;
 
     public Customer() {
     }
 
-    public Customer(boolean gender, String customerType) {
-        this.gender = gender;
-        this.customerType = customerType;
+    public Customer(int customerTypeId) {
+        this.customerTypeId = customerTypeId;
     }
 
-    public Customer(int id, String name, Date birthday, String idCard, String phone, String email, String address, boolean gender, String customerType) {
-        super(id, name, birthday, idCard, phone, email, address);
-        this.gender = gender;
-        this.customerType = customerType;
+    public Customer(int id, String name, Date birthday, boolean gender, String idCard, String phone, String email, String address, int customerTypeId) {
+        super(id, name, birthday, gender, idCard, phone, email, address);
+        this.customerTypeId = customerTypeId;
     }
 
-    public boolean isGender() {
-        return gender;
+    public Customer(String name, Date birthday, boolean gender, String idCard, String phone, String email, String address, int customerTypeId) {
+        super(name, birthday, gender, idCard, phone, email, address);
+        this.customerTypeId = customerTypeId;
     }
 
-    public void setGender(boolean gender) {
-        this.gender = gender;
+    public int getCustomerTypeId() {
+        return customerTypeId;
     }
 
-    public String getCustomerType() {
-        return customerType;
-    }
-
-    public void setCustomerType(String customerType) {
-        this.customerType = customerType;
+    public void setCustomerTypeId(int customerTypeId) {
+        this.customerTypeId = customerTypeId;
     }
 }

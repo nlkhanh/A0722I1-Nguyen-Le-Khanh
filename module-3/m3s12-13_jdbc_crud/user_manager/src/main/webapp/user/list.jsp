@@ -197,7 +197,6 @@
             '<input type=hidden name="id" value="' + button.data('id') + '"/>';
         $('#delete-user-btn-form').prepend(deleteParam);
     })
-
 </script>
 </body>
 </html>

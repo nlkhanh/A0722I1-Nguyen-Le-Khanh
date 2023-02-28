@@ -1,10 +1,11 @@
 package furama_resort.model.person;
-import java.util.Date;
+import java.sql.Date;
 
 public abstract class Person {
     private int id;
     private String name;
     private Date birthday;
+    private boolean gender;
     private String idCard;
     private String phone;
     private String email;
@@ -13,10 +14,21 @@ public abstract class Person {
     public Person() {
     }
 
-    public Person(int id, String name, Date birthday, String idCard, String phone, String email, String address) {
+    public Person(int id, String name, Date birthday, boolean gender, String idCard, String phone, String email, String address) {
         this.id = id;
         this.name = name;
         this.birthday = birthday;
+        this.gender = gender;
+        this.idCard = idCard;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+    }
+
+    public Person(String name, Date birthday, boolean gender, String idCard, String phone, String email, String address) {
+        this.name = name;
+        this.birthday = birthday;
+        this.gender = gender;
         this.idCard = idCard;
         this.phone = phone;
         this.email = email;
@@ -45,6 +57,14 @@ public abstract class Person {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public boolean isGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
     }
 
     public String getIdCard() {

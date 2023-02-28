@@ -1,23 +1,30 @@
 package furama_resort.model.service_model;
 
-public class House extends FuramaService{
+public class House extends Service {
     private String standardRoom;
-    private String descriptionOtherConvenience;
+    private String otherConvenience;
     private int numberOfFloors;
 
     public House() {
     }
 
-    public House(String standardRoom, String descriptionOtherConvenience, int numberOfFloors) {
+    public House(String standardRoom, String otherConvenience, int numberOfFloors) {
         this.standardRoom = standardRoom;
-        this.descriptionOtherConvenience = descriptionOtherConvenience;
+        this.otherConvenience = otherConvenience;
         this.numberOfFloors = numberOfFloors;
     }
 
-    public House(String serviceName, double serviceCode, int serviceMaxPeople, int rentTypeId, String standardRoom, String descriptionOtherConvenience, int numberOfFloors) {
-        super(serviceName, serviceCode, serviceMaxPeople, rentTypeId);
+    public House(int serviceId, String serviceName, int serviceArea, double serviceCost, int serviceMaxPeople, int rentTypeId, int serviceTypeId, String standardRoom, String otherConvenience, int numberOfFloors) {
+        super(serviceId, serviceName, serviceArea, serviceCost, serviceMaxPeople, rentTypeId, serviceTypeId);
         this.standardRoom = standardRoom;
-        this.descriptionOtherConvenience = descriptionOtherConvenience;
+        this.otherConvenience = otherConvenience;
+        this.numberOfFloors = numberOfFloors;
+    }
+
+    public House(String serviceName, int serviceArea, double serviceCost, int serviceMaxPeople, int rentTypeId, int serviceTypeId, String standardRoom, String otherConvenience, int numberOfFloors) {
+        super(serviceName, serviceArea, serviceCost, serviceMaxPeople, rentTypeId, serviceTypeId);
+        this.standardRoom = standardRoom;
+        this.otherConvenience = otherConvenience;
         this.numberOfFloors = numberOfFloors;
     }
 
@@ -29,12 +36,12 @@ public class House extends FuramaService{
         this.standardRoom = standardRoom;
     }
 
-    public String getDescriptionOtherConvenience() {
-        return descriptionOtherConvenience;
+    public String getOtherConvenience() {
+        return otherConvenience;
     }
 
-    public void setDescriptionOtherConvenience(String descriptionOtherConvenience) {
-        this.descriptionOtherConvenience = descriptionOtherConvenience;
+    public void setOtherConvenience(String otherConvenience) {
+        this.otherConvenience = otherConvenience;
     }
 
     public int getNumberOfFloors() {

@@ -1,25 +1,33 @@
 package furama_resort.model.service_model;
 
-public class Villa extends FuramaService{
+public class Villa extends Service {
     private String standardRoom;
-    private String descriptionOtherConvenience;
+    private String otherConvenience;
     private double poolArea;
     private int numberOfFloors;
 
     public Villa() {
     }
 
-    public Villa(String standardRoom, String descriptionOtherConvenience, double poolArea, int numberOfFloors) {
+    public Villa(String standardRoom, String otherConvenience, double poolArea, int numberOfFloors) {
         this.standardRoom = standardRoom;
-        this.descriptionOtherConvenience = descriptionOtherConvenience;
+        this.otherConvenience = otherConvenience;
         this.poolArea = poolArea;
         this.numberOfFloors = numberOfFloors;
     }
 
-    public Villa(String serviceName, double serviceCode, int serviceMaxPeople, int rentTypeId, String standardRoom, String descriptionOtherConvenience, double poolArea, int numberOfFloors) {
-        super(serviceName, serviceCode, serviceMaxPeople, rentTypeId);
+    public Villa(int serviceId, String serviceName, int serviceArea, double serviceCost, int serviceMaxPeople, int rentTypeId, int serviceTypeId, String standardRoom, String otherConvenience, double poolArea, int numberOfFloors) {
+        super(serviceId, serviceName, serviceArea, serviceCost, serviceMaxPeople, rentTypeId, serviceTypeId);
         this.standardRoom = standardRoom;
-        this.descriptionOtherConvenience = descriptionOtherConvenience;
+        this.otherConvenience = otherConvenience;
+        this.poolArea = poolArea;
+        this.numberOfFloors = numberOfFloors;
+    }
+
+    public Villa(String serviceName, int serviceArea, double serviceCost, int serviceMaxPeople, int rentTypeId, int serviceTypeId, String standardRoom, String otherConvenience, double poolArea, int numberOfFloors) {
+        super(serviceName, serviceArea, serviceCost, serviceMaxPeople, rentTypeId, serviceTypeId);
+        this.standardRoom = standardRoom;
+        this.otherConvenience = otherConvenience;
         this.poolArea = poolArea;
         this.numberOfFloors = numberOfFloors;
     }
@@ -32,12 +40,12 @@ public class Villa extends FuramaService{
         this.standardRoom = standardRoom;
     }
 
-    public String getDescriptionOtherConvenience() {
-        return descriptionOtherConvenience;
+    public String getOtherConvenience() {
+        return otherConvenience;
     }
 
-    public void setDescriptionOtherConvenience(String descriptionOtherConvenience) {
-        this.descriptionOtherConvenience = descriptionOtherConvenience;
+    public void setOtherConvenience(String otherConvenience) {
+        this.otherConvenience = otherConvenience;
     }
 
     public double getPoolArea() {

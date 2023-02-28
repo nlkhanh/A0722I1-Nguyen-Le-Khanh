@@ -1,6 +1,6 @@
 package furama_resort.model.service_model;
 
-public class Room extends FuramaService{
+public class Room extends Service {
     private String freeService;
 
     public Room() {
@@ -10,8 +10,13 @@ public class Room extends FuramaService{
         this.freeService = freeService;
     }
 
-    public Room(String serviceName, double serviceCode, int serviceMaxPeople, int rentTypeId, String freeService) {
-        super(serviceName, serviceCode, serviceMaxPeople, rentTypeId);
+    public Room(int serviceId, String serviceName, int serviceArea, double serviceCost, int serviceMaxPeople, int rentTypeId, int serviceTypeId, String freeService) {
+        super(serviceId, serviceName, serviceArea, serviceCost, serviceMaxPeople, rentTypeId, serviceTypeId);
+        this.freeService = freeService;
+    }
+
+    public Room(String serviceName, int serviceArea, double serviceCost, int serviceMaxPeople, int rentTypeId, int serviceTypeId, String freeService) {
+        super(serviceName, serviceArea, serviceCost, serviceMaxPeople, rentTypeId, serviceTypeId);
         this.freeService = freeService;
     }
 

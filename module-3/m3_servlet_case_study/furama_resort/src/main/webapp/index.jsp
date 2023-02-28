@@ -25,22 +25,18 @@
                 <a class="nav-link" href="#">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Employee</a>
+                <a class="nav-link" href="/furama-resort/employee">Employee</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/furama-resort/customer?action=customer-list">Customer</a>
+                <a class="nav-link" href="/furama-resort/customer">Customer</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Service</a>
+                <a class="nav-link" href="/furama-resort/service">Service</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Contract</a>
+                <a class="nav-link" href="/furama-resort/contract">Contract</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-        </form>
     </nav>
 </div>
 <main class="d-flex mt-2" style="height: 100vh">
@@ -61,7 +57,7 @@
     </div>
 </main>
 <footer>
-    <nav class="navbar navbar-light bg-light justify-content-center w-100 position-fixed" style="bottom: 0; left: 0">
+    <nav class="navbar navbar-light bg-light justify-content-center w-100 position-fixed border-white" style="bottom: 0; left: 0; border-top: 2px">
         <span class="navbar-text text-dark"> A0722I1 - Nguyễn Lê Khánh</span>
     </nav>
 </footer>
