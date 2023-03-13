@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Product Management</title>
+</head>
+<body>
+<h3>View product</h3>
+<p>
+    <a th:href="@{/product}" th:text="'Back to product list'"></a>
+</p>
+<table th:border="1" th:object="${product}">
+    <tr>
+        <td>Name</td>
+        <td th:text="*{name}"></td>
+    </tr>
+    <tr>
+        <td>Cost</td>
+        <td th:text="*{cost}"></td>
+    </tr>
+    <tr>
+        <td>Description</td>
+        <td th:text="*{description}"></td>
+    </tr>
+    <tr>
+        <td>Manufacture</td>
+        <td th:text="*{manufacture}"></td>
+    </tr>
+</table>
+</body>
+</html>

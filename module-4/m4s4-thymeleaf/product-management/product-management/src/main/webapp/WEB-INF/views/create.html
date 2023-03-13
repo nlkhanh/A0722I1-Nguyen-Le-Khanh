@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Product Management</title>
+</head>
+<body>
+<h3>Add new product</h3>
+<p>
+  <a th:href="@{/product}" th:text="'Back to product list'"></a>
+</p>
+<form th:action="@{/product/save}" method="post" th:object="${product}">
+  <input type="hidden" th:field="*{id}">
+  <table th:border="1">
+    <tr>
+      <td>Name</td>
+      <td><input type="text" th:field="*{name}"></td>
+    </tr>
+    <tr>
+      <td>Cost</td>
+      <td><input type="text" th:field="*{cost}"></td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td><input type="text" th:field="*{description}"></td>
+    </tr>
+    <tr>
+      <td>Manufacture</td>
+      <td><input type="text" th:field="*{manufacture}"></td>
+    </tr>
+  </table>
+  <input type="submit" value="Save">
+</form>
+</body>
+</html>
