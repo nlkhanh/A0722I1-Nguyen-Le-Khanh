@@ -12,22 +12,21 @@ public class Song {
     private int id;
     private String name;
     private String author;
-    private String link;
-
+    private String fileName;
     public Song() {
     }
 
-    public Song(int id, String name, String author, String link) {
+    public Song(int id, String name, String author, String fileName) {
         this.id = id;
         this.name = name;
         this.author = author;
-        this.link = link;
+        this.fileName = fileName;
     }
 
-    public Song(String name, String author, String link) {
+    public Song(String name, String author, String fileName) {
         this.name = name;
         this.author = author;
-        this.link = link;
+        this.fileName = fileName;
     }
 
     public int getId() {
@@ -54,11 +53,11 @@ public class Song {
         this.author = author;
     }
 
-    public String getLink() {
-        return link;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

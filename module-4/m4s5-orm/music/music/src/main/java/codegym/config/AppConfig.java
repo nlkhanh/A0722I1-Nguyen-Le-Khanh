@@ -16,10 +16,12 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.spring5.ISpringTemplateEngine;
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -37,7 +39,7 @@ import java.util.Properties;
 @ComponentScan("codegym")
 @EnableTransactionManagement
 @PropertySource("classpath:song_upload.properties")
-public class AppConfig implements ApplicationContextAware, WebMvcConfigurer {
+public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware, WebMvcConfigurer {
     @Value("${song-upload}")
     private String songUpload;
 
@@ -118,14 +120,15 @@ public class AppConfig implements ApplicationContextAware, WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/songs/**")
-                .addResourceLocations("song:" + songUpload);
+        super.addResourceHandlers(registry);
+        registry.addResourceHandler("/**").addResourceLocations("file:" + songUpload);
     }
 
-    @Bean
-    public CommonsMultipartResolver getResolver() throws IOException {
-        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-        resolver.setMaxUploadSizePerFile(52428800);
-        return resolver;
+    @Bean(name = "multipartResolver")
+    public MultipartResolver mulitpartResolver() {
+        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+        commonsMultipartResolver.setDefaultEncoding("utf-8");
+        commonsMultipartResolver.setMaxUploadSizePerFile(400000002);
+        return commonsMultipartResolver;
     }
 }

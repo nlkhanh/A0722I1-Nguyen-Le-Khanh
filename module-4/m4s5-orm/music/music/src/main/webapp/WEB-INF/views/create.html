@@ -11,7 +11,7 @@
 <p>
     <a th:href="@{/}" th:text="'Back to list'"></a>
 </p>
-<form th:action="@{/save}" method="post" th:object="${songForm}" enctype="multipart/form-data">
+<form th:action="@{/save}" method="post" th:object="${songForm}" th:enctype="'multipart/form-data'">
     <input type="hidden" th:field="*{id}">
     <table th:border="1">
         <tr>
