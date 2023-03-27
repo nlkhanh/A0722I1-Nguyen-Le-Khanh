@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+group 'codegym'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    implementation group: 'org.springframework', name: 'spring-core', version: '5.3.25'
+    implementation group: 'org.springframework', name: 'spring-web', version: '5.3.25'
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.3.25'
+    implementation group: 'org.thymeleaf', name: 'thymeleaf-spring5', version: '3.1.1.RELEASE'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.32'
+    implementation group: 'org.springframework', name: 'spring-tx', version: '5.3.25'
+    implementation group: 'org.springframework', name: 'spring-orm', version: '5.3.25'
+    implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.6.15.Final'
+    implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.1.0.RELEASE'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}

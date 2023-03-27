@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog View</title>
+</head>
+<body>
+<div th:object="${blog}">
+    <h3 th:text="*{title}"></h3>
+    <span th:text="'Public: ' + *{publicDate} + '.'"></span>
+    <span th:if="*{modifiedDate}" th:text="'Last update: ' + *{modifiedDate}"></span>
+    <p th:text="*{content}"></p>
+    <p th:text="'Author: '*{author}"></p>
+</div>
+<p>
+    <a th:href="@{/}">Return to List</a>
+</p>
+<p th:if="${message}">
+<p th:text="${message}"></p>
+</p>
+</body>
+</html>
