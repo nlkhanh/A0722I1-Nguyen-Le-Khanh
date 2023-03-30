@@ -9,10 +9,13 @@ import org.springframework.stereotype.Component;
 import java.text.ParseException;
 import java.util.Locale;
 
-@Component
 public class ProvinceFormatter implements Formatter<Province> {
-    @Autowired
     private ProvinceService provinceService;
+
+    public ProvinceFormatter(ProvinceService provinceService) {
+        this.provinceService = provinceService;
+    }
+
     @Override
     public Province parse(String id, Locale locale) throws ParseException {
         return provinceService.findById(Long.parseLong(id));

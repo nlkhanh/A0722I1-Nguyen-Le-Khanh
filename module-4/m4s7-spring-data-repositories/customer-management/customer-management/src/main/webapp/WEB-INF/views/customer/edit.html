@@ -30,7 +30,8 @@
                     <option th:each="p : ${provinces}"
                              th:value="${p.provinceId}"
                              th:text="${p.name}"
-                             th:selected="(${customer.province}) and (${p.provinceId} == *{province.provinceId})"></option>
+                            th:selected="${p.provinceId.equals(customer.province.provinceId)}"
+                    ></option>
                 </select>
             </td>
         </tr>

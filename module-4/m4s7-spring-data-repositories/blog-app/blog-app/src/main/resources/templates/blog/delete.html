@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Delete</title>
+</head>
+<body>
+<h3>Delete Blog</h3>
+<h4>Do you want to delete this blog?</h4>
+<p>
+    <a th:href="@{/blog}">Return to List</a>
+</p>
+<form th:action="@{/blog/remove}" method="post" th:object="${blog}">
+    <input type="hidden" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Title: </td>
+            <td th:text="*{title}"></td>
+        </tr>
+        <tr>
+            <td>Public: </td>
+            <td th:text="*{publicDate}"></td>
+        </tr>
+        <tr>
+            <td>Last Update: </td>
+            <td th:text="*{modifiedDate}"></td>
+        </tr>
+        <tr>
+            <td>Content: </td>
+            <td th:text="*{content}"></td>
+        </tr>
+        <tr>
+            <td>Author: </td>
+            <td th:text="*{author}"></td>
+        </tr>
+        <tr>
+            <td>Category: </td>
+            <th:block>
+                <td th:if="*{category}" th:text="*{category.name}"></td>
+                <td th:unless="*{category}"></td>
+            </th:block>
+        </tr>
+    </table>
+    <input type="submit" value="Delete">
+</form>
+<p th:if="${message}">
+<p th:text="${message}"></p>
+</p>
+</body>
+</html>

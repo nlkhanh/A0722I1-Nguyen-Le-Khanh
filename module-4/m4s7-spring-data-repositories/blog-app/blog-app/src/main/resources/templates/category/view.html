@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Category View</title>
+</head>
+<body>
+<h3 th:text="'Category: '${category.name}"></h3>
+<table th:border="1">
+    <thead>
+    <tr>
+        <th>Serial</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Public</th>
+        <th>Last Update</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="blog : ${category.blogs}" th:object="${blog}">
+        <td th:text="${blogStat.count}"></td>
+        <td><a th:href="@{/blog/view/__${blog.id}__}" th:text="*{title}"></a></td>
+        <td th:text="*{author}"></td>
+        <td th:text="*{publicDate}"></td>
+        <td th:text="*{modifiedDate}"></td>
+    </tr>
+    </tbody>
+</table>
+<p>
+    <a th:href="@{/category}">Return to List</a>
+</p>
+<p th:if="${message}">
+<p th:text="${message}"></p>
+</p>
+</body>
+</html>

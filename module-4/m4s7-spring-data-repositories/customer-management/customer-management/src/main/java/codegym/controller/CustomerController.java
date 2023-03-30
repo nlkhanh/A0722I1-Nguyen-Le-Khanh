@@ -5,15 +5,15 @@ import codegym.model.Province;
 import codegym.service.CustomerService;
 import codegym.service.ProvinceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class CustomerController {
@@ -42,8 +42,13 @@ public class CustomerController {
     }
 
     @GetMapping("/customers")
-    public String list(Model model) {
-        List<Customer> customers = customerService.findAll();
+    public String list(@RequestParam("search") Optional<String> search, Model model, Pageable pageable) {
+        Page<Customer> customers;
+        if (search.isPresent()) {
+            customers = customerService.findAllByFirstNameContaining(search.get(), pageable);
+        } else {
+            customers = customerService.findAll(pageable);
+        }
         model.addAttribute("customers", customers);
         return "customer/list";
     }
@@ -84,5 +89,18 @@ public class CustomerController {
     public String deleteCustomer(Customer customer) {
         customerService.remove(customer.getId());
         return "redirect:customers";
+    }
+
+    @GetMapping("/view-province/{id}")
+    public String viewProvince(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes){
+        Province province = provinceService.findById(id);
+        if(province == null){
+            redirectAttributes.addFlashAttribute("message", "Error");
+            return "redirect:/customers";
+        }
+        List<Customer> customers = customerService.findAllByProvince(province);
+        model.addAttribute("province", province);
+        model.addAttribute("customers", customers);
+        return "province/view";
     }
 }

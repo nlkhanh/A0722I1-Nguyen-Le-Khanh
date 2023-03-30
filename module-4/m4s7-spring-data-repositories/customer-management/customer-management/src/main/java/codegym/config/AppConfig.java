@@ -1,6 +1,7 @@
 package codegym.config;
 
 import codegym.formatter.ProvinceFormatter;
+import codegym.service.ProvinceService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -125,6 +126,6 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
     //Registry Formatter
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addFormatter(new ProvinceFormatter());
+        registry.addFormatter(new ProvinceFormatter(applicationContext.getBean(ProvinceService.class)));
     }
 }
