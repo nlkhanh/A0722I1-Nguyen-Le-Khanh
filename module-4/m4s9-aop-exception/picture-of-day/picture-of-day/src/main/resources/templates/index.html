@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Picture of The Day</title>
+</head>
+<body>
+<img id="img-of-the-day">
+<form th:action="@{/comment}" th:object="${comment}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Evaluate:</td>
+            <td>
+                <select th:field="*{evaluate}">
+                    <option th:each="e : ${evaluates}" th:value="${e}" th:text="${e}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Author:</td>
+            <td><input type="text" th:field="*{author}"></td>
+        </tr>
+        <tr>
+            <td>Feedback:</td>
+            <td>
+                <textarea th:field="*{feedBack}"></textarea>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Comment">
+</form>
+<ul style="list-style-type: none; display: inline-block;">
+    <li th:each="c : ${comments}" th:object="${c}"
+        style="border-top: 1px solid darkgrey; border-bottom: 1px solid darkgrey; border-collapse: collapse">
+        <span th:text="'+' + *{evaluate} + ' ' + *{feedBack}"></span>
+        <div>
+            <span th:text="*{likes} + ' like(s)'"></span>
+            <form th:action="@{/like}">
+                <input type="hidden" name="likeId" th:value="${c.id}">
+                <input type="hidden" name="page" th:value="${comments.number}">
+                <input type="submit" value="Like">
+            </form>
+        </div>
+    </li>
+</ul>
+<div>
+    <a th:if="${comments.hasPrevious()}" th:href="@{'/'(page=${comments.number - 1})}">Previous</a>
+    <span th:text="${comments.number + 1}"></span>/<span th:text="${comments.totalPages}"></span>
+    <a th:if="${comments.hasNext()}" th:href="@{'/'(page=${comments.number + 1})}">Next</a>
+</div>
+<script>
+    let query = 'https://api.nasa.gov/planetary/apod?api_key=oKqS7nCFbhVFWJwViEriX8ZwRYLXMLhoNtcIhrFU';
+    let request = new XMLHttpRequest();
+    request.open('GET', query);
+    request.onload = function () {
+        if (request.status === 200) {
+            let response = JSON.parse(request.responseText);
+            document.getElementById('img-of-the-day').setAttribute('src', response.url);
+        }
+    };
+    request.send();
+</script>
+</body>
+</html>

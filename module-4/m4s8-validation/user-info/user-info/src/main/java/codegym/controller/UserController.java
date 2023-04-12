@@ -1,6 +1,7 @@
 package codegym.controller;
 
 import codegym.model.User;
+import codegym.validation.PhoneValidation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,7 @@ public class UserController {
 
     @PostMapping("/validate-user")
     public String validateUser(@Validated User user, BindingResult result, Model model) {
+        new PhoneValidation().validate(user, result);
         if (result.hasErrors()) {
             model.addAttribute("user", user);
             return "index";

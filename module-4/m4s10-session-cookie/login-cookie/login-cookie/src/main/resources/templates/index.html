@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cookie Demo</title>
+</head>
+<body>
+<h1>User Login</h1>
+<form th:action="@{/dologin}" method="post" th:object="${user}">
+    <label>Email:
+        <input type="email" th:field="*{email}" th:value="${cookieValue.value}">
+    </label>
+    <label>Password:
+        <input type="password" th:field="*{password}">
+    </label>
+    <input type="submit" value="Login">
+</form>
+<br>
+<span th:text="${message}"></span>
+<span th:text="${user.email}"></span>
+</body>
+</html>

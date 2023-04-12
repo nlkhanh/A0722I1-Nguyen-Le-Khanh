@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Return Book Confirm</title>
+</head>
+<body>
+<h3>Book Return Confirm</h3>
+    <p>
+        <span>Borrow code: </span> <span th:text="${bookBorrow.borrowCode}"></span>
+    </p>
+    <table th:object="${bookBorrow.book}">
+        <tr>
+            <td>Name:</td>
+            <td th:text="*{name}"></td>
+        </tr>
+        <tr>
+            <td>Amount:</td>
+            <td th:text="*{amount}"></td>
+        </tr>
+    </table>
+<a th:href="@{/book/return(id=${bookBorrow.id})}">Return Book</a>
+<p>
+    <a th:href="@{/book}">Return to list</a>
+</p>
+</body>
+</html>

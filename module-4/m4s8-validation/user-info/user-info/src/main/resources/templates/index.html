@@ -14,7 +14,12 @@
         <tr>
             <td>Age:</td>
             <td><input th:field="*{age}"></td>
-            <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name Error</td>
+            <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</td>
+        </tr>
+        <tr>
+            <td>Phone:</td>
+            <td><input th:field="*{phone}"></td>
+            <td th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Phone Error</td>
         </tr>
         <tr>
             <td>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        li {
+            list-style-type: none;
+            padding: 8px 0;
+            background-color: #f7f7f7;
+        }
+
+        li:first-child {
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        li:last-child {
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        #delete-product-cart:hover {
+            cursor: pointer;
+        }
+    </style>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery/jquery-3.6.3.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".product-quantity").each(function () {
+                if ($(this).text() === "1") {
+                    let id = $(this).data("id")
+                    $("#btn-remove-" + id).addClass("disabled");
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 px-2">
+        <h4 class="text-uppercase text-primary">Giỏ hàng</h4>
+        <a th:href="@{/shop}" class="btn btn-primary">Trở lại shop</a>
+    </div>
+    <ul class="p-0">
+        <li th:text="'Giỏ hàng (' + ${cart.countItemQuantity()} + ')'" class="px-4 border border-secondary"></li>
+        <th:block th:each="product : ${cart.products}" th:object="${product}">
+            <li class="d-flex border border-secondary">
+                <div class="col-2 d-flex justify-content-center align-items-center position-relative">
+                    <img src="#" th:src="@{'/image/' + *{key.image}}" alt="Product image" style="width: 136px;">
+                    <span class="d-inline-flex position-absolute justify-content-center align-items-center bg-primary"
+                          id="delete-product-cart"
+                          style="width: 26px; height: 26px; top: 0; left: 8px">
+                        <a th:href="@{/delete/__${product.key.id}__}"
+                           class="text-decoration-none fw-bold text-white">x</a>
+                    </span>
+                </div>
+                <div class="col-10">
+                    <p th:text="*{key.name}"></p>
+                    <table>
+                        <tr>
+                            <td>Mã SP:</td>
+                            <td th:text="*{key.id}"></td>
+                        </tr>
+                        <tr>
+                            <td>Đơn giá:</td>
+                            <td th:text="${#numbers.formatDecimal(product.key.price, 0, 'POINT', 1, 'COMMA')} + ' đ'"></td>
+                        </tr>
+                        <tr>
+                            <td>Số lượng:</td>
+                            <td>
+                                <a class="btn btn-primary"
+                                   th:id="'btn-remove-' + ${product.key.id}"
+                                   th:href="@{/remove/__${product.key.id}__}">-</a>
+                                <span class="d-inline-block p-2 text-center border border-1 border-secondary product-quantity"
+                                      th:data-id="*{key.id}"
+                                      th:text="*{value}"></span>
+                                <a class="btn btn-primary" th:href="@{/add/__${product.key.id}__(action='show')}">+</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </li>
+        </th:block>
+        <li th:text="'Tổng cộng: ' + ${#numbers.formatDecimal(cart.countTotalPayment(), 0, 'POINT', 1, 'COMMA')} + ' đ'" class="px-4 border border-secondary"></li>
+    </ul>
+</div>
+</body>
+</html>

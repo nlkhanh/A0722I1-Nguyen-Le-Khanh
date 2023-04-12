@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 px-2">
+        <h4 class="text-uppercase text-primary">Danh sách sản phẩm</h4>
+        <a th:href="@{/shopping-cart}" class="btn btn-primary">Vào giỏ hàng</a>
+    </div>
+    <div class="d-flex justify-content-between">
+        <th:block th:each="product : ${products}">
+            <div class="col-4 p-2">
+                <div class="card">
+                    <img class="card-img-top" th:src="@{'/image/' + ${product.image}}" alt="image-product" src="#">
+                    <div class="card-body text-center">
+                        <h5 class="card-title" th:text="${product.name}">Name</h5>
+                        <p class="card-text"
+                           th:text="'Giá: ' + ${#numbers.formatDecimal(product.price, 0, 'POINT', 1, 'COMMA')}">
+                            Price</p>
+                        <a th:href="@{/info/__${product.id}__}" class="btn btn-primary"
+                           th:text="'Mua ngay'">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+    </div>
+</div>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

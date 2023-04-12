@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Info</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        li {
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 px-2">
+        <a th:href="@{/shop}" class="btn btn-primary">Quay lại shop</a>
+        <a th:href="@{/shopping-cart}" class="btn btn-primary">Vào giỏ hàng</a>
+    </div>
+    <div class="d-flex">
+        <div id="cart-wrap" class="me-2">
+            <div class="card">
+                <img class="card-img-top" style="width: 200px;" th:src="@{'/image/' + ${product.image}}" alt="image-product" src="#">
+                <div class="card-body text-center">
+                    <h5 class="card-title" th:text="'Mã SP: ' + ${product.id}">Id</h5>
+                    <p class="card-text"
+                       th:text="'Giá: ' + ${#numbers.formatDecimal(product.price, 0, 'POINT', 1, 'COMMA')}">
+                        Price</p>
+                    <a th:href="@{/add/__${product.id}__(action='info')}" class="btn btn-primary"
+                       th:text="'Thêm vào giỏ hàng'">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div id="text-wrap">
+            <p class="border-bottom border-1 border-secondary p-2" th:text="${product.name}"></p>
+            <ul class="p-0">
+                <li>
+                    <span class="badge bg-primary">1</span>
+                    Giảm 50% cho 10 khách hàng mới nhất
+                </li>
+                <li>
+                    <span class="badge bg-primary">2</span>
+                    Bảo hành lên tới 2 năm
+                </li>
+                <li>
+                    <span class="badge bg-primary">3</span>
+                    Giảm 25% cho phụ kiện mua kèm
+                </li>
+                <li>
+                    <span class="badge bg-primary">4</span>
+                    Tặng voucher giảm giá 10% cho lần mua tiếp theo
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

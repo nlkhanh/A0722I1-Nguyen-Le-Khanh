@@ -12,4 +12,5 @@ public @Data class User {
     private String name;
     @Min(18)
     private Integer age;
+    private String phone;
 }
