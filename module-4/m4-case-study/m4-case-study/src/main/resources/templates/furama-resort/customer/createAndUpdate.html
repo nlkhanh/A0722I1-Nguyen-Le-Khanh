@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/template/inital::heading('Customer')}"></head>
+<body>
+<header th:replace="~{/template/layout::header('admin')}"></header>
+<aside th:replace="~{/furama-resort/customer/layout::sidebar}"></aside>
+
+<section class="content rounded-top bg-body-tertiary float-end clearfix overflow-y-scroll">
+    <h3 class="text-center text-capitalize" th:text="${title}"></h3>
+    <form id="customer-form" th:action="@{/furama-resort/customer/save}" method="post" th:object="${customer}"
+          class="pe-5">
+        <input type="hidden" th:field="*{id}" th:value="*{id}">
+        <div class="mb-3">
+            <label for="name" class="form-label">Tên khách hàng:</label>
+            <input type="text" class="form-control" th:field="*{name}" th:value="*{name}">
+        </div>
+        <div class="mb-3">
+            <label for="dateOfBirth" class="form-label">Ngày sinh:</label>
+            <input type="date" class="form-control" th:field="*{dateOfBirth}" th:value="*{dateOfBirth}">
+        </div>
+        <div class="mb-3">
+            <label for="gender" class="form-label">Giới tính:</label>
+            <select class="form-select" th:field="*{gender}" th:value="*{gender}">
+                <option value="">--Chọn giới tính--</option>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="idCard" class="form-label">Số CMND/ CCCD:</label>
+            <input type="text" class="form-control" th:field="*{idCard}" th:value="*{idCard}">
+        </div>
+        <div class="mb-3">
+            <label for="phoneNumber" class="form-label">Số điện thoại:</label>
+            <input type="text" class="form-control" th:field="*{phoneNumber}" th:value="*{phoneNumber}">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" class="form-control" th:field="*{email}" th:value="*{email}">
+        </div>
+        <div class="mb-3">
+            <label for="customerType" class="form-label">Loại khách hàng:</label>
+            <select class="form-select" th:field="*{customerType}" th:value="*{customerType.id}">
+                <option th:each="cT : ${customerTypes}" th:value="${cT.id}" th:text="${cT.name}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="address" class="form-label">Địa chỉ:</label>
+            <input type="text" class="form-control" th:field="*{address}" th:value="*{address}">
+        </div>
+        <button type="submit" class="btn btn-primary float-end" th:text="${buttonSubmitName}"></button>
+    </form>
+</section>
+
+
+<footer th:replace="~{/template/layout::footer}"></footer>
+<script>
+    $(document).ready(function () {
+        activeNavItem("customer");
+    })
+</script>
+</body>
+</html>

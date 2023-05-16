@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/template/inital::headHTML('Project')}"></head>
+<body>
+<header th:replace="~{/template/layout::header('admin')}"></header>
+<!--<aside th:replace="~{/furama-resort/customer/layout::sidebar}"></aside>-->
+
+<main class="container mt-3">
+    <h3 class="text-center text-capitalize">Add New Project</h3>
+    <form th:action="@{/projects/create}" method="post" th:object="${project}"
+          class="pe-5">
+        <div class="mb-3">
+            <label for="id" class="form-label">ID:</label>
+            <input required type="text" class="form-control" th:field="*{id}" th:value="*{id}">
+            <p th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Id Error</p>
+        </div>
+        <div class="mb-3">
+            <label for="company" class="form-label">Company:</label>
+            <select required class="form-select" th:field="*{company}" th:value="*{company.id}">
+                <option th:each="c : ${companies}" th:value="${c.id}" th:text="${c.name}"></option>
+            </select>
+            <p th:if="${#fields.hasErrors('company')}" th:errors="*{company}">company Error</p>
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Project name:</label>
+            <input required type="text" class="form-control" th:field="*{name}" th:value="*{name}">
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error</p>
+        </div>
+        <div class="mb-3">
+            <label for="requiredMoney" class="form-label">Required money:</label>
+            <input required type="text" class="form-control" th:field="*{requiredMoney}" th:value="*{requiredMoney}">
+            <p th:if="${#fields.hasErrors('requiredMoney')}" th:errors="*{requiredMoney}">requiredMoney Error</p>
+        </div>
+        <div class="mb-3">
+            <label for="detail" class="form-label">Description:</label>
+            <textarea required class="form-control" th:field="*{detail}" th:value="*{detail}"></textarea>
+            <p th:if="${#fields.hasErrors('detail')}" th:errors="*{detail}">detail Error</p>
+        </div>
+        <div class="mb-3">
+            <label for="registryMonth" class="form-label">Registry Month:</label>
+            <input required type="text" class="form-control" th:field="*{registryMonth}" th:value="*{registryMonth}">
+            <p th:if="${#fields.hasErrors('registryMonth')}" th:errors="*{registryMonth}">registryMonth Error</p>
+        </div>
+        <div class="mb-3">
+            <label for="registerDate" class="form-label">Register Date:</label>
+            <input type="date" readonly class="form-control" th:field="*{registerDate}" th:value="*{registryMonth}">
+        </div>
+        <a th:href="@{/projects}" class="btn btn-secondary">Canceled</a>
+        <button type="submit" class="btn btn-primary">Registry</button>
+    </form>
+</main>
+<script>
+    $(document).ready(function () {
+        activeNavItem("create");
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<aside class="navbar mt-1 px-2 sidebar bg-dark-subtle rounded-top float-start" th:fragment="sidebar">
+    <ul class="navbar-nav mt-1 flex-column">
+        <li class="nav-item">
+            <a class="nav-link active" th:href="@{/furama-resort/facility}">Danh sách</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" th:href="@{/furama-resort/facility/create}">Thêm mới</a>
+        </li>
+    </ul>
+</aside>
+
+<nav th:fragment="paginationNav" class="pagination-wrap d-flex justify-content-center position-absolute w-100"
+     aria-label="Page navigation">
+    <ul class="pagination" th:unless="${facilities.totalPages == 0}">
+        <li class="page-item"><a class="page-link page-link-previous"
+                                 th:href="@{'/furama-resort/facility'(page=${facilities.number - 1}, search=${search})}">Cũ
+            hơn</a>
+        </li>
+        <th:block th:each="p : ${#numbers.sequence(1, facilities.totalPages)}">
+            <li class="page-item">
+                <a th:text="${p}" th:id="'page-link-' + ${p - 1}" class="page-link"
+                   th:href="@{'/furama-resort/facility'(page=${p - 1}, search=${search})}"></a>
+            </li>
+        </th:block>
+        <li class="page-item"><a class="page-link page-link-next"
+                                 th:href="@{'/furama-resort/facility'(page=${facilities.number + 1}, search=${search})}">Mới
+            hơn</a>
+        </li>
+    </ul>
+</nav>
+
+</body>
+</html>

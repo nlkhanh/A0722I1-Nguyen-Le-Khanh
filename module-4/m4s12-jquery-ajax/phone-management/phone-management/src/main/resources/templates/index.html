@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Phone</title>
+    <style>
+        #phone-list,
+        #phone-list td,
+        #phone-list th {
+            border: 1px solid darkgray;
+            border-collapse: collapse;
+        }
+    </style>
+    <script src="/jquery/jquery-3.6.3.js"></script>
+    <script>
+        $(document).ready(function () {
+            getPhones();
+
+            $("#form-add-submit").click(function () {
+                addPhone();
+            });
+
+        })
+
+        function addPhone() {
+            let producer = $("#producer").val();
+            let model = $("#model").val();
+            let price = $("#price").val();
+            let newPhone = {
+                "producer": producer,
+                "model": model,
+                "price": price
+            };
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify(newPhone),
+                url: "/api/phones",
+                success: function () {
+                    getPhones()
+                }
+            });
+        }
+
+        function getPhones() {
+            $.ajax({
+                type: "GET",
+                url: "/api/phones",
+                success: function (response) {
+                    if (response === undefined) {
+                        $("#phone-list").hide();
+                        return;
+                    }
+                    let content = "";
+                    for (let i = 0; i < response.length; i++) {
+                        content += getPhone(response[i]);
+                    }
+                    $("#phone-list-body").html(content);
+                }
+            })
+        }
+
+        function getPhone(phone) {
+            return `<tr>
+                        <td>${phone.producer}</td>
+                        <td><a href="/phones/edit/${phone.id}">${phone.model}</a></td>
+                        <td>${phone.price}</td>
+                        <td><button type="button" class="btn-remove-phone" onclick="removeBtnClick(${phone.id})">Delete</button></td>
+                    </tr>`
+        }
+
+        function removeBtnClick(id) {
+            $.ajax({
+                type: "DELETE",
+                url: `/api/phones/${id}`,
+                success: function () {
+                    getPhones();
+                }
+            })
+        }
+    </script>
+</head>
+<body id="body">
+<table>
+    <tr>
+        <td>Producer:</td>
+        <td><input type="text" id="producer" placeholder="producer"></td>
+    </tr>
+    <tr>
+        <td>Model:</td>
+        <td><input type="text" id="model" placeholder="model"></td>
+    </tr>
+    <tr>
+        <td>Price:</td>
+        <td><input type="text" id="price" placeholder="price"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input id="form-add-submit" type="button" value="Add"></td>
+    </tr>
+</table>
+<table id="phone-list">
+    <thead>
+    <tr>
+        <th>Producer</th>
+        <th>Model</th>
+        <th>Price</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody id="phone-list-body"></tbody>
+</table>
+</body>
+</html>

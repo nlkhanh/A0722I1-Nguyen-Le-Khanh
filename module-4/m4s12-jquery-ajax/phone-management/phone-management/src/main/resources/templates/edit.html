@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Phone</title>
+    <script src="/jquery/jquery-3.6.3.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#form-edit-submit").click(function () {
+                editPhone();
+            })
+        })
+
+        function editPhone() {
+            let id = $("#id").val();
+            let producer = $("#producer").val();
+            let model = $("#model").val();
+            let price = $("#price").val();
+            let editPhone = {
+                "id": id,
+                "producer": producer,
+                "model": model,
+                "price": price
+            };
+            $.ajax({
+                type: "PUT",
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify(editPhone),
+                url: "/api/phones",
+                success: function () {
+                    alert("Edit success!")
+                    $("#return-index").trigger("click");
+                },
+                error: function () {
+                    alert("Error")
+                }
+            });
+        }
+
+
+    </script>
+</head>
+<body>
+    <table th:object="${phone}">
+        <tr>
+            <td>Id:</td>
+            <td><input type="text" th:field="*{id}" th:value="*{id}" readonly></td>
+        </tr>
+        <tr>
+            <td>Producer:</td>
+            <td><input type="text" id="producer" placeholder="producer" th:value="*{producer}"></td>
+        </tr>
+        <tr>
+            <td>Model:</td>
+            <td><input type="text" id="model" placeholder="model" th:value="*{model}"></td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td><input type="text" id="price" placeholder="price" th:value="*{price}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="button" id="form-edit-submit" value="Edit"></td>
+        </tr>
+    </table>
+    <a href="/phones" id="return-index">Phone list</a>
+</body>
+</html>

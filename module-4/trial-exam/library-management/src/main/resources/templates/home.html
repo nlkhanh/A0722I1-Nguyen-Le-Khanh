@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/template/inital::headHTML('Library')}"></head>
+<body>
+<header th:replace="~{/template/layout::header('admin')}"></header>
+
+<main class="position-relative m-2">
+    <h3 class="mt-4 ms-3">Welcome...</h3>
+</main>
+
+<footer th:replace="~{/template/layout::footer}"></footer>
+
+<script th:inline="javascript">
+    $(document).ready(function () {
+        activeNavItem("home");
+    })
+</script>
+</body>
+</html>

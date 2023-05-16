@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/template/inital::heading('Borrow Books')}"></head>
+<body>
+<header th:replace="~{/template/layout::header('admin')}"></header>
+
+<main class="position-relative container mt-3">
+    <div>
+        <form method="get" th:action="@{/books/borrows}" class="d-flex justify-content-between" role="search">
+            <input class="form-control me-2 text-dark" type="text" placeholder="Book name" aria-label="Search"
+                   id="search-book-name"
+                   name="search-book-name" th:value="${searchBookName}">
+            <input class="form-control me-2 text-dark" type="text" placeholder="Student name" aria-label="Search"
+                   id="search-student-name"
+                   name="search-student-name" th:value="${searchStudentName}">
+            <button id="btn-search" class="btn btn-primary" type="submit">Search</button>
+        </form>
+    </div>
+
+    <h3 class="text-center text-capitalize">Borrow Book List</h3>
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr class="text-center">
+            <th scope="col">#</th>
+            <th scope="col">ID</th>
+            <th scope="col">Book</th>
+            <th scope="col">Author</th>
+            <th scope="col">Student</th>
+            <th scope="col">Class</th>
+            <th scope="col">Borrow Date</th>
+            <th scope="col">Return Date</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody class="list-table-body">
+        <th:block th:each="b : ${borrowCards}" th:object="${b}">
+            <tr>
+                <th scope="row" th:text="${bStat.count + borrowCards.number*borrowCards.size}"></th>
+                <!--                <td><a th:href="@{/furama-resort/customer/__${c.id}__/edit}" th:text="*{name}"></a></td>-->
+                <!--                <td th:text="${#temporals.format(c.dateOfBirth, 'dd/MM/yyyy')}"></td>-->
+                <td th:text="*{id}"></td>
+                <td th:text="*{book.name}"></td>
+                <td th:text="*{book.author}"></td>
+                <td th:text="*{student.name}"></td>
+                <td th:text="*{student.currentClass}"></td>
+                <td th:text="${#temporals.format(b.borrowDate, 'dd/MM/yyyy')}"></td>
+                <td th:text="${#temporals.format(b.returnDate, 'dd/MM/yyyy')}"></td>
+                <td><a class="btn btn-primary" th:href="@{/books/return-book/__${b.id}__}">Return</a></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+    <nav th:replace="~{/template/layout::paginationNav('borrowCards', ${borrowCards.totalPages}, ${borrowCards.number})}"></nav>
+</main>
+
+<footer th:replace="~{/template/layout::footer}"></footer>
+
+<section th:replace="~{/template/layout::modalMessage}"></section>
+<section th:replace="~{/template/layout::toastMessage}"></section>
+
+<script th:inline="javascript">
+    $(document).ready(function () {
+        let currentPage = [[${borrowCards.number}]]
+        let totalPages = [[${borrowCards.totalPages}]]
+        let message = [[${message}]]
+        showToast(message != null, message);
+        activeNavItem("borrowCards");
+        activePage(currentPage, totalPages);
+        let mess = [[${mess}]];
+        if (mess != null) {
+            showMessage(mess);
+        }
+    })
+</script>
+</body>
+</html>

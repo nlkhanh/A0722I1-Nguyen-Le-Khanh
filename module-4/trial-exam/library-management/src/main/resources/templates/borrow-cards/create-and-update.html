@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/template/inital::headHTML('Borrow Card')}"></head>
+<body>
+<header th:replace="~{/template/layout::header('admin')}"></header>
+
+<main class="container mt-3">
+    <h3 class="text-center text-capitalize">Mượn Sách</h3>
+    <form th:action="@{/borrow-cards}" method="post" th:object="${borrowCard}"
+          class="pe-5">
+        <div class="mb-3">
+            <label for="id" class="form-label">Mã mượn sách:</label>
+            <input type="text" class="form-control" th:field="*{id}" th:value="*{id}">
+            <p th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Id Error</p>
+        </div>
+        <input type="hidden" th:field="*{book}" th:value="*{book.id}">
+        <input type="hidden" th:field="*{borrowing}" th:value="true">
+        <div class="mb-3">
+            <label for="book-name" class="form-label">Tên Sách:</label>
+            <input type="text" class="form-control" readonly id="book-name" th:value="*{book.name}">
+        </div>
+        <div class="mb-3">
+            <label for="student" class="form-label">Student:</label>
+            <select class="form-select" th:field="*{student}" th:value="*{student.id}">
+                <option th:each="s : ${students}" th:value="${s.id}" th:text="${s.name}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="borrowDate" class="form-label">Borrow Date:</label>
+            <input type="date" readonly class="form-control" th:field="*{borrowDate}" th:value="*{borrowDate}">
+        </div>
+        <div class="mb-3">
+            <label for="returnDate" class="form-label">Return Date:</label>
+            <input type="date" class="form-control" th:field="*{returnDate}" th:value="*{returnDate}">
+            <p th:if="${#fields.hasErrors('returnDate')}" th:errors="*{returnDate}">Return Date Error</p>
+        </div>
+        <button type="submit" class="btn btn-primary">Borrow</button>
+        <a th:href="@{/books}" class="btn btn-secondary">Canceled</a>
+    </form>
+</main>
+
+
+<footer th:replace="~{/template/layout::footer}"></footer>
+<script>
+    $(document).ready(function () {
+        activeNavItem("borrow-cards");
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/template/inital::headHTML('Projects')}"></head>
+<body>
+<header th:replace="~{/template/layout::header('admin')}"></header>
+<!--<aside th:replace="~{/furama-resort/customer/layout::sidebar}"></aside>-->
+
+<main class="container mt-3">
+    <h3 class="text-center text-capitalize mb-2">List of Projects</h3>
+
+    <div class="mb-2">
+        <form method="get" th:action="@{/projects}" class="d-flex justify-content-between" role="search">
+            <input class="form-control text-dark me-2 form-search" type="date" placeholder="first date" aria-label="Search"
+                   id="firstDateSearch"
+                   name="firstDateSearch">
+            <input class="form-control text-dark me-2 form-search" type="date" placeholder="end date" aria-label="Search"
+                   id="endDateSearch"
+                   name="endDateSearch">
+            <input class="form-control text-dark me-2 form-search" type="text" placeholder="project name" aria-label="Search"
+                   id="projectNameSearch"
+                   name="projectNameSearch" th:value="${projectName}">
+            <button id="btn-search" class="btn btn-primary" type="submit">Search</button>
+        </form>
+    </div>
+
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr class="text-center">
+<!--            <th scope="col"><input onclick="checkAllRow()" type="checkbox" name="delete-all-ids" id="delete-all-ids"></th>-->
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Company</th>
+            <th scope="col">Required Money</th>
+            <th scope="col">Registry Month</th>
+            <th scope="col">Register Date</th>
+            <th scope="col">Price</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody class="list-table-body">
+        <th:block th:each="p : ${projects}" th:object="${p}">
+            <tr>
+                <td th:text="*{id}"></td>
+                <td th:text="*{name}"></td>
+                <td th:text="*{company.name}"></td>
+                <td th:text="${#numbers.formatDecimal(p.requiredMoney, 0, 1)}"></td>
+                <td th:text="*{registryMonth}"></td>
+                <td th:text="${#temporals.format(p.registerDate, 'dd/MM/yyyy')}"></td>
+                <td th:text="${#numbers.formatDecimal(p.price, 0, 1)}"></td>
+                <td><button class="btn btn-primary btn-see-detail" th:onclick="showDetailModal([[${p.id}]])">Detail</button></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+<!--    <nav th:replace="~{/template/layout::paginationNav('projects', ${projects.totalPages}, ${projects.number})}"></nav>-->
+    <nav th:replace="~{/template/layout::paginationNavSearch('projects', ${projects.totalPages}, ${projects.number}, ${firstDate}, ${endDate}, ${projectName})}"></nav>
+</main>
+
+<section th:replace="~{/template/layout::modalMessage}"></section>
+<section th:replace="~{/template/layout::toastMessage}"></section>
+
+<script th:inline="javascript">
+    $(document).ready(function () {
+        let message = [[${message}]]
+        showToast(message != null, message);
+        activeNavItem("projects");
+        activePage([[${projects.number}]], [[${projects.totalPages}]])
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e3ed906a-abaa-4ab2-b0fa-11596b79c051" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/java/com/ExamApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/java/com/controller/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/java/com/controller/ProjectController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/java/com/controller/rest_controller/ProjectRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/java/com/custom_validation/ProjectValidation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/java/com/entity/Company.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/java/com/entity/Project.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/java/com/formatter/StringToLocalDateFormatter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/java/com/formatter/StringToLocalDateTimeFormatter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/java/com/repository/CompanyRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/java/com/repository/ProjectRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/java/com/service/CompanyService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/java/com/service/GeneralService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/java/com/service/ProjectService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/java/com/service/impl/CompanyServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/java/com/service/impl/ProjectServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/resources/messages.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/resources/static/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/resources/static/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/resources/static/js/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/resources/static/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/resources/static/js/jquery-3.6.3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/resources/templates/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/resources/templates/projects/create-and-update.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/resources/templates/projects/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/resources/templates/projects/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/resources/templates/template/inital.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/main/resources/templates/template/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/exam/exam/src/test/java/com/ExamApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/demo/src/main/resources/templates/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/java/codegym/library/config/Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/java/codegym/library/controller/BookController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/java/codegym/library/controller/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/java/codegym/library/custom_validate/BorrowCardValidate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/java/codegym/library/entity/Book.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/java/codegym/library/entity/BorrowCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/java/codegym/library/entity/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/java/codegym/library/formatter/StringToDate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/java/codegym/library/repository/BookRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/java/codegym/library/repository/BorrowCardRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/java/codegym/library/repository/StudentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/java/codegym/library/service/BookService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/java/codegym/library/service/BorrowCardService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/java/codegym/library/service/GeneralService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/java/codegym/library/service/StudentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/java/codegym/library/service/impl/BookServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/java/codegym/library/service/impl/BorrowCardServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/java/codegym/library/service/impl/StudentServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/resources/messages.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/resources/static/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/resources/static/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/resources/static/image/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/resources/static/js/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/resources/static/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/resources/static/js/jquery-3.6.3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/resources/templates/books/borrow.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/resources/templates/books/borrows.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/resources/templates/books/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/resources/templates/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/resources/templates/template/inital.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/library/src/main/resources/templates/template/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/M4CaseStudyApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/config/Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/controller/ContractController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/controller/CustomerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/controller/EmployeeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/controller/FacilityController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/controller/FuramaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/controller/rest_controller/ContractRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/controller/rest_controller/CustomerRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/controller/rest_controller/EmployeeRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/controller/rest_controller/FacilityRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/dto/ContractDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/formatter/StringToLocalDateFormatter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/formatter/StringToLocalDateTimeFormatter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/model/AttachFacility.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/model/Contract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/model/ContractDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/model/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/model/CustomerType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/model/Division.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/model/EducationDegree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/model/Employee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/model/Facility.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/model/FacilityType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/model/Position.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/model/RentType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/model/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/repository/AttachFacilityRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/repository/ContractDetailRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/repository/ContractRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/repository/CustomerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/repository/CustomerTypeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/repository/DivisionRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/repository/EducationDegreeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/repository/EmployeeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/repository/FacilityRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/repository/FacilityTypeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/repository/PositionRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/repository/RentTypeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/repository/RoleRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/AttachFacilityService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/ContractDetailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/ContractService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/CustomerTypeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/DivisionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/EducationDegreeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/EmployeeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/FacilityService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/FacilityTypeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/GeneralService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/PositionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/RentTypeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/RoleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/impl/AttachFacilityServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/impl/ContractDetailServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/impl/ContractServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/impl/CustomerServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/impl/CustomerTypeServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/impl/DivisionServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/impl/EducationDegreeServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/impl/EmployeeServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/impl/FacilityServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/impl/FacilityTypeServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/impl/PositionServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/impl/RentTypeServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/impl/RoleServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/java/codegym/m4_case_study/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/static/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/static/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/static/image/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/static/js/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/static/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/static/js/jquery-3.6.3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/templates/furama-resort/contract/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/templates/furama-resort/contract/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/templates/furama-resort/customer/createAndUpdate.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/templates/furama-resort/customer/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/templates/furama-resort/customer/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/templates/furama-resort/employee/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/templates/furama-resort/employee/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/templates/furama-resort/facility/createAndUpdate.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/templates/furama-resort/facility/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/templates/furama-resort/facility/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/templates/furama-resort/home/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/templates/furama-resort/home/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/templates/template/inital.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/main/resources/templates/template/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4-case-study/m4-case-study/src/test/java/codegym/m4_case_study/M4CaseStudyApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/src/main/java/codegym/blog_app/BlogAppApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/src/main/java/codegym/blog_app/controller/BlogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/src/main/java/codegym/blog_app/controller/CategoryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/src/main/java/codegym/blog_app/model/Blog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/src/main/java/codegym/blog_app/model/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/src/main/java/codegym/blog_app/repository/BlogRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/src/main/java/codegym/blog_app/repository/CategoryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/src/main/java/codegym/blog_app/service/BlogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/src/main/java/codegym/blog_app/service/CategoryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/src/main/java/codegym/blog_app/service/GeneralService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/src/main/java/codegym/blog_app/service/impl/BlogServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/src/main/java/codegym/blog_app/service/impl/CategoryServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/blog-app/blog-app/src/test/java/codegym/blog_app/BlogAppApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/customer-management/customer-management/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/customer-management/customer-management/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/customer-management/customer-management/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/customer-management/customer-management/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/customer-management/customer-management/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/customer-management/customer-management/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/customer-management/customer-management/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/customer-management/customer-management/src/main/java/codegym/customer_management/CustomerManagementApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/customer-management/customer-management/src/main/java/codegym/customer_management/controller/CustomerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/customer-management/customer-management/src/main/java/codegym/customer_management/model/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/customer-management/customer-management/src/main/java/codegym/customer_management/repository/CustomerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/customer-management/customer-management/src/main/java/codegym/customer_management/service/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/customer-management/customer-management/src/main/java/codegym/customer_management/service/CustomerServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/customer-management/customer-management/src/main/java/codegym/customer_management/service/GeneralService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/customer-management/customer-management/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s11-web-service/customer-management/customer-management/src/test/java/codegym/customer_management/CustomerManagementApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/src/main/java/codegym/blog_app/BlogAppApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/src/main/java/codegym/blog_app/controller/BlogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/src/main/java/codegym/blog_app/controller/CategoryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/src/main/java/codegym/blog_app/controller/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/src/main/java/codegym/blog_app/form/SearchForm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/src/main/java/codegym/blog_app/model/Blog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/src/main/java/codegym/blog_app/model/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/src/main/java/codegym/blog_app/repository/BlogRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/src/main/java/codegym/blog_app/repository/CategoryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/src/main/java/codegym/blog_app/service/BlogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/src/main/java/codegym/blog_app/service/CategoryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/src/main/java/codegym/blog_app/service/GeneralService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/src/main/java/codegym/blog_app/service/impl/BlogServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/src/main/java/codegym/blog_app/service/impl/CategoryServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/src/main/resources/messages.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/src/main/resources/static/jquery/jquery-3.6.3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/src/main/resources/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/blog-app/blog-app/src/test/java/codegym/blog_app/BlogAppApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/jquery-animate/jquery-animate/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/jquery-animate/jquery-animate/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/jquery-animate/jquery-animate/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/jquery-animate/jquery-animate/src/main/java/codegym/jquery_animate/JqueryAnimateApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/jquery-animate/jquery-animate/src/main/java/codegym/jquery_animate/controller/JqueryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/jquery-animate/jquery-animate/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/jquery-animate/jquery-animate/src/main/resources/templates/animate.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/jquery-animate/jquery-animate/src/main/resources/templates/hide-show.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/jquery-animate/jquery-animate/src/test/java/codegym/jquery_animate/JqueryAnimateApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/phone-management/phone-management/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/phone-management/phone-management/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/phone-management/phone-management/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/phone-management/phone-management/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/phone-management/phone-management/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/phone-management/phone-management/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/phone-management/phone-management/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/phone-management/phone-management/src/main/java/codegym/phone_management/PhoneManagementApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/phone-management/phone-management/src/main/java/codegym/phone_management/controller/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/phone-management/phone-management/src/main/java/codegym/phone_management/controller/PhoneController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/phone-management/phone-management/src/main/java/codegym/phone_management/model/Phone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/phone-management/phone-management/src/main/java/codegym/phone_management/repository/PhoneRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/phone-management/phone-management/src/main/java/codegym/phone_management/service/PhoneService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/phone-management/phone-management/src/main/java/codegym/phone_management/service/PhoneServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/phone-management/phone-management/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/phone-management/phone-management/src/main/resources/static/jquery/jquery-3.6.3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/phone-management/phone-management/src/main/resources/templates/edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/phone-management/phone-management/src/main/resources/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s12-jquery-ajax/phone-management/phone-management/src/test/java/codegym/phone_management/PhoneManagementApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s3-data-binding-form/employee-management/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s3-data-binding-form/medical-declaration/medical-declaration/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s3-data-binding-form/medical-declaration/medical-declaration/.idea/medical-declaration.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s3-data-binding-form/medical-declaration/medical-declaration/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s4-thymeleaf/customer-management/customer-management/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/m4s6-jpa/blog-application/blog-application/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/LibraryManagementApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/controller/BookController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/controller/BorrowCardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/controller/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/entity/Book.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/entity/BorrowCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/entity/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/formatter/StringToLocalDate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/repository/BookRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/repository/BorrowCardRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/repository/BorrowCardRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/repository/StudentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/service/BookService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/service/BorrowCardService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/service/GeneralService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/service/StudentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/service/impl/BookServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/service/impl/BorrowCardServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/service/impl/StudentServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/java/codegym/validation/BorrowCardValidation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/resources/messages.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/resources/static/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/resources/static/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/resources/static/js/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/resources/static/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/resources/static/js/jquery-3.6.3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/resources/templates/books/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/resources/templates/borrow-cards/create-and-update.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/resources/templates/borrow-cards/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/resources/templates/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/resources/templates/template/inital.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/main/resources/templates/template/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../module-4/trial-exam/library-management/src/test/java/codegym/LibraryManagementApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-control-flow-and-loop/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-control-flow-and-loop/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-control-flow-and-loop/.idea/typescript-control-flow-and-loop.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-control-flow-and-loop/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-control-flow-and-loop/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-control-flow-and-loop/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-control-flow-and-loop/src/main.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-control-flow-and-loop/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-is-prime/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-is-prime/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-is-prime/.idea/typescript-is-prime.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-is-prime/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-is-prime/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-is-prime/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-is-prime/src/main.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-is-prime/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/typescript-shape.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/IArea.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/IArea.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/IArea.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/main.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/main.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/rectangle.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/rectangle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/rectangle.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/shape.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/shape.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/shape.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IArea.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/rectangle.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shape.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-variable/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-variable/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-variable/.idea/typescript-variable.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-variable/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-variable/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-variable/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-variable/src/main.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typescript-variable/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../module-4/m4s3-data-binding-form/employee-management/.gradle/7.5.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../module-4/m4s3-data-binding-form/employee-management/.gradle/7.5.1/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../module-4/m4s3-data-binding-form/employee-management/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../module-4/m4s3-data-binding-form/employee-management/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../module-4/m4s3-data-binding-form/employee-management/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../module-4/m4s3-data-binding-form/employee-management/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../module-4/m4s3-data-binding-form/medical-declaration/medical-declaration/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../module-4/m4s3-data-binding-form/medical-declaration/medical-declaration/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../module-4/m4s4-thymeleaf/customer-management/customer-management/.gradle/7.5.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../module-4/m4s4-thymeleaf/customer-management/customer-management/.gradle/7.5.1/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../module-4/m4s4-thymeleaf/customer-management/customer-management/.gradle/7.5.1/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../module-4/m4s4-thymeleaf/customer-management/customer-management/.gradle/7.5.1/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../module-4/m4s4-thymeleaf/customer-management/customer-management/.gradle/7.5.1/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../module-4/m4s4-thymeleaf/customer-management/customer-management/.gradle/7.5.1/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../module-4/m4s4-thymeleaf/customer-management/customer-management/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../module-4/m4s4-thymeleaf/customer-management/customer-management/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../module-4/m4s4-thymeleaf/customer-management/customer-management/src/main/java/codegym/config/AppConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../module-4/m4s4-thymeleaf/customer-management/customer-management/src/main/java/codegym/config/AppConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../module-4/m4s6-jpa/blog-application/blog-application/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../module-4/m4s6-jpa/blog-application/blog-application/.idea/misc.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="ProjectId" id="2PogcvRAZeNZQC6STzWh3iKAK1h" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/codegym/exercises/A0722I1-Nguyen-Le-Khanh/module-5/m5s2-typescript/typescript-shape",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "E:\\codegym\\exercises\\A0722I1-Nguyen-Le-Khanh\\module-5\\m5s2-typescript\\typescript-shape\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\codegym\exercises\A0722I1-Nguyen-Le-Khanh\module-5\m5s2-typescript\typescript-shape" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e3ed906a-abaa-4ab2-b0fa-11596b79c051" name="Changes" comment="" />
+      <created>1684128930162</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684128930162</updated>
+      <workItem from="1684128931545" duration="1042000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/template/inital::headHTML('Borrow Card')}"></head>
+<body>
+<header th:replace="~{/template/layout::header('admin')}"></header>
+
+<main class="container mt-3">
+    <h3 class="text-center text-capitalize mb-2">Thống kê sách đang mượn</h3>
+
+    <div class="mb-2">
+        <form method="get" th:action="@{/borrow-cards}" class="d-flex justify-content-between" role="search">
+            <input class="form-control text-dark me-2 form-search" type="text" placeholder="Tên sách" aria-label="Search"
+                   id="bookNameSearch"
+                   name="bookNameSearch" th:value="${bookName}">
+            <input class="form-control text-dark me-2 form-search" type="text" placeholder="Tên học sinh" aria-label="Search"
+                   id="studentNameSearch"
+                   name="studentNameSearch" th:value="${studentName}">
+            <button id="btn-search" class="btn btn-primary" type="submit">Tìm kiếm</button>
+        </form>
+    </div>
+
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr class="text-center">
+            <th scope="col">Mã mượn sách</th>
+            <th scope="col">Tên sách</th>
+            <th scope="col">Tác giả</th>
+            <th scope="col">Tên học sinh</th>
+            <th scope="col">Lớp</th>
+            <th scope="col">Ngày mượn</th>
+            <th scope="col">Ngày trả</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody class="list-table-body">
+        <th:block th:each="b : ${borrowCards}" th:object="${b}">
+            <tr>
+                <td th:text="*{id}"></td>
+                <td th:text="*{book.name}"></td>
+                <td th:text="*{book.author}"></td>
+                <td th:text="*{student.name}"></td>
+                <td th:text="*{student.SClass}"></td>
+                <td th:text="*{borrowDate}"></td>
+                <td th:text="*{returnDate}"></td>
+                <td><a class="btn btn-primary btn-return-book"
+                       th:attr="data-id=*{id},data-student=*{student.name},data-book=*{book.name}">Trả sách</a></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</main>
+
+<footer th:replace="~{/template/layout::footer}"></footer>
+
+<section th:replace="~{/template/layout::modalDelete}"></section>
+<section th:replace="~{/template/layout::modalMessage}"></section>
+<section th:replace="~{/template/layout::toastMessage}"></section>
+
+<script th:inline="javascript">
+    $(document).ready(function () {
+        let message = [[${message}]]
+        showToast(message != null, message);
+        activeNavItem("borrow-cards");
+        let mess = [[${mess}]];
+        if (mess != null) {
+            showMessage(mess);
+        }
+
+        $(".btn-return-book").click(function () {
+            let id = $(this).data("id");
+            let studentName = $(this).data("student");
+            let bookName = $(this).data("book");
+            let modalBody = `Bạn ${studentName} thực hiện trả sách ${bookName}.`
+            let inputId = `<input type="hidden" id="borrowCardId" value="${id}">`
+            let modalDeleteBody = $("#modal-delete-body");
+            modalDeleteBody.html(modalBody);
+            modalDeleteBody.append(inputId);
+            let modalDeleteBootstrap = new bootstrap.Modal('#modal-delete');
+            modalDeleteBootstrap.show();
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/template/inital::headHTML('Books')}"></head>
+<body>
+<header th:replace="~{/template/layout::header('admin')}"></header>
+
+<main class="container mt-3">
+    <h3 class="text-center text-capitalize">Danh Sách Sách</h3>
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr class="text-center">
+            <th scope="col">Mã sách</th>
+            <th scope="col">Tên sách</th>
+            <th scope="col">Tác giả</th>
+            <th scope="col">Số lượng</th>
+            <th scope="col">Mô tả</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody class="list-table-body">
+        <th:block th:each="b : ${books}" th:object="${b}">
+            <tr>
+                <td th:text="*{id}"></td>
+                <td th:text="*{name}"></td>
+                <td th:text="*{author}"></td>
+                <td th:text="*{quantity}"></td>
+                <td th:text="*{detail}"></td>
+                <td><a class="btn btn-primary" th:href="@{/borrow-cards/create/__${b.id}__}">Borrow</a></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</main>
+
+<footer th:replace="~{/template/layout::footer}"></footer>
+
+<section th:replace="~{/template/layout::modalMessage}"></section>
+<section th:replace="~{/template/layout::toastMessage}"></section>
+
+<script th:inline="javascript">
+    $(document).ready(function () {
+        let message = [[${message}]]
+        showToast(message != null, message);
+        activeNavItem("books");
+        let mess = [[${mess}]];
+        if (mess != null) {
+            showMessage(mess);
+        }
+    })
+</script>
+</body>
+</html>

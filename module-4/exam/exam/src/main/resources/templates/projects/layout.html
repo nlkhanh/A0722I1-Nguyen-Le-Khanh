@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<aside class="navbar mt-1 px-2 sidebar bg-dark-subtle rounded-top float-start" th:fragment="sidebar">
+    <ul class="navbar-nav mt-1 flex-column">
+        <!--change-->
+        <li class="nav-item">
+            <a class="nav-link active" th:href="@{/list}">Danh sách</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" th:href="@{/create}">Thêm mới</a>
+        </li>
+        <!--change-->
+    </ul>
+</aside>
+</body>
+</html>

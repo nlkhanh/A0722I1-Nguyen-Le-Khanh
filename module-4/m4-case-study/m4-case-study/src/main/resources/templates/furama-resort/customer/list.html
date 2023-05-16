@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/template/inital::heading('Customer')}"></head>
+<body>
+<header th:replace="~{/template/layout::header('admin')}"></header>
+<aside th:replace="~{/furama-resort/customer/layout::sidebar}"></aside>
+
+<section class="position-relative content rounded-top bg-body-tertiary float-end clearfix overflow-y-scroll">
+    <h3 class="text-center text-capitalize">Danh sách khách hàng</h3>
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr class="text-center">
+            <th scope="col"><input onclick="checkAllRow()" type="checkbox" name="delete-all-ids" id="delete-all-ids"></th>
+            <th scope="col">#</th>
+            <th scope="col">Tên KH</th>
+            <th scope="col">Ngày sinh</th>
+            <th scope="col">Giới tính</th>
+            <th scope="col">Số CMND</th>
+            <th scope="col">Điện thoại</th>
+            <th scope="col">Email</th>
+            <th scope="col">Loại KH</th>
+            <th scope="col">Địa chỉ</th>
+        </tr>
+        </thead>
+        <tbody class="list-table-body">
+        <th:block th:each="c : ${customers}" th:object="${c}">
+            <tr>
+                <td><input type="checkbox" name="delete-ids" class="delete-ids" th:attr="data-name=*{name}"
+                           th:value="*{id}"></td>
+                <th scope="row" th:text="${cStat.count + customers.number*customers.size}"></th>
+                <td><a th:href="@{/furama-resort/customer/__${c.id}__/edit}" th:text="*{name}"></a></td>
+                <td th:text="${#temporals.format(c.dateOfBirth, 'dd/MM/yyyy')}"></td>
+                <td th:text="*{gender}"></td>
+                <td th:text="*{idCard}"></td>
+                <td th:text="*{phoneNumber}"></td>
+                <td th:text="*{email}"></td>
+                <td th:text="*{customerType.name}"></td>
+                <td th:text="*{address}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+    <button th:unless="${customers.totalPages == 0}" id="btn-delete-confirm" type="button" class="btn btn-outline-danger float-end" data-bs-toggle="modal"
+            data-bs-target="#modal-delete" onclick="showDeleteConfirmModal()">
+        Xóa
+    </button>
+    <nav th:replace="~{/furama-resort/customer/layout::paginationNav}"></nav>
+</section>
+
+<footer th:replace="~{/template/layout::footer}"></footer>
+
+<section th:replace="~{/template/layout::modalDelete}"></section>
+<section th:replace="~{/template/layout::toastMessage}"></section>
+
+<script th:inline="javascript">
+    $(document).ready(function () {
+        let currentPage = [[${customers.number}]]
+        let totalPages = [[${customers.totalPages}]]
+        let message = [[${message}]]
+        showToast(message != null, message);
+        activeNavItem("customer");
+        activePage(currentPage, totalPages);
+        search("customer");
+        deleteSubmit("customers");
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <script src="/jquery/jquery-3.6.3.js"></script>
+    <script>
+        $(document).ready(function () {
+            getBlogs();
+
+            $("#search-form").submit(function (e) {
+                e.preventDefault();
+                let search = $("#search-input").val();
+                getBlogs(search);
+            })
+        })
+
+
+        function getBlogs(search) {
+            if (search === undefined) {
+                search = "";
+            }
+            $.ajax({
+                type: "GET",
+                url: "/api/blogs?search=" + search,
+                success: function (response) {
+                    displayBlogs(response, search);
+                }
+            })
+        }
+
+        function displayAllBlogs(search) {
+            if (search === undefined) {
+                search = "";
+            }
+            $.ajax({
+                type: "GET",
+                url: "/api/blogs?search=" + search,
+                success: function (response) {
+                    let content = "";
+                    for (let i = 0; i < response.length; i++) {
+                        content += getBlog(i+1, response[i]);
+                    }
+                    $("#blogs").html(content);
+                    $("#btn-see-more-wrap").html("");
+                }
+            })
+        }
+
+        function displayBlogs(blogs, search) {
+            let content = "";
+            if (blogs.length <= 20) {
+                for (let i = 0; i < blogs.length; i++) {
+                    content += getBlog(i+1 ,blogs[i]);
+                }
+            } else {
+                for (let i = 0; i < 20; i++) {
+                    content += getBlog(i+1, blogs[i]);
+                }
+                let btnSeeMore = "<button onclick=showAll('" + search + "') id='btn-see-more'>See more</button";
+                $("#btn-see-more-wrap").html(btnSeeMore);
+            }
+            $("#blogs").html(content);
+        }
+
+        function getBlog(no, blog) {
+            return `<tr>
+                        <td>${no}</td>
+                        <td>${blog.author}</td>
+                        <td>${blog.content}</td>
+                        <td>${blog.category.name}</td>
+                    </tr>`
+        }
+
+        function showAll(search) {
+            displayAllBlogs(search);
+        }
+    </script>
+</head>
+<body>
+<form id="search-form" action="#">
+    <input type="text" id="search-input" name="search-input" placeholder="search">
+    <input type="submit" value="Search">
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>No.</th>
+        <th>Author</th>
+        <th>Content</th>
+        <th>Category</th>
+    </tr>
+    </thead>
+    <tbody id="blogs"></tbody>
+</table>
+<div id="btn-see-more-wrap"></div>
+</body>
+</html>

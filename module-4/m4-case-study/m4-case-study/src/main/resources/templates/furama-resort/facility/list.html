@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/template/inital::heading('Facility')}"></head>
+<body>
+<header th:replace="~{/template/layout::header('admin')}"></header>
+<aside th:replace="~{/furama-resort/facility/layout::sidebar}"></aside>
+
+<section class="position-relative content rounded-top bg-body-tertiary float-end clearfix overflow-y-scroll">
+    <h3 class="text-center text-capitalize">Danh sách dịch vụ</h3>
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr class="text-center">
+            <th scope="col"><input type="checkbox" onclick="checkAllRow()" name="delete-all-ids" id="delete-all-ids"></th>
+            <th scope="col">#</th>
+            <th scope="col">Tên DV</th>
+            <th scope="col">Kiểu DV</th>
+            <th scope="col">Diện tích</th>
+            <th scope="col">Chi phí</th>
+            <th scope="col">SL tối đa</th>
+            <th scope="col">Kiểu thuê</th>
+            <th scope="col">Tiêu chuẩn phòng</th>
+            <th scope="col">Tiện nghi khác</th>
+            <th scope="col">DT hồ bơi</th>
+            <th scope="col">Số tầng</th>
+            <th scope="col">DV miễn phí</th>
+        </tr>
+        </thead>
+        <tbody class="list-table-body">
+        <th:block th:each="f : ${facilities}" th:object="${f}">
+            <tr>
+                <td><input type="checkbox" name="delete-ids" class="delete-ids" th:attr="data-name=*{name}"
+                           th:value="*{id}"></td>
+                <th scope="row" th:text="${fStat.count + facilities.number*facilities.size}"></th>
+                <td><a th:href="@{/furama-resort/facility/__${f.id}__/edit}" th:text="*{name}"></a></td>
+                <td th:text="*{facilityType.name}"></td>
+                <td th:text="*{area}"></td>
+                <td th:text="${#numbers.formatDecimal(f.cost, 0, 1)}"></td>
+                <td th:text="*{maxPeople}"></td>
+                <td th:text="*{rentType.name}"></td>
+                <td th:text="*{standardRoom}"></td>
+                <td th:text="*{descriptionOtherConvenience}"></td>
+                <td th:text="*{poolArea}"></td>
+                <td th:text="*{numberOfFloors}"></td>
+                <td th:text="*{facilityFree}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+    <button th:unless="${facilities.totalPages == 0}" id="btn-delete-confirm" type="button" class="btn btn-outline-danger float-end" data-bs-toggle="modal"
+            data-bs-target="#modal-delete" onclick="showDeleteConfirmModal()">
+        Xóa
+    </button>
+    <nav th:replace="~{/furama-resort/facility/layout::paginationNav}"></nav>
+</section>
+
+<footer th:replace="~{/template/layout::footer}"></footer>
+
+<section th:replace="~{/template/layout::modalDelete}"></section>
+<section th:replace="~{/template/layout::toastMessage}"></section>
+
+<script th:inline="javascript">
+    $(document).ready(function () {
+        let currentPage = [[${facilities.number}]]
+        let totalPages = [[${facilities.totalPages}]]
+        let message = [[${message}]]
+        showToast(message != null, message);
+        activeNavItem("service");
+        activePage(currentPage, totalPages);
+        search("facility");
+        deleteSubmit("facilities");
+    })
+</script>
+</body>
+</html>

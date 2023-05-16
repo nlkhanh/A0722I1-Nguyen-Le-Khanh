@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<aside class="navbar mt-1 px-2 sidebar bg-dark-subtle rounded-top float-start" th:fragment="sidebar">
+    <ul class="navbar-nav flex-column mt-1">
+        <li class="nav-item">
+            <a class="nav-link active" th:href="@{/furama-resort/contract}">Danh sách</a>
+        </li>
+    </ul>
+</aside>
+
+<section th:fragment="createAndUpdate">
+    <div class="modal fade" id="modal-create-update-contract" data-bs-backdrop="static" data-bs-keyboard="false"
+         tabindex="-1"
+         aria-labelledby="modal-create-update-contract" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Thêm mới hợp đồng</h1>
+                    <button type="button" class="btn-close btn-hide-modal" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="contract-form">
+                        <div class="mb-3">
+                            <label for="startDate" class="form-label">Ngày bắt đầu:</label>
+                            <input type="datetime-local" class="form-control" id="startDate" name="startDate">
+                        </div>
+                        <div class="mb-3">
+                            <label for="endDate" class="form-label">Ngày kết thúc:</label>
+                            <input type="datetime-local" class="form-control" id="endDate" name="endDate">
+                        </div>
+                        <div class="mb-3">
+                            <label for="deposit" class="form-label">Tiền gửi:</label>
+                            <input type="text" class="form-control" name="deposit" id="deposit">
+                        </div>
+                        <div class="mb-3">
+                            <label for="totalMoney" class="form-label">Tổng tiền:</label>
+                            <input type="text" class="form-control" disabled name="totalMoney" id="totalMoney">
+                        </div>
+                        <div class="mb-3">
+                            <label for="customer-id" class="form-label">Khách hàng thuê:</label>
+                            <select class="form-select" id="customer-id" name="customer-id"></select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="facility" class="form-label">Dịch vụ:</label>
+                            <select onchange="calTotalMoney()" class="form-select" id="facility"
+                                    name="facility"></select>
+                        </div>
+                    </form>
+                    <button onclick="showCreateContractDetailModal()" type="button"
+                            class="btn-create-contract-detail btn btn-primary me-2 mb-3" data-bs-toggle="modal"
+                            data-bs-target="#modal-create-contract-detail">
+                        +
+                    </button>
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr class="text-center">
+                            <th scope="col">Dịch vụ</th>
+                            <th scope="col">Đơn vị tính</th>
+                            <th scope="col">Đơn giá</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Thành tiền</th>
+                        </tr>
+                        </thead>
+                        <tbody class="list-table-body"></tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy bỏ</button>
+                    <button type="button" onclick="addContract()" class="btn btn-danger btn-submit">Tạo hợp đồng
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section th:fragment="createContractDetail">
+    <div class="modal fade" id="modal-create-contract-detail" data-bs-backdrop="static" data-bs-keyboard="false"
+         tabindex="-1"
+         aria-labelledby="modal-create-contract-detail" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Thêm dịch vụ đi kèm</h1>
+                    <button type="button" class="btn-close btn-hide-modal btn-close-modal" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-hide-modal btn-return-create-contract-modal" data-bs-toggle="modal"
+                            data-bs-target="#modal-create-update-contract"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="contract-detail-form">
+                        <input type="hidden" id="contract" name="contract">
+                        <div class="mb-3">
+                            <label for="attachFacility" class="form-label">Chọn dịch vụ:</label>
+                            <select class="form-select" onchange="showAttachFacilityDetail()" id="attachFacility"
+                                    name="attachFacility"></select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="attachFacilityUnit" class="form-label">Đơn vị tính:</label>
+                            <input type="text" class="form-control" readonly id="attachFacilityUnit"
+                                   name="attachFacilityUnit">
+                        </div>
+                        <div class="mb-3">
+                            <label for="attachFacilityCost" class="form-label">Đơn giá:</label>
+                            <input type="text" class="form-control" readonly id="attachFacilityCost"
+                                   name="attachFacilityCost">
+                        </div>
+                        <div class="mb-3">
+                            <label for="quantity" class="form-label">Số lượng:</label>
+                            <input type="text" class="form-control" id="quantity" name="quantity">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-close-modal" data-bs-dismiss="modal">Hủy bỏ</button>
+                    <button type="button" class="btn btn-secondary btn-return-create-contract-modal" data-bs-toggle="modal"
+                            data-bs-target="#modal-create-update-contract">Hủy bỏ</button>
+                    <button type="button" class="btn btn-danger btn-submit" onclick="addContractDetail()">Thêm</button>
+                    <button type="button" class="btn btn-danger btn-return-create-contract-modal" data-bs-toggle="modal"
+                            data-bs-target="#modal-create-update-contract" onclick="returnCreateContractModal()">Thêm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section th:fragment="showContactDetail">
+    <div class="modal fade" id="modal-show-contract-detail" data-bs-backdrop="static" data-bs-keyboard="false"
+         tabindex="-1"
+         aria-labelledby="modal-show-contract-detail" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Danh sách dịch vụ đi kèm</h1>
+                    <button type="button" class="btn-close btn-hide-modal" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body overflow-y-scroll">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">Dịch vụ</th>
+                            <th scope="col">Đơn vị tính</th>
+                            <th scope="col">Đơn giá</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Thành tiền</th>
+                        </tr>
+                        </thead>
+                        <tbody class="list-table-body"></tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy bỏ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<nav th:fragment="paginationNav" class="pagination-wrap d-flex justify-content-center position-absolute w-100"
+     aria-label="Page navigation">
+    <ul class="pagination" th:unless="${contractDtos.totalPages == 0}">
+        <li class="page-item"><a class="page-link page-link-previous"
+                                 th:href="@{'/furama-resort/contract'(page=${contractDtos.number - 1}, search=${search})}">Cũ
+            hơn</a>
+        </li>
+        <th:block th:each="p : ${#numbers.sequence(1, contractDtos.totalPages)}">
+            <li class="page-item">
+                <a th:text="${p}" th:id="'page-link-' + ${p - 1}" class="page-link"
+                   th:href="@{'/furama-resort/contract'(page=${p - 1}, search=${search})}"></a>
+            </li>
+        </th:block>
+        <li class="page-item"><a class="page-link page-link-next"
+                                 th:href="@{'/furama-resort/contract'(page=${contractDtos.number + 1}, search=${search})}">Mới
+            hơn</a>
+        </li>
+    </ul>
+</nav>
+</body>
+</html>

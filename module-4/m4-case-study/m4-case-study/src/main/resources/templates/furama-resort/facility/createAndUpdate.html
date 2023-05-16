@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/template/inital::heading('Facility')}"></head>
+<body>
+<header th:replace="~{/template/layout::header('admin')}"></header>
+<aside th:replace="~{/furama-resort/facility/layout::sidebar}"></aside>
+
+<section class="content rounded-top bg-body-tertiary float-end clearfix overflow-y-scroll">
+    <h3 class="text-center text-capitalize" th:text="${title}"></h3>
+    <form id="facility-form" th:action="@{/furama-resort/facility/save}" method="post" th:object="${facility}" class="pe-5" onsubmit="submitFacilityForm()">
+        <input type="hidden" th:field="*{id}" th:value="*{id}">
+        <div>
+            <div class="mb-3">
+                <label for="name" class="form-label">Tên dịch vụ:</label>
+                <input type="text" class="form-control" th:field="*{name}" th:value="*{name}">
+            </div>
+            <div class="mb-3">
+                <label for="facilityType" class="form-label">Kiểu dịch vụ:</label>
+                <select class="form-select" onchange="setFacilityTypeForm()" th:field="*{facilityType}" th:value="*{facilityType.id}">
+                    <option th:each="fT : ${facilityTypes}" th:value="${fT.id}" th:text="${fT.name}"></option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="area" class="form-label">Diện tích:</label>
+                <input type="text" class="form-control" th:field="*{area}" th:value="*{area}">
+            </div>
+            <div class="mb-3">
+                <label for="cost" class="form-label">Chi phí:</label>
+                <input type="text" class="form-control" th:field="*{cost}" th:value="*{cost}">
+            </div>
+            <div class="mb-3">
+                <label for="maxPeople" class="form-label">SL tối đa:</label>
+                <input type="text" class="form-control" th:field="*{maxPeople}" th:value="*{maxPeople}">
+            </div>
+            <div class="mb-3">
+                <label for="rentType" class="form-label">Kiểu thuê:</label>
+                <select class="form-select" th:field="*{rentType}" th:value="*{rentType.id}">
+                    <option th:each="rT : ${rentTypes}" th:value="${rT.id}" th:text="${rT.name}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="villa house">
+            <div class="mb-3">
+                <label for="standardRoom" class="form-label">Tiêu chuẩn phòng:</label>
+                <input type="text" class="form-control" th:field="*{standardRoom}" th:value="*{standardRoom}">
+            </div>
+            <div class="mb-3">
+                <label for="descriptionOtherConvenience" class="form-label">Tiện nghi khác:</label>
+                <input type="text" class="form-control" th:field="*{descriptionOtherConvenience}" th:value="*{descriptionOtherConvenience}">
+            </div>
+            <div class="mb-3">
+                <label for="numberOfFloors" class="form-label">Số tầng:</label>
+                <input type="text" class="form-control" th:field="*{numberOfFloors}" th:value="*{numberOfFloors}">
+            </div>
+        </div>
+        <div class="villa mb-3">
+            <label for="poolArea" class="form-label">DT hồ bơi:</label>
+            <input type="text" class="form-control" th:field="*{poolArea}" th:value="*{poolArea}">
+        </div>
+        <div class="room mb-3">
+            <label for="facilityFree" class="form-label">Dịch vụ miễn phí:</label>
+            <input type="text" class="form-control" th:field="*{facilityFree}" th:value="*{facilityFree}">
+        </div>
+        <button type="submit" class="btn btn-primary float-end" th:text="${buttonSubmitName}"></button>
+    </form>
+</section>
+
+
+<div th:replace="~{/template/layout::footer}"></div>
+<div th:replace="~{/template/inital::script}"></div>
+<script>
+    $(document).ready(function () {
+        let facilityType = [[${facility.facilityType.id}]]
+        activeNavItem("service");
+        setFacilityTypeForm(facilityType);
+    })
+</script>
+</body>
+</html>

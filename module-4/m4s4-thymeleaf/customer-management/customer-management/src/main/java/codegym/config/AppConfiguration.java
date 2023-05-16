@@ -19,7 +19,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 @Configuration
 @EnableWebMvc
 @ComponentScan("codegym")
-public class AppConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware, WebMvcConfigurer {
+public class AppConfiguration implements ApplicationContextAware, WebMvcConfigurer {
     private ApplicationContext applicationContext;
 
     @Override
