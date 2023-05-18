@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <h3>Angular Calculator</h3>
+  <div class="input-group mb-3">
+    <label for="first-number">First Number:</label>
+    <input #firstNumber
+           type="number"
+           name="first-number" id="first-number" class="form-control" placeholder="First number">
+  </div>
+  <div class="input-group mb-3">
+    <label for="second-number">Second Number:</label>
+    <input #secondNumber
+           type="number"
+           name="second-number" id="second-number" class="form-control" placeholder="Second number">
+  </div>
+  <button type="button" class="btn btn-outline-primary"
+          (click)="calculate(firstNumber.value, secondNumber.value, 'plus')">Plus
+  </button>
+  <button type="button" class="btn btn-outline-secondary"
+          (click)="calculate(firstNumber.value, secondNumber.value, 'subtract')">Subtract
+  </button>
+  <button type="button" class="btn btn-outline-success"
+          (click)="calculate(firstNumber.value, secondNumber.value, 'multiple')">Multiple
+  </button>
+  <button type="button" class="btn btn-outline-danger"
+          (click)="calculate(firstNumber.value, secondNumber.value, 'division')">Division
+  </button>
+  <p>{{result}}</p>
+</div>
+

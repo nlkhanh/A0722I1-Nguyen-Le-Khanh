@@ -1,0 +1,9 @@
+<div class="input-group mb-3">
+  <label for="color-picker" class="me-4">Color Picker: </label>
+  <input
+    type="color"
+    name="color-picker" id="color-picker" class=""
+    [(ngModel)]="color">
+</div>
+
+<p [style.color]="color">Current color (HEX): {{color}}</p>
