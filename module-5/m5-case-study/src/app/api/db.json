@@ -1,0 +1,65 @@
+{
+  "customers": [
+    {
+      "id": 1,
+      "customerType": {
+        "id": 2,
+        "name": "Silver"
+      },
+      "fullName": "Nguyễn Văn A",
+      "birthday": "2000-01-01T00:00:00.000Z",
+      "idCard": 123123,
+      "phone": 123456789,
+      "email": "nva@gmail.com",
+      "address": "Đà Nẵng"
+    },
+    {
+      "id": 2,
+      "customerType": {
+        "id": 5,
+        "name": "Platinum"
+      },
+      "fullName": "Nguyễn Văn A",
+      "birthday": "2000-01-01T00:00:00.000Z",
+      "idCard": 123123123,
+      "phone": 123456789,
+      "email": "nva@gmail.com",
+      "address": "Đà Nẵng"
+    },
+    {
+      "id": 3,
+      "customerType": {
+        "id": 2,
+        "name": "Silver"
+      },
+      "fullName": "Huy",
+      "birthday": "2000-01-01T00:00:00.000Z",
+      "idCard": 123123123,
+      "phone": 123123213,
+      "email": "huy@gmail.com",
+      "address": "Đà Nẵng"
+    }
+  ],
+  "customerTypes": [
+    {
+      "id": 1,
+      "name": "Member"
+    },
+    {
+      "id": 2,
+      "name": "Silver"
+    },
+    {
+      "id": 3,
+      "name": "Gold"
+    },
+    {
+      "id": 4,
+      "name": "Diamond"
+    },
+    {
+      "id": 5,
+      "name": "Platinum"
+    }
+  ]
+}

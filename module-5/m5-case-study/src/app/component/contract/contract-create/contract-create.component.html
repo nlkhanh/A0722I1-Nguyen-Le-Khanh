@@ -1,0 +1,56 @@
+<h3 class="display-6 text-center">Thêm mới hợp đồng</h3>
+<form class="clearfix">
+    <div class="mb-3">
+      <label for="employee" class="form-label">Nhân viên tạo hợp đồng:</label>
+      <select class="form-select" id="employee" name="employee">
+        <option selected>-- Chọn nhân viên --</option>
+        <option value="1">Nhân viên 1</option>
+        <option value="2">Nhân viên 2</option>
+        <option value="3">Nhân viên 3</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="customer" class="form-label">Khách hàng làm hợp đồng:</label>
+      <select class="form-select" id="customer" name="customer">
+        <option selected>-- Chọn khách hàng --</option>
+        <option value="1">Khách hàng 1</option>
+        <option value="2">Khách hàng 2</option>
+        <option value="3">Khách hàng 3</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="facility" class="form-label">Dịch vụ thuê:</label>
+      <select class="form-select" id="facility" name="facility">
+        <option selected>-- Chọn dịch vụ --</option>
+        <option value="1">Dịch vụ 1</option>
+        <option value="2">Dịch vụ 2</option>
+        <option value="3">Dịch vụ 3</option>
+      </select>
+    </div>
+
+  <div class="mb-3">
+    <label for="start-date" class="form-label">Ngày bắt đầu:</label>
+    <input type="date" class="form-control" id="start-date" name="start-date">
+  </div>
+
+  <div class="mb-3">
+    <label for="end-date" class="form-label">Ngày kết thúc:</label>
+    <input type="date" class="form-control" id="end-date" name="end-date">
+  </div>
+
+  <div class="mb-3">
+    <label for="deposit" class="form-label">Tiền đặt cọc:</label>
+    <input type="number" class="form-control" id="deposit" placeholder="Nhập tiền đặt cọc..." name="deposit">
+  </div>
+
+  <div class="mb-3">
+    <label for="total-money" class="form-label">Tổng tiền:</label>
+    <input readonly type="number" class="form-control" id="total-money" placeholder="Tổng tiền..." name="total-money">
+  </div>
+
+  <button type="button" class="btn btn-primary float-start" data-bs-toggle="modal" data-bs-target="#modal">Thêm hợp đồng chi tiết</button>
+  <button type="button" class="btn btn-primary float-end">Thêm</button>
+</form>
+

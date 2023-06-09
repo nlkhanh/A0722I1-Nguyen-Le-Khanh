@@ -1,0 +1,69 @@
+<h3 class="display-6 text-center">Thêm mới dịch vụ</h3>
+<form class="clearfix">
+  <div class="mb-3">
+    <div class="mb-3">
+      <label for="facility-type" class="form-label">Loại dịch vụ:</label>
+      <select class="form-select" id="facility-type" name="facility-type">
+        <option selected>-- Chọn loại dịch vụ --</option>
+        <option value="1">Villa</option>
+        <option value="2">House</option>
+        <option value="3">Room</option>
+      </select>
+    </div>
+
+    <label for="name" class="form-label">Tên dịch vụ:</label>
+    <input type="text" class="form-control" id="name" placeholder="Nhập tên dịch vụ..." name="name">
+  </div>
+
+  <div class="mb-3">
+    <label for="area" class="form-label">Diện tích:</label>
+    <input type="number" class="form-control" id="area" placeholder="Nhập diện tích..." name="area">
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="form-label">Chi phí thuê:</label>
+    <input type="number" class="form-control" id="price" placeholder="Chi phí thuê..." name="price">
+  </div>
+
+  <div class="mb-3">
+    <label for="max-people" class="form-label">Số người tối đa:</label>
+    <input type="number" class="form-control" id="max-people" placeholder="Nhập số người tối đa..." name="max-people">
+  </div>
+
+  <div class="mb-3">
+    <label for="rent-type" class="form-label">Kiểu thuê:</label>
+    <select class="form-select" id="rent-type" name="rent-type">
+      <option selected>-- Chọn kiểu thuê --</option>
+      <option value="1">Theo giờ</option>
+      <option value="2">Theo ngày</option>
+      <option value="3">Theo tháng</option>
+    </select>
+  </div>
+
+  <div class="mb-3 villa house">
+    <label for="room-standard" class="form-label">Tiêu chuẩn phòng:</label>
+    <input type="text" class="form-control" id="room-standard" placeholder="Nhập tiêu chuẩn phòng..." name="room-standard">
+  </div>
+
+  <div class="mb-3 villa house">
+    <label for="number-of-floor" class="form-label">Số tầng:</label>
+    <input type="number" class="form-control" id="number-of-floor" placeholder="Nhập số tầng..." name="number-of-floor">
+  </div>
+
+  <div class="mb-3 villa house">
+    <label for="other-convenience" class="form-label">Tiện nghi khác:</label>
+    <input type="text" class="form-control" id="other-convenience" placeholder="Mô tả tiện nghi khác..." name="other-convenience">
+  </div>
+
+  <div class="mb-3 villa">
+    <label for="pool-area" class="form-label">Diện tích hồ bơi:</label>
+    <input type="number" class="form-control" id="pool-area" placeholder="Nhập diện tích hồ bơi..." name="pool-area">
+  </div>
+
+  <div class="mb-3 room">
+    <label for="free-service" class="form-label">Dịch vụ miễn phí đi kèm:</label>
+    <input type="text" class="form-control" id="free-service" placeholder="Nhập dịch vụ miễn phí đi kèm..." name="free-service">
+  </div>
+
+  <button type="button" class="btn btn-primary float-end">Thêm</button>
+</form>

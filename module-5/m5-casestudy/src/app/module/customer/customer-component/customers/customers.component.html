@@ -1,0 +1,97 @@
+<h3 class="display-6 text-center">Danh sách khách hàng</h3>
+
+<div class="clearfix d-flex justify-content-between mb-4">
+  <div class="flex-grow-1">
+    <form class="d-flex align-items-end" role="search">
+      <div class="me-2">
+        <label for="name-input" class="form-label">Nhập tên khách hàng: </label>
+        <input type="text" id="name-input" class="form-control"
+               aria-label="Search">
+      </div>
+      <div class="me-2">
+        <label for="start-date-input" class="form-label">Ngày sinh bắt đầu: </label>
+        <input type="date" id="start-date-input" class="form-control"
+               aria-label="Search">
+      </div>
+      <div class="me-2">
+        <label for="end-date-input" class="form-label">Ngày sinh kết thúc: </label>
+        <input type="date" id="end-date-input" class="form-control"
+               aria-label="Search">
+      </div>
+      <button class="btn btn-outline-primary" type="button" (click)="search()">Tìm kiếm</button>
+    </form>
+  </div>
+  <div class="d-flex align-items-end">
+    <button class="btn btn-outline-primary" (click)="showCreateForm()">Thêm mới
+    </button>
+  </div>
+</div>
+
+<table class="table table-bordered">
+  <thead>
+  <tr class="text-center">
+    <th scope="col">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="ids" (click)="idsClick()">
+      </div>
+    </th>
+    <th scope="col">Họ tên</th>
+    <th scope="col">Ngày sinh</th>
+    <th scope="col">Số CMND/ CCCD</th>
+    <th scope="col">Điện thoại</th>
+    <th scope="col">Email</th>
+    <th scope="col">Địa chỉ</th>
+    <th scope="col">Loại khách hàng</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let customer of customers | paginate: { itemsPerPage: 2, currentPage: p }">
+    <td>
+      <div class="form-check">
+        <input class="form-check-input" name="ids-item" [value]="customer.id" type="checkbox"
+               (click)="idsItemClick()" [(ngModel)]="customer.isCheck">
+      </div>
+    </td>
+    <td>{{customer.name}}</td>
+    <td>{{customer.birthday | date: 'dd/MM/yyyy'}}</td>
+    <td>{{customer.idCard}}</td>
+    <td>{{customer.phone}}</td>
+    <td>{{customer.email}}</td>
+    <td>{{customer.address}}</td>
+    <td>{{customer.customerType.name}}</td>
+    <td>
+      <button class="btn btn-outline-primary float-end" (click)="showUpdateForm(customer.id)">Chỉnh sửa</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<pagination-controls class="float-end" (pageChange)="p = $event"
+                     previousLabel="Trước"
+                     nextLabel="Sau"></pagination-controls>
+<button class="btn btn-outline-danger" (click)="showModalDelete()" data-bs-toggle="modal"
+        data-bs-target="#modal-delete">Xóa tất cả
+</button>
+
+<!--Modal Delete-->
+<div class="modal fade" id="modal-delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modal-label">Xác nhận xóa</h1>
+        <button type="button" class="btn-close" id="btn-close-modal" data-bs-dismiss="modal" aria-label="Close"
+                (click)="cancelDelete()"></button>
+      </div>
+      <div class="modal-body">
+        {{modalBody}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modal-btn-cancel"
+                (click)="cancelDelete()">Hủy bỏ
+        </button>
+        <button type="button" class="btn btn-primary" id="modal-btn-delete" (click)="delete()">Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>

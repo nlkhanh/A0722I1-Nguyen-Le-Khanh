@@ -1,0 +1,85 @@
+<h3 class="display-6 text-center">Danh sách nhân viên</h3>
+
+<div class="clearfix">
+  <app-search-form></app-search-form>
+  <button class="btn btn-outline-danger float-end">Xóa tất cả</button>
+</div>
+
+
+<table class="table table-bordered">
+  <thead>
+  <tr class="text-center">
+    <th scope="col">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="ids">
+      </div>
+    </th>
+    <th scope="col">Họ tên</th>
+    <th scope="col">Ngày sinh</th>
+    <th scope="col">Số CMND/ CCCD</th>
+    <th scope="col">Điện thoại</th>
+    <th scope="col">Email</th>
+    <th scope="col">Địa chỉ</th>
+    <th scope="col">Loại khách hàng</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>
+      <div class="form-check">
+        <input class="form-check-input ids-item" name="ids-item" type="checkbox">
+      </div>
+    </td>
+    <td>Khách hàng 1</td>
+    <td>02/09/1990</td>
+    <td>021212545</td>
+    <td>0325646465</td>
+    <td>khachhang1@gmail.com</td>
+    <td>Đà Nẵng</td>
+    <td>Member</td>
+    <td>
+      <button class="btn btn-outline-primary float-end">Chỉnh sửa</button>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div class="form-check">
+        <input class="form-check-input ids-item" name="ids-item" type="checkbox">
+      </div>
+    </td>
+    <td>Khách hàng 2</td>
+    <td>02/08/1997</td>
+    <td>078545223</td>
+    <td>0325254125</td>
+    <td>khachhang2@gmail.com</td>
+    <td>Quảng Nam</td>
+    <td>Gold</td>
+    <td>
+      <button class="btn btn-outline-primary float-end">Chỉnh sửa</button>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div class="form-check">
+        <input class="form-check-input ids-item" name="ids-item" type="checkbox">
+      </div>
+    </td>
+    <td>Khách hàng 3</td>
+    <td>02/012/2000</td>
+    <td>021666321</td>
+    <td>0325141212</td>
+    <td>khachhang3@gmail.com</td>
+    <td>Huế</td>
+    <td>Silver</td>
+    <td>
+      <button class="btn btn-outline-primary float-end">Chỉnh sửa</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+
+<app-pagination></app-pagination>

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +7,4 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'm5-case-study';
-  const;
 }

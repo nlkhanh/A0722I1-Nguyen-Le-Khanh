@@ -1,0 +1,33 @@
+<form class="clearfix">
+  <div class="mb-3">
+    <label for="contract" class="form-label">Số hợp đồng:</label>
+    <input type="number" class="form-control" id="contract" [value]="contractId" readonly name="contract">
+  </div>
+
+  <div class="mb-3">
+    <label for="attach-facility" class="form-label">Dịch vụ đi kèm:</label>
+    <select class="form-select" id="attach-facility" name="attach-facility">
+      <option selected>-- Chọn dịch vụ đi kèm --</option>
+      <option value="1">Massage</option>
+      <option value="2">Karaoke</option>
+      <option value="3">Xe điện tham quan</option>
+      <option value="4">Buffet sáng</option>
+      <option value="5">Beer</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="unit-cost" class="form-label">Đơn giá:</label>
+    <input type="number" class="form-control" id="unit-cost" readonly name="unit-cost" placeholder="Vui lòng chọn dịch vụ đi kèm.">
+  </div>
+
+  <div class="mb-3">
+    <label for="unit" class="form-label">Số lượng:</label>
+    <input type="text" readonly class="form-control" id="unit" name="unit" placeholder="Vui lòng chọn dịch vụ đi kèm.">
+  </div>
+
+  <div class="mb-3">
+    <label for="quantity" class="form-label">Số lượng:</label>
+    <input type="number" class="form-control" id="quantity" placeholder="Nhập số lượng..." name="quantity">
+  </div>
+</form>

@@ -1,0 +1,88 @@
+<h3 class="display-6 text-center">{{formCreateUpdateTitle}}</h3>
+<form class="clearfix" [formGroup] = 'createUpdateForm' (ngSubmit)="submit()">
+  <div class="mb-3">
+    <label for="id" class="form-label">ID:</label>
+    <input type="text" readonly class="form-control disabled" id="id" formControlName="id">
+  </div>
+
+  <div class="mb-3">
+    <label for="name" class="form-label">Họ tên:</label>
+    <input type="text" class="form-control" id="name" placeholder="Nhập họ tên..." name="name" formControlName="name">
+  </div>
+
+  <div class="mb-3">
+    <label for="position" class="form-label">Vị trí: </label>
+    <select class="form-select" id="position" formControlName="position">
+      <option selected disabled>-- Chọn vị trí --</option>
+      <option *ngFor="let ps of positions" [value]="ps.id">{{ps.name}}</option>
+    </select>
+  </div>
+  <div class="alert alert-danger"
+       *ngIf="createUpdateForm.get('position').invalid && createUpdateForm.get('position').touched">
+    Chưa chọn vị trí.
+  </div>
+
+  <div class="mb-3">
+    <label for="division" class="form-label">Bộ phận: </label>
+    <select class="form-select" id="division" formControlName="division">
+      <option selected disabled>-- Chọn bộ phận --</option>
+      <option *ngFor="let ds of divisions" [value]="ds.id">{{ds.name}}</option>
+    </select>
+  </div>
+  <div class="alert alert-danger"
+       *ngIf="createUpdateForm.get('division').invalid && createUpdateForm.get('division').touched">
+    Chưa chọn bộ phận.
+  </div>
+
+  <div class="mb-3">
+    <label for="educationDegree" class="form-label">Trình độ: </label>
+    <select class="form-select" id="educationDegree" formControlName="educationDegree">
+      <option selected disabled>-- Chọn trình độ --</option>
+      <option *ngFor="let ed of educationDegrees" [value]="ed.id">{{ed.name}}</option>
+    </select>
+  </div>
+  <div class="alert alert-danger"
+       *ngIf="createUpdateForm.get('educationDegree').invalid && createUpdateForm.get('educationDegree').touched">
+    Chưa chọn trình độ.
+  </div>
+
+  <div class="mb-3">
+    <label for="birthday" class="form-label">Ngày sinh:</label>
+    <input type="date" class="form-control" id="birthday" name="birthday" formControlName="birthday">
+  </div>
+  <div class="alert alert-danger"
+       *ngIf="createUpdateForm.hasError('babyBoy', 'birthday') && createUpdateForm.get('birthday').touched">
+    Chưa đủ tuổi pé ơi.
+  </div>
+
+  <div class="mb-3">
+    <label for="id-card" class="form-label">Số CMND/ CCCD:</label>
+    <input type="text" class="form-control" id="id-card" placeholder="Nhập số CMND/ CCCD..." name="id-card" formControlName="idCard">
+  </div>
+
+  <div class="mb-3">
+    <label for="salary" class="form-label">Lương:</label>
+    <input type="number" class="form-control" id="salary" placeholder="Nhập lương..." name="salary" formControlName="salary">
+  </div>
+
+  <div class="mb-3">
+    <label for="phone" class="form-label">Số điện thoại:</label>
+    <input type="text" class="form-control" id="phone" placeholder="Nhập số điện thoại..." name="phone" formControlName="phone">
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email:</label>
+    <input type="email" class="form-control" id="email" placeholder="Nhập email..." name="email" formControlName="email">
+  </div>
+  <div class="alert alert-danger"
+       *ngIf="createUpdateForm.get('email').invalid && createUpdateForm.get('email').touched">
+    Email chưa đúng định dạng.
+  </div>
+
+  <div class="mb-3">
+    <label for="address" class="form-label">Địa chỉ:</label>
+    <input type="text" class="form-control" id="address" placeholder="Nhập địa chỉ..." name="address" formControlName="address">
+  </div>
+
+  <button [class.disabled]="createUpdateForm.invalid" type="submit" class="btn btn-primary float-end">{{btnFormCreateUpdateSubmitText}}</button>
+</form>

@@ -1,0 +1,286 @@
+{
+  "customers": [
+    {
+      "id": 4,
+      "customerType": {
+        "id": 1,
+        "name": "Member"
+      },
+      "name": "Nguyễn Lê Khánh",
+      "birthday": "1999-10-08",
+      "idCard": "056747777",
+      "phone": "0987888676",
+      "email": "khanh@gmail.com",
+      "address": "Quảng Nam"
+    },
+    {
+      "id": 5,
+      "customerType": {
+        "id": 3,
+        "name": "Gold"
+      },
+      "name": "Lê Hồng Nhật",
+      "birthday": "1990-02-01",
+      "idCard": "098777464",
+      "phone": "019289589",
+      "email": "nhatlh@gmail.com",
+      "address": "Đà Nẵng"
+    },
+    {
+      "id": 6,
+      "customerType": {
+        "id": 4,
+        "name": "Diamond"
+      },
+      "name": "Trần Quang Nhân",
+      "birthday": "2000-12-04",
+      "idCard": "0867555747",
+      "phone": "09877776 76",
+      "email": "nhan@gmail.com",
+      "address": "Quảng Nam"
+    },
+    {
+      "id": 7,
+      "customerType": {
+        "id": 4,
+        "name": "Diamond"
+      },
+      "name": "Nguyễn Văn Thành",
+      "birthday": "1991-02-01",
+      "idCard": "0999858774",
+      "phone": "0987654353",
+      "email": "thanh@gmail.com",
+      "address": "Quảng Nam"
+    }
+  ],
+  "customerTypes": [
+    {
+      "id": 1,
+      "name": "Member"
+    },
+    {
+      "id": 2,
+      "name": "Silver"
+    },
+    {
+      "id": 3,
+      "name": "Gold"
+    },
+    {
+      "id": 4,
+      "name": "Diamond"
+    },
+    {
+      "id": 5,
+      "name": "Platinum"
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "name": "Nguyễn Hữu Huy",
+      "position": {
+        "id": 3,
+        "name": "Chuyên viên"
+      },
+      "division": {
+        "id": 1,
+        "name": "Sale – Marketing"
+      },
+      "educationDegree": {
+        "id": 3,
+        "name": "Đại học"
+      },
+      "birthday": "2000-05-01",
+      "idCard": "0909938383",
+      "salary": 23000000,
+      "phone": "0989868686",
+      "email": "huuhuy@gmail.com",
+      "address": "Đà Nẵng"
+    },
+    {
+      "id": 2,
+      "name": "Nguyễn Thị Vân",
+      "position": {
+        "id": 4,
+        "name": "Giám sát"
+      },
+      "division": {
+        "id": 2,
+        "name": "Hành Chính"
+      },
+      "educationDegree": {
+        "id": 3,
+        "name": "Đại học"
+      },
+      "birthday": "1997-09-07",
+      "idCard": "098757646",
+      "salary": 15000000,
+      "phone": "0987222818",
+      "email": "van@gmail.com",
+      "address": "Gia Lai"
+    }
+  ],
+  "positions": [
+    {
+      "id": 1,
+      "name": "Lễ tân"
+    },
+    {
+      "id": 2,
+      "name": "Phục vụ"
+    },
+    {
+      "id": 3,
+      "name": "Chuyên viên"
+    },
+    {
+      "id": 4,
+      "name": "Giám sát"
+    },
+    {
+      "id": 5,
+      "name": "Quản lý"
+    },
+    {
+      "id": 6,
+      "name": "Giám đốc"
+    }
+  ],
+  "divisions": [
+    {
+      "id": 1,
+      "name": "Sale – Marketing"
+    },
+    {
+      "id": 2,
+      "name": "Hành Chính"
+    },
+    {
+      "id": 3,
+      "name": "Phục vụ"
+    },
+    {
+      "id": 4,
+      "name": "Quản lý"
+    }
+  ],
+  "educationDegrees": [
+    {
+      "id": 1,
+      "name": "Trung cấp"
+    },
+    {
+      "id": 2,
+      "name": "Cao đẳng"
+    },
+    {
+      "id": 3,
+      "name": "Đại học"
+    },
+    {
+      "id": 4,
+      "name": "Sau đại học"
+    }
+  ],
+  "facilities": [
+    {
+      "id": 1,
+      "facilityType": {
+        "id": 2,
+        "name": "House"
+      },
+      "name": "Nhà Hoa Hồng",
+      "area": 75,
+      "numberOfFloor": 2,
+      "maxPeople": 4,
+      "cost": 500000,
+      "rentType": {
+        "id": 1,
+        "name": "Theo giờ"
+      },
+      "status": "Còn tốt chán!"
+    },
+    {
+      "id": 2,
+      "facilityType": {
+        "id": 1,
+        "name": "Villa"
+      },
+      "name": "Biệt Thự Tự Sự",
+      "area": 100,
+      "numberOfFloor": 2,
+      "maxPeople": 8,
+      "cost": 10000000,
+      "rentType": {
+        "id": 2,
+        "name": "Theo ngày"
+      },
+      "status": "Vip pro"
+    }
+  ],
+  "facilityTypes": [
+    {
+      "id": 1,
+      "name": "Villa"
+    },
+    {
+      "id": 2,
+      "name": "House"
+    },
+    {
+      "id": 3,
+      "name": "Room"
+    }
+  ],
+  "rentTypes": [
+    {
+      "id": 1,
+      "name": "Theo giờ"
+    },
+    {
+      "id": 2,
+      "name": "Theo ngày"
+    },
+    {
+      "id": 3,
+      "name": "Theo tháng"
+    },
+    {
+      "id": 4,
+      "name": "Theo năm"
+    }
+  ],
+  "contracts": [],
+  "contractDetails": [],
+  "attachService": [
+    {
+      "id": 1,
+      "name": "Karaoke",
+      "unit": "giờ/phòng",
+      "cost": "80000",
+      "status": "Còn"
+    },
+    {
+      "id": 2,
+      "name": "Buffet sáng",
+      "unit": "người",
+      "cost": "150000",
+      "status": "Còn"
+    },
+    {
+      "id": 3,
+      "name": "Xe máy",
+      "unit": "xe/ngày",
+      "cost": "150000",
+      "status": "Còn 3 xe, hỏng 2 xe"
+    },
+    {
+      "id": 1,
+      "name": "Xe đạp",
+      "unit": "xe/ngày",
+      "cost": "50000",
+      "status": "Còn 7 xe, hỏng 1 xe"
+    }
+  ]
+}
