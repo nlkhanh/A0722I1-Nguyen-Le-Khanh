@@ -1,0 +1,29 @@
+.list-info-detail > li > span:last-child {
+    float: right;
+}
+
+.max-w-500 {
+    max-width: 500px;
+}
+
+.min-w-350 {
+    min-width: 350px;
+}
+
+.w-121 {
+    min-width: 121px;
+}
+
+.fs-10 {
+    font-size: 10px;
+}
+
+.bg-light-green-blue {
+    background-color: #55efc4;
+}
+
+/*.bg-img-blue {*/
+/*    background-image: url("/assets/images/bg_blue.jpg");*/
+/*    background-position: 0 0;*/
+/*    background-size: 100% 200%;*/
+/*}*/
